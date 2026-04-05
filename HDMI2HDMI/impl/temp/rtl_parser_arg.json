@@ -6,11 +6,7 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/image_composer.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/gowin_pll/gowin_pll.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/dvi_rx/dvi_rx.v",
    "Type" : "verilog"
   },
   {
@@ -18,11 +14,27 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/dvi_rx/dvi_rx.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/gowin_pll/gowin_pll.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/image_composer.v",
    "Type" : "verilog"
   },
   {
    "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/video_frame_buffer/video_frame_buffer.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/dvi_tx/dvi_tx.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/ddr3_memory_interface/ddr3_memory_interface.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/gowin_pll_dvi/gowin_pll_dvi.v",
    "Type" : "verilog"
   }
  ],

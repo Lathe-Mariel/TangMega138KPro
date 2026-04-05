@@ -5,10 +5,13 @@
     <Version>5</Version>
     <Device name="GW5AST-138B" pn="GW5AST-LV138FPG676AES">gw5ast138b-002</Device>
     <FileList>
+        <File path="src/ddr3_memory_interface/ddr3_memory_interface.v" type="file.verilog" enable="1"/>
         <File path="src/dvi_frame_buffer_top.v" type="file.verilog" enable="1"/>
         <File path="src/dvi_rx/dvi_rx.v" type="file.verilog" enable="1"/>
+        <File path="src/dvi_tx/dvi_tx.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_clkdiv/gowin_clkdiv.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_pll/gowin_pll.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_pll_dvi/gowin_pll_dvi.v" type="file.verilog" enable="1"/>
         <File path="src/image_composer.v" type="file.verilog" enable="1"/>
         <File path="src/video_frame_buffer/video_frame_buffer.v" type="file.verilog" enable="1"/>
         <File path="src/dvi_frame_buffer.cst" type="file.cst" enable="1"/>

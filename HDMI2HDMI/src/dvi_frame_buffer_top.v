@@ -48,7 +48,9 @@ module dvi_frame_buffer_top (
     // HDMI TX - TMDS Output (GOWIN DVI TX IP)
     //--------------------------------------------------------------------------
     output wire        O_tmds_clk_p,
+    output wire        O_tmds_clk_n,
     output wire [2:0]  O_tmds_data_p,
+    output wire [2:0]  O_tmds_data_n,
 
     //--------------------------------------------------------------------------
     // DDR3 SDRAM (GOWIN DDR Memory Interface IP)
@@ -63,8 +65,10 @@ module dvi_frame_buffer_top (
     output wire        ddr_cke,
     output wire        ddr_reset_n,
     output wire        ddr_ck,        // Differential (P=M2, N=L2)
+    output wire        ddr_ck_n,
     inout  wire [31:0] ddr_dq,
     inout  wire [3:0]  ddr_dqs,       // Differential (P,N pairs)
+    inout  wire [3:0]  ddr_dqs_n,
     output wire [3:0]  ddr_dm,
 
     //--------------------------------------------------------------------------
@@ -111,22 +115,23 @@ module dvi_frame_buffer_top (
     //     .clkout1 (clk_5x),
     //     .lock    (pll_video_lock)
     // );
-    Gowin_PLL u_pll_video(
+
+    Gowin_PLL_DVI pll_dvi(
         .lock(pll_video_lock), //output lock
-        .clkout0(clk_100), // 100MHz
-        .clkout1(clk_5x), // 371.25MHz
-        .clkin(clk) //input clkin
+        .clkout0(clk_5x), //output clkout0
+        .clkin(clk), //input clkin
+        .reset(reset) //input reset
     );
 
-    Gowin_CLKDIV your_instance_name(
+    Gowin_CLKDIV clkdiv_dvi(
         .clkout(clk_pixel), //output clkout
         .hclkin(clk_5x), //input hclkin
         .resetn(rst_n) //input resetn
     );
 
-    assign clk_pixel      = 1'b0;  // TODO: connect PLL output
-    assign clk_5x         = 1'b0;  // TODO: connect PLL output
-    assign pll_video_lock = 1'b0;  // TODO: connect PLL lock
+//    assign clk_pixel      = 1'b0;  // TODO: connect PLL output
+//    assign clk_5x         = 1'b0;  // TODO: connect PLL output
+//    assign pll_video_lock = 1'b0;  // TODO: connect PLL lock
 
     // ------------------------------------------------------------------
     // PLL_SYS : 50 MHz → 100 MHz (clk_sys)
@@ -137,7 +142,18 @@ module dvi_frame_buffer_top (
     //     .lock    (pll_sys_lock)
     // );
 //    assign clk_sys      = clk;    // TODO: connect PLL output
-    assign pll_sys_lock = 1'b1;   // TODO: connect PLL lock
+//    assign pll_sys_lock = 1'b1;   // TODO: connect PLL lock
+
+    wire memory_clk;
+    wire memory_pll_lock;
+
+    Gowin_PLL pll_memory(
+        .lock(memory_pll_lock), //output lock
+        .clkout0(memory_clk), //output clkout0
+        .clkout1(clk_100), //output clkout1
+        .clkin(clk), //input clkin
+        .reset(rst_n) //input reset
+    );
 
 //==============================================================================
 // HDMI RX - DVI Receiver (GOWIN DVI RX IP)
@@ -170,7 +186,7 @@ module dvi_frame_buffer_top (
 
 	DVI_RX_Top your_instance_name(
 		.I_rst_n(rst_n), //input I_rst_n
-		.I_tmds_clk_p(tmds_4x_clk_p), //input I_tmds_clk_p
+		.I_tmds_clk_p(tmds_rx_clk_p), //input I_tmds_clk_p
 		.I_tmds_clk_n(tmds_rx_clk_n), //input I_tmds_clk_n
 		.I_tmds_data_p(tmds_rx_d_p), //input [2:0] I_tmds_data_p
 		.I_tmds_data_n(tmds_rx_d_n), //input [2:0] I_tmds_data_n
@@ -185,14 +201,14 @@ module dvi_frame_buffer_top (
 		.O_rgb_b(rx_b) //output [7:0] O_rgb_b
 	);
 
-    assign rx_pclk    = 1'b0;   // TODO: connect DVI RX IP
-    assign rx_r       = 8'h0;
-    assign rx_g       = 8'h0;
-    assign rx_b       = 8'h0;
-    assign rx_de      = 1'b0;
-    assign rx_hsync   = 1'b0;
-    assign rx_vsync   = 1'b0;
-    assign rx_pll_lock = 1'b0;
+//    assign rx_pclk    = 1'b0;   // TODO: connect DVI RX IP
+//    assign rx_r       = 8'h0;
+//    assign rx_g       = 8'h0;
+//    assign rx_b       = 8'h0;
+//    assign rx_de      = 1'b0;
+//    assign rx_hsync   = 1'b0;
+//    assign rx_vsync   = 1'b0;
+//    assign rx_pll_lock = 1'b0;
 
 //==============================================================================
 // Frame Buffer Write Path  (RX pixel clock domain → DDR3)
@@ -226,33 +242,38 @@ module dvi_frame_buffer_top (
 
 	Video_Frame_Buffer_Top your_instance_name(
 		.I_rst_n(I_rst_n), //input I_rst_n
-		.I_dma_clk(I_dma_clk), //input I_dma_clk
+		.I_dma_clk(dma_clk), //input I_dma_clk < from DDR3 controller>
+
 		.I_wr_halt(I_wr_halt), //input [0:0] I_wr_halt
 		.I_rd_halt(I_rd_halt), //input [0:0] I_rd_halt
+// video data input ( From DVI RX )
 		.I_vin0_clk(I_vin0_clk), //input I_vin0_clk
 		.I_vin0_vs_n(I_vin0_vs_n), //input I_vin0_vs_n
 		.I_vin0_de(I_vin0_de), //input I_vin0_de
 		.I_vin0_data(I_vin0_data), //input [15:0] I_vin0_data
-		.O_vin0_fifo_full(O_vin0_fifo_full), //output O_vin0_fifo_full
+		.O_vin0_fifo_full(), //output O_vin0_fifo_full
+// video data output ( To Image Conposer - DVI TX )
 		.I_vout0_clk(I_vout0_clk), //input I_vout0_clk
 		.I_vout0_vs_n(I_vout0_vs_n), //input I_vout0_vs_n
 		.I_vout0_de(I_vout0_de), //input I_vout0_de
 		.O_vout0_den(O_vout0_den), //output O_vout0_den
 		.O_vout0_data(O_vout0_data), //output [15:0] O_vout0_data
-		.O_vout0_fifo_empty(O_vout0_fifo_empty), //output O_vout0_fifo_empty
-		.I_cmd_ready(I_cmd_ready), //input I_cmd_ready
-		.O_cmd(O_cmd), //output [2:0] O_cmd
-		.O_cmd_en(O_cmd_en), //output O_cmd_en
-		.O_addr(O_addr), //output [28:0] O_addr
-		.I_wr_data_rdy(I_wr_data_rdy), //input I_wr_data_rdy
-		.O_wr_data_en(O_wr_data_en), //output O_wr_data_en
-		.O_wr_data_end(O_wr_data_end), //output O_wr_data_end
-		.O_wr_data(O_wr_data), //output [255:0] O_wr_data
-		.O_wr_data_mask(O_wr_data_mask), //output [31:0] O_wr_data_mask
-		.I_rd_data_valid(I_rd_data_valid), //input I_rd_data_valid
-		.I_rd_data_end(I_rd_data_end), //input I_rd_data_end
-		.I_rd_data(I_rd_data), //input [255:0] I_rd_data
-		.I_init_calib_complete(I_init_calib_complete) //input I_init_calib_complete
+
+		.O_vout0_fifo_empty(), //output O_vout0_fifo_empty
+
+		.I_cmd_ready(cmd_ready), //input I_cmd_ready <from DDR3 Controller>
+		.O_cmd(cmd), //output [2:0] O_cmd < To DDR3 Controller>
+		.O_cmd_en(cmd_en), //output O_cmd_en <To DDR3 Controller>
+		.O_addr(addr), //output [28:0] O_addr
+		.I_wr_data_rdy(wr_data_rdy), //input I_wr_data_rdy
+		.O_wr_data_en(wr_data_en), //output O_wr_data_en
+		.O_wr_data_end(wr_data_end), //output O_wr_data_end
+		.O_wr_data(wr_data), //output [255:0] O_wr_data
+		.O_wr_data_mask(wr_data_mask), //output [31:0] O_wr_data_mask
+		.I_rd_data_valid(rd_data_valid), //input I_rd_data_valid
+		.I_rd_data_end(rd_data_end), //input I_rd_data_end
+		.I_rd_data(rd_data), //input [255:0] I_rd_data
+		.I_init_calib_complete(init_calib_complete) //input I_init_calib_complete <from DDR3 controller>
 	);
 
 //==============================================================================
@@ -289,6 +310,67 @@ module dvi_frame_buffer_top (
     //     .O_ddr_clk    (ddr_ck),
     //     // AXI4 slave port ...
     // );
+
+    wire dma_clk;
+    wire init_calib_complete;
+    wire cmd_ready;
+    wire[2:0] cmd;
+    wire cmd_en;
+    wire[28:0] addr;
+    wire wr_data_rdy;
+    wire[255:0] wr_data;
+    wire wr_data_en;
+    wire wr_data_end;
+    wire[31:0] wr_data_mask;
+    wire[255:0] rd_data;
+    wire rd_data_valid;
+    wire rd_data_end;
+
+	DDR3_Memory_Interface_Top your_instance_name(
+		.clk(clk_100), //input clk
+		.pll_stop(), //output pll_stop
+		.memory_clk(memory_clk), //input memory_clk
+		.pll_lock(memory_pll_lock), //input pll_lock
+		.rst_n(rst_n), //input rst_n
+		.clk_out(dma_clk), //output clk_out
+		.ddr_rst(), //output ddr_rst
+
+		.init_calib_complete(init_calib_complete), //output init_calib_complete
+		.cmd_ready(cmd_ready), //output cmd_ready
+		.cmd(cmd), //input [2:0] cmd
+		.cmd_en(cmd_en), //input cmd_en
+		.addr(addr), //input [28:0] addr
+		.wr_data_rdy(wr_data_rdy), //output wr_data_rdy
+		.wr_data(wr_data), //input [255:0] wr_data
+		.wr_data_en(wr_data_en), //input wr_data_en
+		.wr_data_end(wr_data_end), //input wr_data_end
+		.wr_data_mask(wr_data_mask), //input [31:0] wr_data_mask
+		.rd_data(rd_data), //output [255:0] rd_data
+		.rd_data_valid(rd_data_valid), //output rd_data_valid
+		.rd_data_end(rd_data_end), //output rd_data_end
+		.sr_req(1'b0), //input sr_req
+		.ref_req(1'b0), //input ref_req
+		.sr_ack(), //output sr_ack
+		.ref_ack(), //output ref_ack
+		.burst(1'b1), //input burst
+		.O_ddr_addr(ddr_addr), //output [14:0] O_ddr_addr
+		.O_ddr_ba(ddr_bank), //output [2:0] O_ddr_ba
+		.O_ddr_cs_n(ddr_cs), //output O_ddr_cs_n
+		.O_ddr_ras_n(ddr_ras), //output O_ddr_ras_n
+		.O_ddr_cas_n(ddr_cas), //output O_ddr_cas_n
+		.O_ddr_we_n(ddr_we), //output O_ddr_we_n
+		.O_ddr_clk(ddr_ck), //output O_ddr_clk
+		.O_ddr_clk_n(ddr_ck_n), //output O_ddr_clk_n
+
+		.O_ddr_cke(O_ddr_cke), //output O_ddr_cke
+		.O_ddr_odt(O_ddr_odt), //output O_ddr_odt
+		.O_ddr_reset_n(O_ddr_reset_n), //output O_ddr_reset_n
+		.O_ddr_dqm(O_ddr_dqm), //output [3:0] O_ddr_dqm
+		.IO_ddr_dq(IO_ddr_dq), //inout [31:0] IO_ddr_dq
+		.IO_ddr_dqs(IO_ddr_dqs), //inout [3:0] IO_ddr_dqs
+		.IO_ddr_dqs_n(IO_ddr_dqs_n) //inout [3:0] IO_ddr_dqs_n
+	);
+
 
     // Tie off DDR3 pins until IP is connected
     assign ddr_addr    = 16'h0;
@@ -348,10 +430,15 @@ module dvi_frame_buffer_top (
         .clk_pixel  (clk_pixel),
         .rst_n      (sys_rst_n),
         // Frame buffer input (scaled input video)
+
+        fb_rd_x,     // source X address (0~1919)
+        fb_rd_y,     // source Y address (0~1079)
+        fb_rd_en,    // read enable
         .fb_r       (fb_r),
         .fb_g       (fb_g),
         .fb_b       (fb_b),
         .fb_de      (fb_de),
+        .fb_valid   (),
         // Composed output
         .out_r      (comp_r),
         .out_g      (comp_g),
@@ -360,6 +447,11 @@ module dvi_frame_buffer_top (
         .out_hsync  (comp_hsync),
         .out_vsync  (comp_vsync)
     );
+
+// fb_rd_x, fb_rd_y → フレームバッファの読み出しアドレス
+// fb_rd_en         → 読み出しイネーブル
+// fb_r/g/b         → フレームバッファからの返り値（2サイクル後）
+// fb_valid         → フレームバッファデータ有効フラグ
 
 //==============================================================================
 // HDMI TX - DVI Transmitter (GOWIN DVI TX IP)
@@ -381,8 +473,25 @@ module dvi_frame_buffer_top (
     //     .tmds_clk_p  (O_tmds_clk_p),
     //     .tmds_data_p (O_tmds_data_p)
     // );
-    assign O_tmds_clk_p   = 1'b0;   // TODO: connect DVI TX IP
-    assign O_tmds_data_p  = 3'h0;
+
+	DVI_TX_Top your_instance_name(
+		.I_rst_n(rst_n), //input I_rst_n
+		.I_serial_clk(clk_5x), //input I_serial_clk
+		.I_rgb_clk(clk_pixel), //input I_rgb_clk
+		.I_rgb_vs(comp_vsync), //input I_rgb_vs
+		.I_rgb_hs(comp_hsync), //input I_rgb_hs
+		.I_rgb_de(comp_de),    //input I_rgb_de
+		.I_rgb_r(comp_r),      //input [7:0] I_rgb_r
+		.I_rgb_g(comp_g),      //input [7:0] I_rgb_g
+		.I_rgb_b(comp_b),      //input [7:0] I_rgb_b
+		.O_tmds_clk_p(O_tmds_clk_p), //output O_tmds_clk_p
+		.O_tmds_clk_n(O_tmds_clk_n), //output O_tmds_clk_n
+		.O_tmds_data_p(O_tmds_data_p), //output [2:0] O_tmds_data_p
+		.O_tmds_data_n(O_tmds_data_n) //output [2:0] O_tmds_data_n
+	);
+
+//    assign O_tmds_clk_p   = 1'b0;   // TODO: connect DVI TX IP
+//    assign O_tmds_data_p  = 3'h0;
 
 //==============================================================================
 // Camera Interface (将来のオーバレイ実装用 - 現在はスタブ)
@@ -408,181 +517,6 @@ module dvi_frame_buffer_top (
 //==============================================================================
 
     assign fan = 1'b1;
-
-endmodule
-
-//==============================================================================
-// Sub Module : image_composer.v
-// Generates 1920x1080@30fps output timing and composites all layers
-//==============================================================================
-
-module image_composer (
-    input  wire        clk_pixel,  // 74.25 MHz
-    input  wire        rst_n,
-
-    // Frame buffer pixel input (scaled input video 1451x981)
-    input  wire [7:0]  fb_r,
-    input  wire [7:0]  fb_g,
-    input  wire [7:0]  fb_b,
-    input  wire        fb_de,
-
-    // Composed output
-    output reg  [7:0]  out_r,
-    output reg  [7:0]  out_g,
-    output reg  [7:0]  out_b,
-    output wire        out_de,
-    output wire        out_hsync,
-    output wire        out_vsync
-);
-
-    //--------------------------------------------------------------------------
-    // Timing parameters : 1920x1080 @ 30fps  (pixel clock 74.25 MHz)
-    //--------------------------------------------------------------------------
-    localparam H_ACTIVE  = 1920;
-    localparam H_FP      =   88;   // front porch
-    localparam H_SYNC    =   44;   // sync width
-    localparam H_BP      =  148;   // back porch
-    localparam H_TOTAL   = H_ACTIVE + H_FP + H_SYNC + H_BP;  // 2200
-
-    localparam V_ACTIVE  = 1080;
-    localparam V_FP      =    4;
-    localparam V_SYNC    =    5;
-    localparam V_BP      =   36;
-    localparam V_TOTAL   = V_ACTIVE + V_FP + V_SYNC + V_BP;  // 1125
-
-    //--------------------------------------------------------------------------
-    // Screen region boundaries
-    //--------------------------------------------------------------------------
-    localparam BORDER_W  =   50;   // orange border width (px)
-    localparam ORANGE_R  = 8'hFF;
-    localparam ORANGE_G  = 8'h80;
-    localparam ORANGE_B  = 8'h00;
-
-    // Input video display area
-    localparam VID_X0    =   50;
-    localparam VID_Y0    =   50;
-    localparam VID_X1    = 1500;
-    localparam VID_Y1    = 1030;
-
-    // Camera overlay reserved area
-    localparam CAM_X0    = 1550;
-    localparam CAM_Y0    =   50;
-    localparam CAM_X1    = 1870;
-    localparam CAM_Y1    =  550;
-
-    // "Lathe" text area
-    localparam TXT_X0    = 1550;
-    localparam TXT_Y0    =  930;
-    localparam TXT_X1    = 1870;
-    localparam TXT_Y1    = 1030;
-
-    //--------------------------------------------------------------------------
-    // Sync counter
-    //--------------------------------------------------------------------------
-    reg [10:0] hcnt;   // 0 ~ H_TOTAL-1 (2199)
-    reg [10:0] vcnt;   // 0 ~ V_TOTAL-1 (1124)
-
-    always @(posedge clk_pixel or negedge rst_n) begin
-        if (!rst_n) begin
-            hcnt <= 11'd0;
-            vcnt <= 11'd0;
-        end else begin
-            if (hcnt == H_TOTAL - 1) begin
-                hcnt <= 11'd0;
-                vcnt <= (vcnt == V_TOTAL - 1) ? 11'd0 : vcnt + 1'b1;
-            end else begin
-                hcnt <= hcnt + 1'b1;
-            end
-        end
-    end
-
-    //--------------------------------------------------------------------------
-    // Sync / DE output
-    //   Sync pulses are in the blanking region (after active area + FP)
-    //--------------------------------------------------------------------------
-    wire de     = (hcnt < H_ACTIVE) && (vcnt < V_ACTIVE);
-    wire hsync  = (hcnt >= H_ACTIVE + H_FP) && (hcnt < H_ACTIVE + H_FP + H_SYNC);
-    wire vsync  = (vcnt >= V_ACTIVE + V_FP) && (vcnt < V_ACTIVE + V_FP + V_SYNC);
-
-    assign out_de    = de;
-    assign out_hsync = hsync;
-    assign out_vsync = vsync;
-
-    //--------------------------------------------------------------------------
-    // Region decode (combinational)
-    //--------------------------------------------------------------------------
-
-    // Orange border : 4 edges
-    wire is_border = de && (
-        (hcnt < BORDER_W) ||
-        (hcnt >= H_ACTIVE - BORDER_W) ||
-        (vcnt < BORDER_W) ||
-        (vcnt >= V_ACTIVE - BORDER_W)
-    );
-
-    // Input video display area (frame buffer data)
-    wire is_video = de &&
-        (hcnt >= VID_X0) && (hcnt < VID_X1) &&
-        (vcnt >= VID_Y0) && (vcnt < VID_Y1);
-
-    // "Lathe" text area
-    wire is_text = de &&
-        (hcnt >= TXT_X0) && (hcnt < TXT_X1) &&
-        (vcnt >= TXT_Y0) && (vcnt < TXT_Y1);
-
-    //--------------------------------------------------------------------------
-    // "Lathe" text pixel lookup (font ROM)
-    // Font: 5 chars x 64px height, rendered within 321x101 area
-    // Implementation: instantiate font_rom submodule
-    //--------------------------------------------------------------------------
-    wire [7:0] text_r, text_g, text_b;
-    wire       text_pixel_on;
-
-    font_rom_lathe u_font (
-        .clk       (clk_pixel),
-        .hcnt      (hcnt),
-        .vcnt      (vcnt),
-        .txt_x0    (TXT_X0),
-        .txt_y0    (TXT_Y0),
-        .pixel_on  (text_pixel_on)
-    );
-
-    assign text_r = text_pixel_on ? 8'hFF : 8'h00;
-    assign text_g = text_pixel_on ? 8'hFF : 8'h00;
-    assign text_b = text_pixel_on ? 8'hFF : 8'h00;
-
-    //--------------------------------------------------------------------------
-    // Pixel compositor (priority: text > border > video > black)
-    //--------------------------------------------------------------------------
-    always @(posedge clk_pixel) begin
-        if (!rst_n) begin
-            out_r <= 8'h0;
-            out_g <= 8'h0;
-            out_b <= 8'h0;
-        end else begin
-            if (!de) begin
-                out_r <= 8'h0;
-                out_g <= 8'h0;
-                out_b <= 8'h0;
-            end else if (is_text) begin
-                out_r <= text_r;
-                out_g <= text_g;
-                out_b <= text_b;
-            end else if (is_border) begin
-                out_r <= ORANGE_R;
-                out_g <= ORANGE_G;
-                out_b <= ORANGE_B;
-            end else if (is_video) begin
-                out_r <= fb_r;
-                out_g <= fb_g;
-                out_b <= fb_b;
-            end else begin
-                out_r <= 8'h00;   // black background
-                out_g <= 8'h00;
-                out_b <= 8'h00;
-            end
-        end
-    end
 
 endmodule
 
