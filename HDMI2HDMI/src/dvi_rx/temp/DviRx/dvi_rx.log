@@ -1,0 +1,39 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v'
+Analyzing included file 'top_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v":40)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v":40)
+Analyzing included file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\static_macro_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v":41)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v":41)
+Analyzing included file 'dvi_rx_defines.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v":42)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v":42)
+Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v'
+Analyzing included file 'top_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v":3123)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v":3123)
+Analyzing included file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\static_macro_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v":3123)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v":3123)
+Analyzing included file 'dvi_rx_defines.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v":3123)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v":3123)
+Compiling module 'DVI_RX_Top'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi_rx_top.v":44)
+Compiling module '**'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\ipcore\DVI_RX\data\dvi2rgb.v":3123)
+NOTE  (EX0101) : Current top module is "DVI_RX_Top"
+[5%] Running netlist conversion ...
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "H:\git\TangMega138KPro\HDMI2HDMI\src\dvi_rx\temp\DviRx\dvi_rx.vg" completed
+Generate template file "H:\git\TangMega138KPro\HDMI2HDMI\src\dvi_rx\temp\DviRx\dvi_rx_tmp.v" completed
+[100%] Generate report file "H:\git\TangMega138KPro\HDMI2HDMI\src\dvi_rx\temp\DviRx\dvi_rx_syn.rpt.html" completed
+GowinSynthesis finish

@@ -1,0 +1,14 @@
+生成物のまとめ
+ファイル内容gen_font_rom.pyフォントROM生成スクリプト本体lathe_font.hexVerilog $readmemh用HEXファイル（100行×80桁）lathe_font_inv.png視覚確認用PNG（黒文字/白背景、3倍拡大）
+HEXファイル仕様
+項目値行数100行（= TXT_H）1行の幅80桁 = 320ビット（= TXT_W）ビット順MSB = x=0（左端）、LSB = x=319（右端）フォントDejaVuSans-Bold 90pt描画結果286×69px、中央配置ラウンドトリップ検証✅ 完全一致
+
+
+image_composer.v への組み込み
+initialブロックのプレースホルダを以下に置き換えるだけです：
+veriloginitial begin
+    $readmemh("lathe_font.hex", font_rom);
+end
+フォントを変更したい場合は --font と --size オプションで調整できます。例えば：
+
+python3 gen_font_rom.py --font /path/to/your.ttf --size 80 --preview
