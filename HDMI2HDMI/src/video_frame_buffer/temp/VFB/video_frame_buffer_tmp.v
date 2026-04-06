@@ -5,7 +5,7 @@
 //Part Number: GW5AST-LV138FPG676AES
 //Device: GW5AST-138
 //Device Version: B
-//Created Time: Sun Apr  5 16:46:46 2026
+//Created Time: Tue Apr  7 00:51:47 2026
 
 //Change the instance name and port connections to the signal names
 //--------Copy here to design--------
@@ -18,13 +18,13 @@
 		.I_vin0_clk(I_vin0_clk), //input I_vin0_clk
 		.I_vin0_vs_n(I_vin0_vs_n), //input I_vin0_vs_n
 		.I_vin0_de(I_vin0_de), //input I_vin0_de
-		.I_vin0_data(I_vin0_data), //input [15:0] I_vin0_data
+		.I_vin0_data(I_vin0_data), //input [23:0] I_vin0_data
 		.O_vin0_fifo_full(O_vin0_fifo_full), //output O_vin0_fifo_full
 		.I_vout0_clk(I_vout0_clk), //input I_vout0_clk
 		.I_vout0_vs_n(I_vout0_vs_n), //input I_vout0_vs_n
 		.I_vout0_de(I_vout0_de), //input I_vout0_de
 		.O_vout0_den(O_vout0_den), //output O_vout0_den
-		.O_vout0_data(O_vout0_data), //output [15:0] O_vout0_data
+		.O_vout0_data(O_vout0_data), //output [23:0] O_vout0_data
 		.O_vout0_fifo_empty(O_vout0_fifo_empty), //output O_vout0_fifo_empty
 		.I_cmd_ready(I_cmd_ready), //input I_cmd_ready
 		.O_cmd(O_cmd), //output [2:0] O_cmd
