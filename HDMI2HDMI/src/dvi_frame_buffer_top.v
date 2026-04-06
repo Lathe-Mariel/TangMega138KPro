@@ -244,8 +244,8 @@ module dvi_frame_buffer_top (
 		.I_rst_n(I_rst_n), //input I_rst_n
 		.I_dma_clk(dma_clk), //input I_dma_clk < from DDR3 controller>
 
-		.I_wr_halt(I_wr_halt), //input [0:0] I_wr_halt
-		.I_rd_halt(I_rd_halt), //input [0:0] I_rd_halt
+		.I_wr_halt(), //input [0:0] I_wr_halt
+		.I_rd_halt(), //input [0:0] I_rd_halt
 // video data input ( From DVI RX )
 		.I_vin0_clk(I_vin0_clk), //input I_vin0_clk
 		.I_vin0_vs_n(I_vin0_vs_n), //input I_vin0_vs_n
@@ -405,10 +405,10 @@ module dvi_frame_buffer_top (
     //     .b         (fb_b),
     //     .de        (fb_de)
     // );
-    assign fb_r  = 8'h0;   // TODO: connect VFB read IP
-    assign fb_g  = 8'h0;
-    assign fb_b  = 8'h0;
-    assign fb_de = 1'b0;
+//    assign fb_r  = 8'h0;   // TODO: connect VFB read IP
+//    assign fb_g  = 8'h0;
+//    assign fb_b  = 8'h0;
+//    assign fb_de = 1'b0;
 
 //==============================================================================
 // Image Composer
