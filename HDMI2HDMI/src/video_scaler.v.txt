@@ -1,0 +1,262 @@
+//==============================================================================
+// Module     : video_scaler.v
+// Project    : DVI Frame Buffer with Image Composer
+// Board      : Tang Mega 138K Pro Dock (GW5AST-LV138FPG676A)
+// Updated    : 2026-04-04
+//
+// Function:
+//   Nearest-neighbor scaler that maps output pixel coordinates to
+//   source frame buffer addresses for the input video display area.
+//
+//   Output video area : (VID_X0,VID_Y0) = (50,50) to (VID_X1,VID_Y1) = (1500,1030)
+//   Display size      : 1450 x 980 pixels in the output frame
+//   Source (FB)       : 1920 x 1080 pixels
+//
+// Algorithm (Q16 fixed-point accumulator):
+//   hacc increments by HSTEP = round(1920/1450 * 65536) = 86779 each active pixel
+//   vacc increments by VSTEP = round(1080/980  * 65536) = 72223 each active line
+//   src_x = hacc[31:16]  (integer part)
+//   src_y = vacc[31:16]
+//
+//   Verified:
+//     max src_x = 1918 < 1920  (no overflow)
+//     max src_y = 1078 < 1080  (no overflow)
+//     32-bit accumulators sufficient (max value ~125M < 2^27)
+//
+// Pipeline:
+//   Cycle 0: hcnt/vcnt → accumulator → src_x/src_y → fb_rd_addr output
+//   Cycle 1: frame buffer BRAM read latency
+//   Cycle 2: fb pixel data arrives → valid output
+//
+//   rd_en, rd_x, rd_y are output 1 cycle early so that fb pixel data
+//   arrives in sync with the compositing stage.
+//
+// Interface with image_composer:
+//   - Receives hcnt/vcnt from the timing generator
+//   - Outputs frame buffer read address (rd_x, rd_y) and rd_en
+//   - rd_valid is asserted 1 cycle after rd_en, aligned with pixel data
+//==============================================================================
+
+module video_scaler (
+    input  wire        clk,        // pixel clock (74.25 MHz)
+    input  wire        rst_n,
+
+    // Timing inputs from image_composer timing generator
+    input  wire [10:0] hcnt,       // horizontal counter (0~2199)
+    input  wire [10:0] vcnt,       // vertical counter   (0~1124)
+
+    // Frame buffer read address output (to VFB read port)
+    output reg  [10:0] rd_x,       // source X (0~1919)
+    output reg  [10:0] rd_y,       // source Y (0~1079)
+    output reg         rd_en,      // read enable: asserted during video area
+
+    // Read valid: rd_en delayed 1 cycle, aligned with frame buffer data
+    output reg         rd_valid
+);
+
+//==============================================================================
+// Parameters
+//==============================================================================
+
+    //--------------------------------------------------------------------------
+    // Output timing
+    //--------------------------------------------------------------------------
+    localparam H_ACTIVE = 11'd1920;
+    localparam V_ACTIVE = 11'd1080;
+    localparam H_FP     = 11'd88;
+    localparam H_SYNC   = 11'd44;
+    localparam H_BP     = 11'd148;
+    localparam H_TOTAL  = H_ACTIVE + H_FP + H_SYNC + H_BP;  // 2200
+    localparam V_FP     = 11'd4;
+    localparam V_SYNC   = 11'd5;
+    localparam V_BP     = 11'd36;
+    localparam V_TOTAL  = V_ACTIVE + V_FP + V_SYNC + V_BP;  // 1125
+
+    //--------------------------------------------------------------------------
+    // Input video display area in output frame
+    //--------------------------------------------------------------------------
+    localparam [10:0] VID_X0 = 11'd50;
+    localparam [10:0] VID_Y0 = 11'd50;
+    localparam [10:0] VID_X1 = 11'd1500;   // exclusive
+    localparam [10:0] VID_Y1 = 11'd1030;   // exclusive
+    localparam [10:0] VID_W  = VID_X1 - VID_X0;   // 1450
+    localparam [10:0] VID_H  = VID_Y1 - VID_Y0;   // 980
+
+    //--------------------------------------------------------------------------
+    // Source frame buffer dimensions
+    //--------------------------------------------------------------------------
+    localparam [10:0] SRC_W = 11'd1920;
+    localparam [10:0] SRC_H = 11'd1080;
+
+    //--------------------------------------------------------------------------
+    // Q16 fixed-point scale steps
+    //   HSTEP = round(SRC_W / VID_W * 65536) = round(1920/1450*65536) = 86779
+    //   VSTEP = round(SRC_H / VID_H * 65536) = round(1080/980 *65536) = 72223
+    //--------------------------------------------------------------------------
+    localparam [31:0] HSTEP = 32'd86779;
+    localparam [31:0] VSTEP = 32'd72223;
+
+//==============================================================================
+// Active area flag
+//==============================================================================
+
+    wire in_hactive = (hcnt >= VID_X0) && (hcnt < VID_X1);
+    wire in_vactive = (vcnt >= VID_Y0) && (vcnt < VID_Y1);
+    wire in_video   = in_hactive && in_vactive;
+
+    // One-cycle-early flag: used to issue read address before pixel output
+    wire h_next_active = (hcnt >= VID_X0 - 1) && (hcnt < VID_X1 - 1);
+    wire in_video_early = h_next_active && in_vactive;
+
+//==============================================================================
+// Horizontal Accumulator
+// Reset at hcnt == VID_X0-1 (one pixel before active region)
+// Increment by HSTEP each cycle within the active region
+//==============================================================================
+
+    reg [31:0] hacc;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            hacc <= 32'd0;
+        end else begin
+            if (hcnt == VID_X0 - 1)
+                hacc <= 32'd0;
+            else if (in_hactive && in_vactive)
+                hacc <= hacc + HSTEP;
+        end
+    end
+
+//==============================================================================
+// Vertical Accumulator
+// Reset when vcnt transitions from VID_Y0-1 to VID_Y0 (at end of prior line)
+// Increment by VSTEP at end of each active video line (hcnt == H_TOTAL-1)
+//==============================================================================
+
+    reg [31:0] vacc;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            vacc <= 32'd0;
+        end else begin
+            if (vcnt == VID_Y0 - 1 && hcnt == H_TOTAL - 1)
+                vacc <= 32'd0;                   // reset before first video line
+            else if (in_vactive && hcnt == H_TOTAL - 1)
+                vacc <= vacc + VSTEP;            // advance one source row
+        end
+    end
+
+//==============================================================================
+// Source Address Output
+// src_x = hacc[31:16], src_y = vacc[31:16]
+// Clamp to source dimensions as safety measure
+//==============================================================================
+
+    wire [10:0] src_x_raw = hacc[26:16];   // hacc >> 16, max 1919 (11-bit)
+    wire [10:0] src_y_raw = vacc[26:16];   // vacc >> 16, max 1079 (11-bit)
+
+    // Clamp (should never trigger with verified HSTEP/VSTEP, but safe)
+    wire [10:0] src_x = (src_x_raw >= SRC_W) ? SRC_W - 1 : src_x_raw;
+    wire [10:0] src_y = (src_y_raw >= SRC_H) ? SRC_H - 1 : src_y_raw;
+
+    //--------------------------------------------------------------------------
+    // Register read address and enable (1-cycle pipeline)
+    //--------------------------------------------------------------------------
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            rd_x     <= 11'd0;
+            rd_y     <= 11'd0;
+            rd_en    <= 1'b0;
+            rd_valid <= 1'b0;
+        end else begin
+            // Issue read address 1 cycle ahead of when pixel is needed
+            rd_en    <= in_video_early;
+            rd_x     <= src_x;
+            rd_y     <= src_y;
+            // rd_valid follows rd_en by 1 cycle (= frame buffer read latency)
+            rd_valid <= rd_en;
+        end
+    end
+
+endmodule
+
+//==============================================================================
+// Module     : tb_video_scaler.v  (simulation only)
+// Testbench  : Sweeps hcnt/vcnt and checks src_x/src_y mapping
+//              Verifies no out-of-bounds accesses occur.
+//==============================================================================
+
+`ifdef SIMULATION
+module tb_video_scaler;
+
+    //--------------------------------------------------------------------------
+    // DUT
+    //--------------------------------------------------------------------------
+    reg         clk = 0, rst_n = 0;
+    reg  [10:0] hcnt = 0, vcnt = 0;
+    wire [10:0] rd_x, rd_y;
+    wire        rd_en, rd_valid;
+
+    video_scaler dut (
+        .clk     (clk),
+        .rst_n   (rst_n),
+        .hcnt    (hcnt),
+        .vcnt    (vcnt),
+        .rd_x    (rd_x),
+        .rd_y    (rd_y),
+        .rd_en   (rd_en),
+        .rd_valid(rd_valid)
+    );
+
+    // 74.25 MHz → period ≈ 13.468 ns
+    always #6.734 clk = ~clk;
+
+    //--------------------------------------------------------------------------
+    // Timing generator: drive hcnt / vcnt for 3 frames
+    //--------------------------------------------------------------------------
+    localparam H_TOTAL = 2200;
+    localparam V_TOTAL = 1125;
+
+    integer h, v;
+    integer rd_x_max = 0, rd_y_max = 0;
+    integer errors   = 0;
+
+    initial begin
+        $dumpfile("tb_video_scaler.vcd");
+        $dumpvars(0, tb_video_scaler);
+
+        rst_n = 0; #50; rst_n = 1;
+
+        for (v = 0; v < V_TOTAL * 3; v = v + 1) begin
+            for (h = 0; h < H_TOTAL; h = h + 1) begin
+                hcnt = h; vcnt = v % V_TOTAL;
+                @(posedge clk);
+                // Check bounds when rd_valid is asserted
+                if (rd_valid) begin
+                    if (rd_x > 1919) begin
+                        $display("ERROR: rd_x=%0d out of range at hcnt=%0d vcnt=%0d",
+                                 rd_x, hcnt, vcnt);
+                        errors = errors + 1;
+                    end
+                    if (rd_y > 1079) begin
+                        $display("ERROR: rd_y=%0d out of range at hcnt=%0d vcnt=%0d",
+                                 rd_y, hcnt, vcnt);
+                        errors = errors + 1;
+                    end
+                    if (rd_x > rd_x_max) rd_x_max = rd_x;
+                    if (rd_y > rd_y_max) rd_y_max = rd_y;
+                end
+            end
+        end
+
+        $display("=== Scaler Testbench Results ===");
+        $display("Max rd_x = %0d (limit 1919)", rd_x_max);
+        $display("Max rd_y = %0d (limit 1079)", rd_y_max);
+        $display("Errors   = %0d", errors);
+        if (errors == 0) $display("PASS");
+        else             $display("FAIL");
+        $finish;
+    end
+
+endmodule
+`endif

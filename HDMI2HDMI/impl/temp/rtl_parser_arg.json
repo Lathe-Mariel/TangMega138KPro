@@ -2,39 +2,39 @@
  "Device" : "GW5AST-138B",
  "Files" : [
   {
-   "Path" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/ddr3_memory_interface/ddr3_memory_interface.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/ddr3_memory_interface/ddr3_memory_interface.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_rx/dvi_rx.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/dvi_rx/dvi_rx.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_tx/dvi_tx.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/dvi_tx/dvi_tx.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/gowin_clkdiv/gowin_clkdiv.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/gowin_clkdiv/gowin_clkdiv.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/gowin_pll/gowin_pll.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/gowin_pll/gowin_pll.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/gowin_pll_dvi/gowin_pll_dvi.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/gowin_pll_dvi/gowin_pll_dvi.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/image_composer.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/image_composer.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/video_frame_buffer/video_frame_buffer.v",
+   "Path" : "H:/git/TangMega138KPro/HDMI2HDMI/src/video_frame_buffer/video_frame_buffer.v",
    "Type" : "verilog"
   }
  ],
@@ -42,7 +42,7 @@
 
  ],
  "LoopLimit" : 2000,
- "ResultFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/impl/temp/rtl_parser.result",
+ "ResultFile" : "H:/git/TangMega138KPro/HDMI2HDMI/impl/temp/rtl_parser.result",
  "Top" : "",
  "VerilogStd" : "verilog_2001",
  "VhdlStd" : "vhdl_93"
