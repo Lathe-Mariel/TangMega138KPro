@@ -47,10 +47,10 @@ module dvi_frame_buffer_top (
     //--------------------------------------------------------------------------
     // HDMI TX - TMDS Output (GOWIN DVI TX IP)
     //--------------------------------------------------------------------------
-    output wire        O_tmds_clk_p,
-    output wire        O_tmds_clk_n,
-    output wire [2:0]  O_tmds_data_p,
-    output wire [2:0]  O_tmds_data_n,
+    output wire        tmds_tx_clk_p,
+    output wire        tmds_tx_clk_n,
+    output wire [2:0]  tmds_tx_data_p,
+    output wire [2:0]  tmds_tx_data_n,
 
     //--------------------------------------------------------------------------
     // DDR3 SDRAM (GOWIN DDR Memory Interface IP)
@@ -423,10 +423,10 @@ module dvi_frame_buffer_top (
 		.I_rgb_r(comp_r),      //input [7:0] I_rgb_r
 		.I_rgb_g(comp_g),      //input [7:0] I_rgb_g
 		.I_rgb_b(comp_b),      //input [7:0] I_rgb_b
-		.O_tmds_clk_p(O_tmds_clk_p), //output O_tmds_clk_p
-		.O_tmds_clk_n(O_tmds_clk_n), //output O_tmds_clk_n
-		.O_tmds_data_p(O_tmds_data_p), //output [2:0] O_tmds_data_p
-		.O_tmds_data_n(O_tmds_data_n) //output [2:0] O_tmds_data_n
+		.O_tmds_clk_p(tmds_tx_clk_p), //output O_tmds_clk_p
+		.O_tmds_clk_n(tmds_tx_clk_n), //output O_tmds_clk_n
+		.O_tmds_data_p(tmds_tx_data_p), //output [2:0] O_tmds_data_p
+		.O_tmds_data_n(tmds_tx_data_n) //output [2:0] O_tmds_data_n
 	);
 
 //    assign O_tmds_clk_p   = 1'b0;   // TODO: connect DVI TX IP
