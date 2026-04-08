@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-project>
+<gowin-project version="1.1">
+  <Project>
+    <Name>dvi_shader</Name>
+    <Device>GW5AST-LV138FPG676AES</Device>
+    <DeviceVersion>C</DeviceVersion>
+    <DefaultImplementation>impl</DefaultImplementation>
+    <Implementations>
+      <Implementation>
+        <Name>impl</Name>
+        <Top>top</Top>
+        <Source>
+          <File Path="src/top.v"              SourceType="Verilog"/>
+          <File Path="src/video_timing.v"     SourceType="Verilog"/>
+          <File Path="src/shader_3d_tunnel.v" SourceType="Verilog"/>
+          <File Path="src/tmds_encoder.v"     SourceType="Verilog"/>
+          <File Path="src/tmds_serializer.v"  SourceType="Verilog"/>
+          <File Path="src/pll_hdmi.v"         SourceType="Verilog"/>
+          <File Path="constraints/tang_mega138k.cst" SourceType="CST"/>
+          <File Path="constraints/timing.sdc"        SourceType="SDC"/>
+        </Source>
+        <Options>
+          <SynthesisOptions>
+            <Goal>BalancedGoal</Goal>
+            <TopModuleToElab>top</TopModuleToElab>
+            <GeneratePrebuildNetlist>FALSE</GeneratePrebuildNetlist>
+          </SynthesisOptions>
+          <PlaceAndRouteOptions>
+            <RoutingMode>0</RoutingMode>
+          </PlaceAndRouteOptions>
+        </Options>
+      </Implementation>
+    </Implementations>
+  </Project>
+</gowin-project>
