@@ -1,0 +1,49 @@
+//==============================================================
+// Physical Constraints – Tang Mega 138K Pro Dock
+// Device: GW5AST-LV138FPG676AES  (Arora-V, 138K LUT, 676-FBGA)
+//
+// HDMI connector pinout (LVDS pairs):
+//   Tang Mega 138K Pro uses the HDMI port wired directly to
+//   the FPGA LVDS I/O pins listed below.
+//   Verify against your specific board schematic revision.
+//==============================================================
+
+// ── Onboard 27 MHz oscillator ─────────────────────────────
+IO_LOC "clk_27m"  H11;
+IO_PORT "clk_27m" PULL_MODE=NONE IO_TYPE=LVCMOS33;
+
+// ── Reset button (active-low, usually KEY0) ────────────────
+IO_LOC "rst_n"  T10;
+IO_PORT "rst_n" PULL_MODE=UP IO_TYPE=LVCMOS33;
+
+// ── HDMI / DVI  TMDS pairs ────────────────────────────────
+// Data Channel 0 (Blue + Sync)
+IO_LOC "tmds_data_p[0]"  N27;
+IO_LOC "tmds_data_n[0]"  N28;
+IO_PORT "tmds_data_p[0]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+IO_PORT "tmds_data_n[0]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+
+// Data Channel 1 (Green)
+IO_LOC "tmds_data_p[1]"  M27;
+IO_LOC "tmds_data_n[1]"  M28;
+IO_PORT "tmds_data_p[1]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+IO_PORT "tmds_data_n[1]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+
+// Data Channel 2 (Red)
+IO_LOC "tmds_data_p[2]"  L27;
+IO_LOC "tmds_data_n[2]"  L28;
+IO_PORT "tmds_data_p[2]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+IO_PORT "tmds_data_n[2]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+
+// Clock Channel
+IO_LOC "tmds_clk_p"  K27;
+IO_LOC "tmds_clk_n"  K28;
+IO_PORT "tmds_clk_p" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+IO_PORT "tmds_clk_n" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+
+//==============================================================
+// IMPORTANT: Cross-check pin assignments with the official
+// Tang Mega 138K Pro Dock schematic from Sipeed before
+// programming the device.  Incorrect LVDS pin assignments can
+// cause permanent damage.
+//==============================================================

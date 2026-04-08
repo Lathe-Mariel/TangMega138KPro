@@ -218,17 +218,17 @@ module dvi_frame_buffer_top (
 		.I_wr_halt(),        //input [0:0] I_wr_halt
 		.I_rd_halt(),        //input [0:0] I_rd_halt
 // video data input ( From DVI RX )
-		.I_vin0_clk(rx_pclk),    //input I_vin0_clk (from RX DVI)
-		.I_vin0_vs_n(!rx_vsync), //input I_vin0_vs_n (from RX DVI)
-		.I_vin0_de(rx_de),       //input I_vin0_de (from RX DVI)
-		.I_vin0_data(rx_data),   //input [23:0] I_vin0_data (from RX DVI)
-		.O_vin0_fifo_full(),     //output O_vin0_fifo_full
+		.I_vin0_clk(rx_pclk),            //input I_vin0_clk (from RX DVI)
+		.I_vin0_vs_n(!rx_vsync),         //input I_vin0_vs_n (from RX DVI)
+		.I_vin0_de(rx_de),               //input I_vin0_de (from RX DVI)
+		.I_vin0_data(rx_data),           //input [23:0] I_vin0_data (from RX DVI)
+		.O_vin0_fifo_full(),             //output O_vin0_fifo_full
 // video data output ( To Image Conposer - DVI TX )
-		.I_vout0_clk(clk_pixel),     //input I_vout0_clk
-		.I_vout0_vs_n(I_vout0_vs_n), //input I_vout0_vs_n
-		.I_vout0_de(fb_de), //input I_vout0_de
-		.O_vout0_den(O_vout0_den), //output O_vout0_den
-		.O_vout0_data(read_data),    //output [23:0] O_vout0_data
+		.I_vout0_clk(clk_pixel),         //input I_vout0_clk
+		.I_vout0_vs_n(I_vout0_vs_n),     //input I_vout0_vs_n
+		.I_vout0_de(fb_de),              //input I_vout0_de
+		.O_vout0_den(O_vout0_den),       //output O_vout0_den
+		.O_vout0_data(read_data),        //output [23:0] O_vout0_data
 
 		.O_vout0_fifo_empty(),           //output O_vout0_fifo_empty
 
