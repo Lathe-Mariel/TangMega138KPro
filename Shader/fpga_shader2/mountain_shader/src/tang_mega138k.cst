@@ -9,37 +9,29 @@
 //==============================================================
 
 // ── Onboard 27 MHz oscillator ─────────────────────────────
-IO_LOC "clk_27m"  H11;
+IO_LOC "clk_27m"  P16;
 IO_PORT "clk_27m" PULL_MODE=NONE IO_TYPE=LVCMOS33;
 
 // ── Reset button (active-low, usually KEY0) ────────────────
-IO_LOC "rst_n"  T10;
+IO_LOC "rst_n"  K16;
 IO_PORT "rst_n" PULL_MODE=UP IO_TYPE=LVCMOS33;
 
-// ── HDMI / DVI  TMDS pairs ────────────────────────────────
-// Data Channel 0 (Blue + Sync)
-IO_LOC "tmds_data_p[0]"  N27;
-IO_LOC "tmds_data_n[0]"  N28;
-IO_PORT "tmds_data_p[0]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
-IO_PORT "tmds_data_n[0]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
 
-// Data Channel 1 (Green)
-IO_LOC "tmds_data_p[1]"  M27;
-IO_LOC "tmds_data_n[1]"  M28;
-IO_PORT "tmds_data_p[1]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
-IO_PORT "tmds_data_n[1]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+// TMDS Clock Output
+IO_LOC  "tmds_clk_p"       Y22,Y23;
+IO_PORT "tmds_clk_p"       IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
 
-// Data Channel 2 (Red)
-IO_LOC "tmds_data_p[2]"  L27;
-IO_LOC "tmds_data_n[2]"  L28;
-IO_PORT "tmds_data_p[2]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
-IO_PORT "tmds_data_n[2]" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+// TMDS Data Lane 0 (Blue channel)
+IO_LOC  "tmds_data_p[0]"   AB24,AC24;
+IO_PORT "tmds_data_p[0]"   IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
 
-// Clock Channel
-IO_LOC "tmds_clk_p"  K27;
-IO_LOC "tmds_clk_n"  K28;
-IO_PORT "tmds_clk_p" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
-IO_PORT "tmds_clk_n" IO_TYPE=LVCMOS33D PULL_MODE=NONE DRIVE=8;
+// TMDS Data Lane 1 (Green channel)
+IO_LOC  "tmds_data_p[1]"   V24,W24;
+IO_PORT "tmds_data_p[1]"   IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+
+// TMDS Data Lane 2 (Red channel)
+IO_LOC  "tmds_data_p[2]"   AA22,AA23;
+IO_PORT "tmds_data_p[2]"   IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
 
 //==============================================================
 // IMPORTANT: Cross-check pin assignments with the official

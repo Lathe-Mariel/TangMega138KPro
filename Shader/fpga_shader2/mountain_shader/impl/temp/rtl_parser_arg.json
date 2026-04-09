@@ -2,15 +2,7 @@
  "Device" : "GW5AST-138B",
  "Files" : [
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/shader_mountains.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/video_timing.v",
+   "Path" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/dvi_tx/dvi_tx.v",
    "Type" : "verilog"
   },
   {
@@ -26,7 +18,15 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/dvi_tx/dvi_tx.v",
+   "Path" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/shader_mountains.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/video_timing.v",
    "Type" : "verilog"
   }
  ],
