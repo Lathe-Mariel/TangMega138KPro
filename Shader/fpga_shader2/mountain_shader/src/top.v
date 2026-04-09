@@ -5,7 +5,7 @@
 // Effect: 3D Space Tunnel Flight Shader
 // ============================================================
 module top (
-    input  wire clk_27m,        // 27MHz onboard oscillator
+    input  wire clk,        // 27MHz onboard oscillator
     input  wire rst_n,
 
     // DVI TMDS output (HDMI connector)
@@ -24,9 +24,8 @@ wire clk_pixel;   //  MHz  (pixel clock for 1920×1080@30)
 wire clk_tmds;    //  MHz  (×5, TMDS serialiser)
 wire pll_lock;
 
-    Gowin_PLL your_instance_name(
-        .clkin(clk_27m), //input  clkin
-        .init_clk(), //input  init_clk
+    Gowin_PLL pll_inst(
+        .clkin(clk), //input  clkin
         .clkout0(clk_tmds), //output  clkout0
         .clkout1(clk_pixel), //output  clkout1
         .lock(pll_lock), //output  lock
@@ -85,23 +84,20 @@ shader_mountains u_shader (
 // TMDS Encoder + Serialiser
 // ─────────────────────────────────────────────
 
-
 	DVI_TX_Top your_instance_name(
-		.I_rst_n(I_rst_n), //input I_rst_n
-		.I_serial_clk(I_serial_clk), //input I_serial_clk
-		.I_rgb_clk(I_rgb_clk), //input I_rgb_clk
-		.I_rgb_vs(I_rgb_vs), //input I_rgb_vs
-		.I_rgb_hs(I_rgb_hs), //input I_rgb_hs
-		.I_rgb_de(I_rgb_de), //input I_rgb_de
-		.I_rgb_r(I_rgb_r), //input [7:0] I_rgb_r
-		.I_rgb_g(I_rgb_g), //input [7:0] I_rgb_g
-		.I_rgb_b(I_rgb_b), //input [7:0] I_rgb_b
-		.O_tmds_clk_p(O_tmds_clk_p), //output O_tmds_clk_p
-		.O_tmds_clk_n(O_tmds_clk_n), //output O_tmds_clk_n
-		.O_tmds_data_p(O_tmds_data_p), //output [2:0] O_tmds_data_p
-		.O_tmds_data_n(O_tmds_data_n) //output [2:0] O_tmds_data_n
+		.I_rst_n(rst_n), //input I_rst_n
+		.I_serial_clk(clk_tmds), //input I_serial_clk
+		.I_rgb_clk(clk_pixel), //input I_rgb_clk
+		.I_rgb_vs(vsync), //input I_rgb_vs
+		.I_rgb_hs(hsync), //input I_rgb_hs
+		.I_rgb_de(de), //input I_rgb_de
+		.I_rgb_r(r_out), //input [7:0] I_rgb_r
+		.I_rgb_g(g_out), //input [7:0] I_rgb_g
+		.I_rgb_b(b_out), //input [7:0] I_rgb_b
+		.O_tmds_clk_p(tmds_clk_p), //output O_tmds_clk_p
+		.O_tmds_clk_n(tmds_clk_n), //output O_tmds_clk_n
+		.O_tmds_data_p(tmds_data_p), //output [2:0] O_tmds_data_p
+		.O_tmds_data_n(tmds_data_n) //output [2:0] O_tmds_data_n
 	);
-
-
 
 endmodule

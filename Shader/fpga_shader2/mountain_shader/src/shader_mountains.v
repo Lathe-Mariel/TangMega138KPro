@@ -47,7 +47,8 @@ reg [7:0] noise_lut [0:255];
 integer k;
 initial begin
     for (k = 0; k < 256; k = k + 1)
-        noise_lut[k] = $rtoi($abs($sin(k * 127.1 + k * 311.7) * 43758.5) ) % 256;
+//        noise_lut[k] = $rtoi($abs($sin(k * 127.1 + k * 311.7) * 43758.5) ) % 256;
+        noise_lut[k] = $rtoi($sin(k * 127.1 + k * 311.7) * 43758.5 ) % 256;
 end
 
 // ── Sin LUT (256-entry signed 8-bit) ────────────────────────

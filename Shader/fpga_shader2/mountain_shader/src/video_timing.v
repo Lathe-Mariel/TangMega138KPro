@@ -62,8 +62,8 @@ always @(posedge clk or posedge rst) begin
 end
 
 // ── Output signals ─────────────────────────────────────────
-assign hsync = (hcount >= H_SYNC_START) && (hcount < H_SYNC_END);
-assign vsync = (vcount >= V_SYNC_START) && (vcount < V_SYNC_END);
-assign de    = (hcount < H_ACTIVE) && (vcount < V_ACTIVE);
+assign hsync = (hcount >= H_BP) && (hcount < (H_BP + H_SYNC));
+assign vsync = (vcount >= V_BP) && (vcount < (V_BP + V_SYNC));
+assign de    = (hcount > (H_BP + H_SYNC)) && (hcount < (H_BP+H_SYNC + H_ACTIVE)) && (vcount > (V_BP + V_SYNC)) && (vcount < (V_BP + V_SYNC + V_ACTIVE));
 
 endmodule
