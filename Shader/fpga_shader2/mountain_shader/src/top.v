@@ -20,15 +20,17 @@ module top (
 //   27MHz → PLL → 148.5MHz pixel clock (1080p30)
 //                  742.5MHz TMDS serial clock (×5)
 // ─────────────────────────────────────────────
-wire clk_pixel;   // 148.5 MHz  (pixel clock for 1920×1080@30)
-wire clk_tmds;    // 742.5 MHz  (×5, TMDS serialiser)
+wire clk_pixel;   //  MHz  (pixel clock for 1920×1080@30)
+wire clk_tmds;    //  MHz  (×5, TMDS serialiser)
 wire pll_lock;
 
-pll_hdmi u_pll (
-    .clkin  (clk_27m),
-    .clkout0(clk_pixel),   // 148.5 MHz
-    .clkout1(clk_tmds),    // 742.5 MHz
-    .lock   (pll_lock)
+    Gowin_PLL your_instance_name(
+        .clkin(clk_27m), //input  clkin
+        .init_clk(), //input  init_clk
+        .clkout0(clk_tmds), //output  clkout0
+        .clkout1(clk_pixel), //output  clkout1
+        .lock(pll_lock), //output  lock
+        .reset(!rst_n) //input  reset
 );
 
 wire rst = ~rst_n | ~pll_lock;
@@ -82,28 +84,24 @@ shader_mountains u_shader (
 // ─────────────────────────────────────────────
 // TMDS Encoder + Serialiser
 // ─────────────────────────────────────────────
-wire [9:0] tmds_d0, tmds_d1, tmds_d2, tmds_clk_w;
 
-tmds_encoder u_enc_b (
-    .clk(clk_pixel), .rst(rst),
-    .data(b_out), .ctrl({vsync,hsync}), .de(de),
-    .tmds(tmds_d0)
-);
-tmds_encoder u_enc_g (
-    .clk(clk_pixel), .rst(rst),
-    .data(g_out), .ctrl(2'b00), .de(de),
-    .tmds(tmds_d1)
-);
-tmds_encoder u_enc_r (
-    .clk(clk_pixel), .rst(rst),
-    .data(r_out), .ctrl(2'b00), .de(de),
-    .tmds(tmds_d2)
-);
 
-// TMDS serialiser × 4 channels (3 data + clock)
-tmds_serializer u_ser0 (.clk_pixel(clk_pixel),.clk_tmds(clk_tmds),.rst(rst),.tmds_d(tmds_d0),.tmds_p(tmds_data_p[0]),.tmds_n(tmds_data_n[0]));
-tmds_serializer u_ser1 (.clk_pixel(clk_pixel),.clk_tmds(clk_tmds),.rst(rst),.tmds_d(tmds_d1),.tmds_p(tmds_data_p[1]),.tmds_n(tmds_data_n[1]));
-tmds_serializer u_ser2 (.clk_pixel(clk_pixel),.clk_tmds(clk_tmds),.rst(rst),.tmds_d(tmds_d2),.tmds_p(tmds_data_p[2]),.tmds_n(tmds_data_n[2]));
-tmds_serializer u_ser_clk (.clk_pixel(clk_pixel),.clk_tmds(clk_tmds),.rst(rst),.tmds_d(10'b1111100000),.tmds_p(tmds_clk_p),.tmds_n(tmds_clk_n));
+	DVI_TX_Top your_instance_name(
+		.I_rst_n(I_rst_n), //input I_rst_n
+		.I_serial_clk(I_serial_clk), //input I_serial_clk
+		.I_rgb_clk(I_rgb_clk), //input I_rgb_clk
+		.I_rgb_vs(I_rgb_vs), //input I_rgb_vs
+		.I_rgb_hs(I_rgb_hs), //input I_rgb_hs
+		.I_rgb_de(I_rgb_de), //input I_rgb_de
+		.I_rgb_r(I_rgb_r), //input [7:0] I_rgb_r
+		.I_rgb_g(I_rgb_g), //input [7:0] I_rgb_g
+		.I_rgb_b(I_rgb_b), //input [7:0] I_rgb_b
+		.O_tmds_clk_p(O_tmds_clk_p), //output O_tmds_clk_p
+		.O_tmds_clk_n(O_tmds_clk_n), //output O_tmds_clk_n
+		.O_tmds_data_p(O_tmds_data_p), //output [2:0] O_tmds_data_p
+		.O_tmds_data_n(O_tmds_data_n) //output [2:0] O_tmds_data_n
+	);
+
+
 
 endmodule

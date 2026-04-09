@@ -1,0 +1,26 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll_mod.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\pll_init.v'
+Compiling module 'top'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":7)
+Compiling module 'Gowin_PLL'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll.v":1)
+Compiling module 'Gowin_PLL_MOD'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll_mod.v":10)
+Compiling module 'PLL_INIT(CLK_PERIOD=20,MULTI_FAC=22)'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\pll_init.v":3)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\pll_init.v":179)
+WARN  (EX3791) : Expression size 18 truncated to fit in target size 17("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\pll_init.v":207)
+Compiling module 'video_timing'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v":9)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v":59)
+WARN  (EX3791) : Expression size 25 truncated to fit in target size 24("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":64)
+WARN  (EX2187) : 'abs' is not a built-in system function("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":50)
+Compiling module 'shader_mountains'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":25)
+Extracting RAM for identifier 'noise_lut'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":46)
+Extracting RAM for identifier 'sin_lut'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":54)
+ERROR (EX2928) : Unknown system function call 'abs' not supported("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":50)
+Module 'shader_mountains' remains a black box due to errors in its contents("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":25)
+ERROR (EX3937) : Instantiating unknown module 'tmds_encoder'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":93)
+Module 'top' remains a black box due to errors in its contents("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":7)
+GowinSynthesis finish
