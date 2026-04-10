@@ -12,7 +12,8 @@ module top (
     output wire tmds_clk_p,
     output wire tmds_clk_n,
     output wire [2:0] tmds_data_p,
-    output wire [2:0] tmds_data_n
+    output wire [2:0] tmds_data_n,
+    output logic[5:0] state_led
 );
 
 // ─────────────────────────────────────────────
@@ -29,7 +30,7 @@ wire pll_lock;
         .clkout0(clk_tmds), //output  clkout0
         .clkout1(clk_pixel), //output  clkout1
         .lock(pll_lock), //output  lock
-        .reset(!rst_n) //input  reset
+        .reset(~rst_n) //input  reset
 );
 
 wire rst = ~rst_n | ~pll_lock;

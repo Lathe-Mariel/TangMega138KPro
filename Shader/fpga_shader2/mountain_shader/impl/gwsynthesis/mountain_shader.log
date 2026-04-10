@@ -1,29 +1,27 @@
 GowinSynthesis start
 Running parser ...
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\pll_init.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v'
-Compiling module 'top'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":7)
-Compiling module 'Gowin_PLL'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll.v":10)
-Compiling module 'video_timing'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v":9)
-WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v":59)
-WARN  (EX3791) : Expression size 25 truncated to fit in target size 24("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":63)
-Compiling module 'shader_mountains'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":25)
-Extracting RAM for identifier 'noise_lut'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":46)
-Extracting RAM for identifier 'sin_lut'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":55)
-WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":51)
-WARN  (EX3791) : Expression size 32 truncated to fit in target size 12("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":148)
-WARN  (EX3791) : Expression size 32 truncated to fit in target size 11("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":149)
-WARN  (EX3791) : Expression size 14 truncated to fit in target size 12("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":85)
-WARN  (EX3791) : Expression size 14 truncated to fit in target size 12("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":86)
-WARN  (EX3791) : Expression size 11 truncated to fit in target size 8("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":189)
-WARN  (EX3791) : Expression size 32 truncated to fit in target size 8("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":218)
-Compiling module 'DVI_TX_Top'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v":1091)
-Compiling module '**'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v":1090)
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\pll_init.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v'
+Compiling module 'top'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":7)
+Compiling module 'Gowin_PLL'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll.v":10)
+Compiling module 'video_timing'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v":9)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v":59)
+WARN  (EX3791) : Expression size 25 truncated to fit in target size 24("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":64)
+Compiling module 'shader_mountains'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":17)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":641)
+Compiling module 'DVI_TX_Top'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v":1091)
+Compiling module '**'("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v":1090)
 NOTE  (EX0101) : Current top module is "top"
+WARN  (EX0211) : The output port "state_led[5]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":16)
+WARN  (EX0211) : The output port "state_led[4]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":16)
+WARN  (EX0211) : The output port "state_led[3]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":16)
+WARN  (EX0211) : The output port "state_led[2]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":16)
+WARN  (EX0211) : The output port "state_led[1]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":16)
+WARN  (EX0211) : The output port "state_led[0]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":16)
 [5%] Running netlist conversion ...
 Running device independent optimization ...
 [10%] Optimizing Phase 0 completed
@@ -40,7 +38,7 @@ Running technical mapping ...
 [75%] Tech-Mapping Phase 2 completed
 [80%] Tech-Mapping Phase 3 completed
 [90%] Tech-Mapping Phase 4 completed
-WARN  (NL0002) : The module "shader_mountains" instantiated to "u_shader" is swept in optimizing("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":81)
-[95%] Generate netlist file "H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\impl\gwsynthesis\mountain_shader.vg" completed
-[100%] Generate report file "H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\impl\gwsynthesis\mountain_shader_syn.rpt.html" completed
+WARN  (NL0002) : The module "shader_mountains" instantiated to "u_shader" is swept in optimizing("C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":82)
+[95%] Generate netlist file "C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\impl\gwsynthesis\mountain_shader.vg" completed
+[100%] Generate report file "C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\impl\gwsynthesis\mountain_shader_syn.rpt.html" completed
 GowinSynthesis finish
