@@ -17,7 +17,7 @@
 module shader_mountains (
     input  wire        clk,
     input  wire        rst,
-    input  wire [10:0] hcount,      // 0..1919
+    input  wire [11:0] hcount,      // 0..1919
     input  wire [10:0] vcount,      // 0..1079
     input  wire        de,
     input  wire [23:0] frame_cnt,   // 30Hz インクリメント

@@ -25,6 +25,11 @@ wire clk_pixel;   //  MHz  (pixel clock for 1920×1080@30)
 wire clk_tmds;    //  MHz  (×5, TMDS serialiser)
 wire pll_lock;
 
+assign state_led[0] = rst;
+assign state_led[1] = rst_n;
+assign state_led[2] = de;
+//assign state_led = 6'b10;
+
     Gowin_PLL pll_inst(
         .clkin(clk), //input  clkin
         .clkout0(clk_tmds), //output  clkout0
@@ -40,7 +45,7 @@ wire rst = ~rst_n | ~pll_lock;
 //   Total H: 2200  Total V: 1125
 //   HSync: 44px  VSync: 5 lines
 // ─────────────────────────────────────────────
-wire [10:0] hcount;   // 0..2199
+wire [11:0] hcount;   // 0..2199
 wire [10:0] vcount;   // 0..1124
 wire hsync, vsync, de, field_start;
 
@@ -68,7 +73,7 @@ end
 // Shader Pixel Generator
 // ─────────────────────────────────────────────
 wire [7:0] r_out, g_out, b_out;
-
+/*
 shader_mountains u_shader (
     .clk      (clk_pixel),
     .rst      (rst),
@@ -79,7 +84,11 @@ shader_mountains u_shader (
     .r        (r_out),
     .g        (g_out),
     .b        (b_out)
-);
+);*/
+
+assign r_out = 8'hff;
+assign g_out = 8'hff;
+assign b_out = 8'h00;
 
 // ─────────────────────────────────────────────
 // TMDS Encoder + Serialiser

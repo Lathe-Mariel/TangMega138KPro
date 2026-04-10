@@ -9,7 +9,7 @@
 module video_timing (
     input  wire        clk,
     input  wire        rst,
-    output reg  [10:0] hcount,      // 0 .. H_TOTAL-1
+    output reg  [11:0] hcount,      // 0 .. H_TOTAL-1
     output reg  [10:0] vcount,      // 0 .. V_TOTAL-1
     output wire        hsync,
     output wire        vsync,
@@ -32,12 +32,12 @@ localparam V_TOTAL  = V_ACTIVE + V_FP + V_SYNC + V_BP;  // 1125
 
 // ── Sync windows ───────────────────────────────────────────
 // HSync: after active + FP  (pixel 2008..2051)
-localparam H_SYNC_START = H_ACTIVE + H_FP;              // 2008
-localparam H_SYNC_END   = H_SYNC_START + H_SYNC;        // 2052
+//localparam H_SYNC_START = H_ACTIVE + H_FP;              // 2008
+//localparam H_SYNC_END   = H_SYNC_START + H_SYNC;        // 2052
 
 // VSync: after active + FP  (line 1084..1088)
-localparam V_SYNC_START = V_ACTIVE + V_FP;              // 1084
-localparam V_SYNC_END   = V_SYNC_START + V_SYNC;        // 1089
+//localparam V_SYNC_START = V_ACTIVE + V_FP;              // 1084
+//localparam V_SYNC_END   = V_SYNC_START + V_SYNC;        // 1089
 
 // ── Counters ───────────────────────────────────────────────
 always @(posedge clk or posedge rst) begin
