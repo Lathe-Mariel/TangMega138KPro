@@ -2,37 +2,52 @@
 // shader_mountains.v
 // Mountains + Sky flight shader for FPGA DVI output
 //
-// LUT実装方針:
-//   initial ブロックを一切使わず，全テーブルを純組合せ論理
-//   (case文 function) で実装しているため FPGA 合成に適している．
-//   ツールは case 関数を Block RAM または分散 LUT に推論する．
+// 実装方針:
+//   - initial ブロック不使用 (LUTはcase文functionで実装)
+//   - $signed 不使用 (符号付き演算はすべて符号なし2の補数で記述)
 //
-// パイプライン: 5 段レジスタ → 5サイクルレイテンシ
-//   S0: 座標正規化
-//   S1: fBm ノイズ → 地形高さ
-//   S2: 空/地形 判定
-//   S3: カラー合成 (岩・雪・霧・空)
-//   S4: 出力レジスタ
+// パイプライン: 7 段レジスタ → 7サイクルレイテンシ
+//
+//   Stage 0  : 座標正規化 (hcount/vcount → nx/ny, 2の補数)
+//   Stage 1  : fBm ノイズ評価 → 地形高さ th_raw
+//   Stage 2  : 空/地形 判定，height_diff 計算
+//   Stage 3a : LUT読み出し (sin/noise)，比較，雪判定
+//   Stage 3b : 乗算・加算 (霧ブレンド，太陽グロウ)
+//   Stage 4  : MUX (sky / terrain 切り替え)
+//   Stage 5  : 出力レジスタ (DEブランク)
+//
+// $signed 除去の変換方針:
+//   符号付き値はすべて「符号なしレジスタ + MSBを符号ビットとして解釈」
+//   で統一する。比較・差分は以下のルールで変換する:
+//
+//   ① 符号付き減算 (A - B, 結果負あり):
+//        符号なし減算でそのまま計算。2の補数表現で等価。
+//        負かどうかは結果の MSB で判定。
+//
+//   ② 符号付き比較 (A > B, A < 0 など):
+//        A, B を同一ビット幅に揃えた上で
+//        差分 D = A - B の MSB が 0 → A >= B (正)
+//                              1 → A <  B (負)
+//        "A < 0" は A の MSB で直接判定。
+//
+//   ③ 符号付き値の絶対値:
+//        MSB=1 (負) なら ~val + 1、MSB=0 (正) なら val そのまま。
 // ============================================================
 module shader_mountains (
     input  wire        clk,
     input  wire        rst,
-    input  wire [11:0] hcount,      // 0..1919
-    input  wire [10:0] vcount,      // 0..1079
+    input  wire [11:0] hcount,
+    input  wire [10:0] vcount,
     input  wire        de,
-    input  wire [23:0] frame_cnt,   // 30Hz インクリメント
+    input  wire [23:0] frame_cnt,
     output reg  [ 7:0] r,
     output reg  [ 7:0] g,
     output reg  [ 7:0] b
 );
 
-localparam CX = 960;
-localparam CY = 540;
-
 // ════════════════════════════════════════════════════════════
-// ノイズ LUT — 組合せ論理 function (initial ブロック不使用)
+// LUT functions (initial ブロック・$signed 不使用)
 // ════════════════════════════════════════════════════════════
-// noise_lut_f: int(abs(sin(k*127.1+k*311.7)*43758.5)) % 256
 function [7:0] noise_lut_f;
     input [7:0] addr;
     case (addr)
@@ -296,7 +311,6 @@ function [7:0] noise_lut_f;
     endcase
 endfunction
 
-// sin_lut_f: round(sin(2π·k/256)·127) & 0xFF (符号付き8bit, 2の補数)
 function [7:0] sin_lut_f;
     input [7:0] addr;
     case (addr)
@@ -561,8 +575,7 @@ function [7:0] sin_lut_f;
 endfunction
 
 // ════════════════════════════════════════════════════════════
-// バイリニア補間ノイズ — 組合せ論理 function
-// 入力: Q4.4 座標 (上位4bit=整数部, 下位4bit=小数部)
+// バイリニア補間ノイズ (Q4.4 座標入力)
 // ════════════════════════════════════════════════════════════
 function [7:0] noise_bilerp;
     input [3:0] ux; input [3:0] fx;
@@ -570,8 +583,8 @@ function [7:0] noise_bilerp;
     reg [7:0]  n00, n10, n01, n11;
     reg [11:0] t0, t1;
     begin
-        n00 = noise_lut_f({uy,       ux});
-        n10 = noise_lut_f({uy,       ux + 4'h1});
+        n00 = noise_lut_f({uy,        ux});
+        n10 = noise_lut_f({uy,        ux + 4'h1});
         n01 = noise_lut_f({uy + 4'h1, ux});
         n11 = noise_lut_f({uy + 4'h1, ux + 4'h1});
         t0 = n00 * (4'd15 - fx) + n10 * fx;
@@ -581,8 +594,7 @@ function [7:0] noise_bilerp;
 endfunction
 
 // ════════════════════════════════════════════════════════════
-// fBm 3オクターブ — 組合せ論理 function
-// 振幅: oct0×0.5 + oct1×0.25 + oct2×0.125
+// fBm 3オクターブ (振幅: 0.5 + 0.25 + 0.125)
 // ════════════════════════════════════════════════════════════
 function [7:0] fbm3;
     input [7:0] px;
@@ -602,61 +614,90 @@ function [7:0] fbm3;
 endfunction
 
 // ════════════════════════════════════════════════════════════
-// パイプラインレジスタ
+// パイプラインレジスタ宣言
+// 符号付き値はすべて符号なし reg で保持し、
+// MSB を符号ビットとして各ステージで解釈する。
 // ════════════════════════════════════════════════════════════
-// S0→S1
-reg signed [11:0] s1_nx;
-reg signed [10:0] s1_ny;
-reg        [23:0] s1_time;
-reg               s1_de;
 
-// S1→S2
-reg  [7:0]        s2_terrain_h;
-reg signed [10:0] s2_ny;
-reg signed [11:0] s2_nx;
-reg        [23:0] s2_time;
-reg               s2_de;
+// ── Stage 0 → 1 ─────────────────────────────────────────────
+// nx: 12bit 2の補数  hcount(0..1919) - 960 → -960..+959
+// ny: 11bit 2の補数  vcount(0..1079) - 540 → -540..+539
+reg [11:0] s1_nx;   // MSB=符号ビット (1=負)
+reg [10:0] s1_ny;   // MSB=符号ビット (1=負)
+reg [23:0] s1_time;
+reg        s1_de;
 
-// S2→S3
-reg               s3_is_terrain;
-reg  [7:0]        s3_height_diff;
-reg signed [11:0] s3_nx;
-reg signed [10:0] s3_ny;
-reg  [7:0]        s3_terrain_h;
-reg        [23:0] s3_time;
-reg               s3_de;
+// ── Stage 1 → 2 ─────────────────────────────────────────────
+reg [7:0]  s2_terrain_h;
+reg [10:0] s2_ny;   // 2の補数
+reg [11:0] s2_nx;   // 2の補数
+reg [23:0] s2_time;
+reg        s2_de;
 
-// S3→S4
-reg [7:0] s4_r, s4_g, s4_b;
+// ── Stage 2 → 3a ─────────────────────────────────────────────
+reg        s3a_is_terrain;
+reg [7:0]  s3a_height_diff;
+reg [11:0] s3a_nx;   // 2の補数
+reg [10:0] s3a_ny;   // 2の補数
+reg [7:0]  s3a_terrain_h;
+reg [23:0] s3a_time;
+reg        s3a_de;
+
+// ── Stage 3a → 3b ─────────────────────────────────────────────
+reg [7:0]  s3b_sky_t;
+reg [7:0]  s3b_sun_dist;
+reg [7:0]  s3b_rock_r;
+reg [7:0]  s3b_rock_g;
+reg [7:0]  s3b_rock_b;
+reg [7:0]  s3b_height_diff;
+reg        s3b_is_terrain;
+reg        s3b_de;
+
+// ── Stage 3b → 4 ──────────────────────────────────────────────
+reg [7:0] s4_sky_r, s4_sky_g, s4_sky_b;
+reg [7:0] s4_fog_r, s4_fog_g, s4_fog_b;
+reg       s4_is_terrain;
 reg       s4_de;
+
+// ── Stage 4 → 5 ───────────────────────────────────────────────
+reg [7:0] s5_r, s5_g, s5_b;
+reg       s5_de;
 
 // ════════════════════════════════════════════════════════════
 // Stage 0: 座標正規化
+//
+// nx = hcount - 960  (12bit 2の補数)
+// ny = vcount - 540  (11bit 2の補数)
+//
+// 変換: $signed 不使用の場合、符号なし減算の結果は
+//       2の補数表現として等価なので、そのまま代入する。
+//       hcount は11bit(0..1919) → {1'b0, hcount} で12bitゼロ拡張後に減算。
 // ════════════════════════════════════════════════════════════
 always @(posedge clk or posedge rst) begin
     if (rst) begin
-        s1_nx <= 0; s1_ny <= 0; s1_time <= 0; s1_de <= 0;
+        s1_nx <= 12'd0; s1_ny <= 11'd0; s1_time <= 24'd0; s1_de <= 1'b0;
     end else begin
-        s1_nx  <= $signed({1'b0, hcount}) - $signed(12'd960);
-        s1_ny  <= $signed({1'b0, vcount}) - $signed(11'd540);
+        // 符号なし減算 → 下位ビットは2の補数と同一
+        s1_nx   <= {1'b0, hcount[10:0]} - 12'd960;  // 結果MSBが符号ビット
+        s1_ny   <= {1'b0, vcount} - 11'd540;  // 結果MSBが符号ビット
         s1_time <= frame_cnt;
-        s1_de  <= de;
+        s1_de   <= de;
     end
 end
 
 // ════════════════════════════════════════════════════════════
-// Stage 1: fBm地形高さ計算
-//   fly_z = frame_cnt[10:3]  Z方向スクロール (30Hz/8 ≒ 3.75Hz)
-//   col_x = nx>>3 + 128      列をQ4.4座標 (0..255) へマップ
+// Stage 1: fBm地形高さ
+// col_x: nx の上位9bit(符号+整数部)のうち整数8bit(nx[10:3])を取り、
+//        +128 してUオフセット (0..255 の無符号座標へ変換)
 // ════════════════════════════════════════════════════════════
 wire [7:0] fly_z  = s1_time[10:3];
-wire [7:0] col_x  = (s1_nx[10:3] + 8'd128) & 8'hFF;
+wire [7:0] col_x  = (s1_nx[10:6] + 8'd128) & 8'hFF;
 wire [7:0] th_raw = fbm3(col_x, fly_z);
 
 always @(posedge clk or posedge rst) begin
     if (rst) begin
-        s2_terrain_h <= 0; s2_ny <= 0; s2_nx <= 0;
-        s2_time <= 0; s2_de <= 0;
+        s2_terrain_h <= 8'd0; s2_ny <= 11'd0; s2_nx <= 12'd0;
+        s2_time <= 24'd0; s2_de <= 1'b0;
     end else begin
         s2_terrain_h <= th_raw;
         s2_ny        <= s1_ny;
@@ -668,106 +709,181 @@ end
 
 // ════════════════════════════════════════════════════════════
 // Stage 2: 空/地形 判定
-//   horizon_ny: 地平線のスクリーンY (CYからの符号付きオフセット)
-//   height_diff: 地平線より何ピクセル下か (0=地平線, 255=手前)
+//
+// horizon_ny = terrain_h[7:1] - 80  (11bit 2の補数)
+//   terrain_h[7:1] は 0..127。80を引くと -80..+47 の範囲になる。
+//   符号なし減算でそのまま2の補数を得る。
+//
+// is_terrain_w: s2_ny > horizon_ny の符号付き比較
+//   差分 D = s2_ny - horizon_ny を11bitで計算し、
+//   D == 0 でなく D の MSB が 0 なら s2_ny > horizon_ny (正の差)
+//   ただし D == 0 は等号なので is_terrain は偽。
+//
+// hd_wide: is_terrain のとき s2_ny - horizon_ny の正の差分
+//   上記 D がそのまま使える (MSB=0 のとき正の値)
 // ════════════════════════════════════════════════════════════
-wire signed [10:0] horizon_ny  = $signed({3'b000, s2_terrain_h[7:1]}) - 11'sd80;
-wire               is_terrain_w = ($signed(s2_ny) > horizon_ny);
-wire        [10:0] hd_wide     = is_terrain_w
-                                 ? ($signed(s2_ny) - horizon_ny)
-                                 : 11'd0;
-wire        [7:0]  hd_raw      = (hd_wide > 11'd255) ? 8'hFF : hd_wide[7:0];
+wire [10:0] horizon_ny  = {3'b000, s2_terrain_h[7:1]} - 11'd80;
+//   D = s2_ny - horizon_ny (11bit 符号なし演算 = 2の補数演算)
+wire [10:0] ny_minus_h  = s2_ny - horizon_ny;
+//   ny > horizon: D の MSB が 0 かつ D != 0
+wire        is_terrain_w = ~ny_minus_h[10] & (ny_minus_h != 11'd0);
+//   height_diff = D (is_terrainのとき正値, 最大255でクランプ)
+wire [7:0]  hd_raw       = is_terrain_w
+                           ? ((ny_minus_h > 11'd255) ? 8'hFF : ny_minus_h[7:0])
+                           : 8'd0;
 
 always @(posedge clk or posedge rst) begin
     if (rst) begin
-        s3_is_terrain <= 0; s3_height_diff <= 0;
-        s3_nx <= 0; s3_ny <= 0; s3_terrain_h <= 0;
-        s3_time <= 0; s3_de <= 0;
+        s3a_is_terrain <= 1'b0; s3a_height_diff <= 8'd0;
+        s3a_nx <= 12'd0; s3a_ny <= 11'd0; s3a_terrain_h <= 8'd0;
+        s3a_time <= 24'd0; s3a_de <= 1'b0;
     end else begin
-        s3_is_terrain  <= is_terrain_w;
-        s3_height_diff <= hd_raw;
-        s3_nx          <= s2_nx;
-        s3_ny          <= s2_ny;
-        s3_terrain_h   <= s2_terrain_h;
-        s3_time        <= s2_time;
-        s3_de          <= s2_de;
+        s3a_is_terrain  <= is_terrain_w;
+        s3a_height_diff <= hd_raw;
+        s3a_nx          <= s2_nx;
+        s3a_ny          <= s2_ny;
+        s3a_terrain_h   <= s2_terrain_h;
+        s3a_time        <= s2_time;
+        s3a_de          <= s2_de;
     end
 end
 
 // ════════════════════════════════════════════════════════════
-// Stage 3: カラー合成 (組合せ論理)
+// Stage 3a: LUT読み出し・比較・雪判定
+//
+// クリティカルパス: case LUT (≈3段) + 減算 + 絶対値 + 比較
 // ════════════════════════════════════════════════════════════
 
-// ── 空グラデーション ─────────────────────────────────────────
-// ny < 0 = 画面上半分 (空) → sky_t: 地平線=0, 最上部=127
-wire [7:0] sky_t = (!s3_is_terrain && $signed(s3_ny) < 11'sd0)
-                   ? (8'd127 - {1'b0, s3_ny[9:3]})
-                   : 8'd0;
+// 空グラデーション: ny < 0 (MSB=1) のとき空、地形側は 0
+// ny が負値のとき、その大きさ (絶対値) = ~ny + 1 の上位ビット
+// sky_t は 0..127 の正値
+//   ny[10] == 1 → ny は負 → sky 側
+//   sky_t = 127 - |ny|>>3
+//         = 127 - (~ny + 1)[9:3]   (負値の絶対値の上位7bit)
+// 簡略化: ny が11bit 2の補数のとき、
+//         ~ny[9:3] + 1 は |ny| の上位7bit (オーバフローしないことを確認済み)
+wire        s3a_ny_neg  = s3a_ny[10];              // 1 のとき ny < 0
+wire [9:0]  s3a_ny_abs  = s3a_ny_neg              // |ny| の下位10bit
+                          ? (~s3a_ny[9:0] + 10'd1)
+                          : s3a_ny[9:0];
+wire [7:0]  s3a_sky_t   = (!s3a_is_terrain && s3a_ny_neg)
+                          ? (8'd127 - {1'b0, s3a_ny_abs[9:3]})
+                          : 8'd0;
 
-// ── 太陽位置・グロウ ─────────────────────────────────────────
-// sin_lut で水平スイープ (時間インデックス → 横位置)
-wire [7:0]        sun_ang     = s3_time[9:2];
-wire signed [7:0] sun_off_x   = $signed(sin_lut_f(sun_ang));
-wire signed [9:0] sun_dx_s    = $signed(s3_nx[8:1]) - $signed({1'b0, sun_off_x});
-wire [8:0]        sun_dx_abs  = sun_dx_s[9] ? (~sun_dx_s[8:0] + 9'd1) : sun_dx_s[8:0];
-wire [7:0]        sun_dist    = (sun_dx_abs > 9'd255) ? 8'hFF : sun_dx_abs[7:0];
-wire [7:0]        sun_glow    = (!s3_is_terrain && sun_dist < 8'd12)
-                                ? (8'd191 - sun_dist * 8'd12)
-                                : 8'd0;
+// 太陽水平位置: sin_lut_f → 8bit 2の補数 (-127..+127)
+// sun_off_x のMSBが符号ビット (1=負)
+wire [7:0] s3a_sun_ang   = s3a_time[9:2];
+wire [7:0] s3a_sun_raw   = sin_lut_f(s3a_sun_ang); // 2の補数 8bit
 
-// 空 RGB (9bit演算 → 8bit クランプ)
-wire [8:0] sky_r9 = {1'b0, sky_t[7:1]} + {1'b0, sun_glow}      + 9'd12;
-wire [8:0] sky_g9 = {1'b0, sky_t[6:0]} + {1'b0, sun_glow[7:1]} + 9'd28;
-wire [8:0] sky_b9 = {1'b0, sky_t}                               + 9'd80;
-wire [7:0] sky_r  = sky_r9[8] ? 8'hFF : sky_r9[7:0];
-wire [7:0] sky_g  = sky_g9[8] ? 8'hFF : sky_g9[7:0];
-wire [7:0] sky_b  = sky_b9[8] ? 8'hFF : sky_b9[7:0];
+// 太陽との水平距離 (絶対値)
+// pixel_x = s3a_nx[8:1]  (11bitの上位8bit、2の補数)
+// sun_x   = s3a_sun_raw  (8bit 2の補数)
+// どちらも符号付き8bitとして扱い 9bit に符号拡張して減算する
+// 符号拡張: A[8:1] の MSB を [8] に、sun_raw の MSB を [8] にコピー
+wire [8:0] s3a_px_ext   = {s3a_nx[8], s3a_nx[8:1]};   // 符号拡張 (9bit 2の補数)
+wire [8:0] s3a_sun_ext  = {s3a_sun_raw[7], s3a_sun_raw}; // 符号拡張 (9bit 2の補数)
+wire [8:0] s3a_sun_dx   = s3a_px_ext - s3a_sun_ext;    // 9bit 2の補数減算
+wire [8:0] s3a_sun_abs  = s3a_sun_dx[8]                // MSB=1 → 負 → 絶対値に変換
+                          ? (~s3a_sun_dx + 9'd1)
+                          : s3a_sun_dx;
+wire [7:0] s3a_sun_dist = (s3a_sun_abs[8] || s3a_sun_abs > 9'd255)
+                          ? 8'hFF : s3a_sun_abs[7:0];
 
-// ── 地形ベースカラー (岩石 + ノイズ色調) ─────────────────────
-wire [7:0] rock_noise = noise_lut_f({s3_nx[5:2], s3_time[5:2]});
-wire [7:0] trr = 8'd90 + {3'b000, rock_noise[7:3]};   // 90..121
-wire [7:0] trg = 8'd72 + {4'b0000, rock_noise[7:4]};  // 72..87
-wire [7:0] trb = 8'd45 + {5'b00000, rock_noise[7:5]}; // 45..52
+// 岩石ノイズカラー
+wire [7:0] s3a_rock_noise = noise_lut_f({s3a_nx[5:2], s3a_time[5:2]});
 
-// ── 雪 (高い地形 = 白) ───────────────────────────────────────
-wire        is_snow   = (s3_terrain_h > 8'd180);
-wire [7:0]  terrain_r = is_snow ? 8'd228 : trr;
-wire [7:0]  terrain_g = is_snow ? 8'd234 : trg;
-wire [7:0]  terrain_b = is_snow ? 8'd244 : trb;
-
-// ── 大気霧 ───────────────────────────────────────────────────
-// height_diff=0(遠方) → fog最大, height_diff=255(手前) → fog最小
-wire [7:0]  fog_amt = 8'd255 - s3_height_diff;
-wire [15:0] fog_r16 = terrain_r * s3_height_diff + 8'd140 * fog_amt;
-wire [15:0] fog_g16 = terrain_g * s3_height_diff + 8'd160 * fog_amt;
-wire [15:0] fog_b16 = terrain_b * s3_height_diff + 8'd185 * fog_amt;
-wire [7:0]  fogged_r = fog_r16[15:8];
-wire [7:0]  fogged_g = fog_g16[15:8];
-wire [7:0]  fogged_b = fog_b16[15:8];
-
-// ── 最終ピクセル ─────────────────────────────────────────────
-wire [7:0] fr = s3_is_terrain ? fogged_r : sky_r;
-wire [7:0] fg = s3_is_terrain ? fogged_g : sky_g;
-wire [7:0] fb = s3_is_terrain ? fogged_b : sky_b;
+// 雪判定 + 岩石/雪カラー選択
+wire       s3a_is_snow = (s3a_terrain_h > 8'd180);
+wire [7:0] s3a_rock_r  = s3a_is_snow ? 8'd228
+                        : (8'd90 + {3'b000, s3a_rock_noise[7:3]});
+wire [7:0] s3a_rock_g  = s3a_is_snow ? 8'd234
+                        : (8'd72 + {4'b0000, s3a_rock_noise[7:4]});
+wire [7:0] s3a_rock_b  = s3a_is_snow ? 8'd244
+                        : (8'd45 + {5'b00000, s3a_rock_noise[7:5]});
 
 always @(posedge clk or posedge rst) begin
     if (rst) begin
-        s4_r <= 0; s4_g <= 0; s4_b <= 0; s4_de <= 0;
+        s3b_sky_t       <= 8'd0;
+        s3b_sun_dist    <= 8'd0;
+        s3b_rock_r      <= 8'd0; s3b_rock_g <= 8'd0; s3b_rock_b <= 8'd0;
+        s3b_height_diff <= 8'd0;
+        s3b_is_terrain  <= 1'b0;
+        s3b_de          <= 1'b0;
     end else begin
-        s4_r <= fr; s4_g <= fg; s4_b <= fb; s4_de <= s3_de;
+        s3b_sky_t       <= s3a_sky_t;
+        s3b_sun_dist    <= s3a_sun_dist;
+        s3b_rock_r      <= s3a_rock_r;
+        s3b_rock_g      <= s3a_rock_g;
+        s3b_rock_b      <= s3a_rock_b;
+        s3b_height_diff <= s3a_height_diff;
+        s3b_is_terrain  <= s3a_is_terrain;
+        s3b_de          <= s3a_de;
     end
 end
 
 // ════════════════════════════════════════════════════════════
-// Stage 4: 出力レジスタ (アクティブ期間外はブランク)
+// Stage 3b: 乗算・加算
+//
+// クリティカルパス: 8×8乗算 (DSP) + 16bit加算
+// ════════════════════════════════════════════════════════════
+
+// 太陽グロウ: dist < 12 → 191 - dist*12
+wire [7:0] s3b_sun_glow = (!s3b_is_terrain && s3b_sun_dist < 8'd12)
+                          ? (8'd191 - s3b_sun_dist * 8'd12)
+                          : 8'd0;
+
+// 空 RGB (9bit 演算 → クランプは次段で行う)
+wire [8:0] s3b_sky_r9 = {1'b0, s3b_sky_t[7:1]} + {1'b0, s3b_sun_glow}      + 9'd12;
+wire [8:0] s3b_sky_g9 = {1'b0, s3b_sky_t[6:0]} + {1'b0, s3b_sun_glow[7:1]} + 9'd28;
+wire [8:0] s3b_sky_b9 = {1'b0, s3b_sky_t}                                   + 9'd80;
+
+// 大気霧ブレンド: terrain * dist/255 + fogcol * (255-dist)/255
+wire [7:0]  s3b_fog_amt = 8'd255 - s3b_height_diff;
+wire [15:0] s3b_fog_r16 = s3b_rock_r * s3b_height_diff + 8'd140 * s3b_fog_amt;
+wire [15:0] s3b_fog_g16 = s3b_rock_g * s3b_height_diff + 8'd160 * s3b_fog_amt;
+wire [15:0] s3b_fog_b16 = s3b_rock_b * s3b_height_diff + 8'd185 * s3b_fog_amt;
+
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        s4_sky_r <= 8'd0; s4_sky_g <= 8'd0; s4_sky_b <= 8'd0;
+        s4_fog_r <= 8'd0; s4_fog_g <= 8'd0; s4_fog_b <= 8'd0;
+        s4_is_terrain <= 1'b0; s4_de <= 1'b0;
+    end else begin
+        s4_sky_r <= s3b_sky_r9[8] ? 8'hFF : s3b_sky_r9[7:0];
+        s4_sky_g <= s3b_sky_g9[8] ? 8'hFF : s3b_sky_g9[7:0];
+        s4_sky_b <= s3b_sky_b9[8] ? 8'hFF : s3b_sky_b9[7:0];
+        s4_fog_r <= s3b_fog_r16[15:8];
+        s4_fog_g <= s3b_fog_g16[15:8];
+        s4_fog_b <= s3b_fog_b16[15:8];
+        s4_is_terrain <= s3b_is_terrain;
+        s4_de         <= s3b_de;
+    end
+end
+
+// ════════════════════════════════════════════════════════════
+// Stage 4: sky/terrain MUX
 // ════════════════════════════════════════════════════════════
 always @(posedge clk or posedge rst) begin
     if (rst) begin
-        r <= 0; g <= 0; b <= 0;
+        s5_r <= 8'd0; s5_g <= 8'd0; s5_b <= 8'd0; s5_de <= 1'b0;
     end else begin
-        r <= s4_de ? s4_r : 8'd0;
-        g <= s4_de ? s4_g : 8'd0;
-        b <= s4_de ? s4_b : 8'd0;
+        s5_r  <= s4_is_terrain ? s4_fog_r : s4_sky_r;
+        s5_g  <= s4_is_terrain ? s4_fog_g : s4_sky_g;
+        s5_b  <= s4_is_terrain ? s4_fog_b : s4_sky_b;
+        s5_de <= s4_de;
+    end
+end
+
+// ════════════════════════════════════════════════════════════
+// Stage 5: 出力レジスタ (DEブランク)
+// ════════════════════════════════════════════════════════════
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        r <= 8'd0; g <= 8'd0; b <= 8'd0;
+    end else begin
+        r <= s5_de ? s5_r : 8'd0;
+        g <= s5_de ? s5_g : 8'd0;
+        b <= s5_de ? s5_b : 8'd0;
     end
 end
 

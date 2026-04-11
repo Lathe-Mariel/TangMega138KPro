@@ -73,7 +73,8 @@ end
 // Shader Pixel Generator
 // ─────────────────────────────────────────────
 wire [7:0] r_out, g_out, b_out;
-/*
+wire shader_de;
+
 shader_mountains u_shader (
     .clk      (clk_pixel),
     .rst      (rst),
@@ -84,11 +85,23 @@ shader_mountains u_shader (
     .r        (r_out),
     .g        (g_out),
     .b        (b_out)
-);*/
+);
 
+reg de_1,de_2,de_3,de_4,de_5,de_6,de_7;
+reg hsync_1,hsync_2,hsync_3,hsync_4,hsync_5,hsync_6,hsync_7;
+reg vsync_1,vsync_2,vsync_3,vsync_4,vsync_5,vsync_6,vsync_7;
+
+always_ff @(posedge clk_pixel)begin
+    de_7 <= de_6; de_6 <= de_5; de_5 <= de_4; de_4 <= de_3; de_3 <= de_2; de_2 <= de_1; de_1 <= de;
+    hsync_7 <= hsync_6;hsync_6 <= hsync_5;hsync_5 <= hsync_4;hsync_4 <= hsync_3;hsync_3 <= hsync_2;hsync_2<=hsync_1;hsync_1 <= hsync;
+    vsync_7 <= vsync_6;vsync_6 <= vsync_5;vsync_5 <= vsync_4;vsync_4 <= vsync_3;vsync_3 <= vsync_2;vsync_2<=vsync_1;vsync_1 <= vsync;
+end
+
+/* test patter
 assign r_out = 8'hff;
 assign g_out = 8'hff;
 assign b_out = 8'h00;
+*/
 
 // ─────────────────────────────────────────────
 // TMDS Encoder + Serialiser
@@ -98,9 +111,9 @@ assign b_out = 8'h00;
 		.I_rst_n(rst_n), //input I_rst_n
 		.I_serial_clk(clk_tmds), //input I_serial_clk
 		.I_rgb_clk(clk_pixel), //input I_rgb_clk
-		.I_rgb_vs(vsync), //input I_rgb_vs
-		.I_rgb_hs(hsync), //input I_rgb_hs
-		.I_rgb_de(de), //input I_rgb_de
+		.I_rgb_vs(vsync_7), //input I_rgb_vs
+		.I_rgb_hs(hsync_7), //input I_rgb_hs
+		.I_rgb_de(de_7), //input I_rgb_de
 		.I_rgb_r(r_out), //input [7:0] I_rgb_r
 		.I_rgb_g(g_out), //input [7:0] I_rgb_g
 		.I_rgb_b(b_out), //input [7:0] I_rgb_b
