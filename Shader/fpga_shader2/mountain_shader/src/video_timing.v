@@ -1,16 +1,19 @@
 // ============================================================
 // Video Timing Generator
-// 1920×1080 @ 30 Hz  Pixel Clock: 148.5 MHz (÷2 from 297MHz)
+// 1280×720 @ 30 Hz  Pixel Clock: 37.125 MHz
 //
-// H: Active=1920  FP=88  Sync=44  BP=148  Total=2200
-// V: Active=1080  FP=4   Sync=5   BP=36   Total=1125
+// CEA-861 720p ブランキング (30 Hz = 60 Hz の半フレームレート)
+// H: Active=1280  FP=110  Sync=40(+)  BP=220  Total=1650
+// V: Active=720   FP=5    Sync=5(+)   BP=20   Total=750
+// Pixel clock: 37.125 MHz
+// Frame rate:  37.125 MHz / (1650 × 750) = 30.000 Hz
 // Hsync/Vsync polarity: positive
 // ============================================================
 module video_timing (
     input  wire        clk,
     input  wire        rst,
-    output reg  [11:0] hcount,      // 0 .. H_TOTAL-1
-    output reg  [10:0] vcount,      // 0 .. V_TOTAL-1
+    output reg  [10:0] hcount,      // 0 .. H_TOTAL-1  (max 1649, 11bit)
+    output reg  [10:0] vcount,      // 0 .. V_TOTAL-1  (max 749,  10bit)
     output wire        hsync,
     output wire        vsync,
     output wire        de,           // data enable (active area)
@@ -18,26 +21,18 @@ module video_timing (
 );
 
 // ── Timing parameters ──────────────────────────────────────
-localparam H_ACTIVE = 1920;
-localparam H_FP     = 88;
-localparam H_SYNC   = 44;
-localparam H_BP     = 148;
-localparam H_TOTAL  = H_ACTIVE + H_FP + H_SYNC + H_BP; // 2200
+localparam H_ACTIVE = 1280;
+localparam H_FP     = 110;
+localparam H_SYNC   = 40;
+localparam H_BP     = 220;
+localparam H_TOTAL  = H_ACTIVE + H_FP + H_SYNC + H_BP; // 1650
 
-localparam V_ACTIVE = 1080;
-localparam V_FP     = 4;
+localparam V_ACTIVE = 720;
+localparam V_FP     = 5;
 localparam V_SYNC   = 5;
-localparam V_BP     = 36;
-localparam V_TOTAL  = V_ACTIVE + V_FP + V_SYNC + V_BP;  // 1125
+localparam V_BP     = 20;
+localparam V_TOTAL  = V_ACTIVE + V_FP + V_SYNC + V_BP;  // 750
 
-// ── Sync windows ───────────────────────────────────────────
-// HSync: after active + FP  (pixel 2008..2051)
-//localparam H_SYNC_START = H_ACTIVE + H_FP;              // 2008
-//localparam H_SYNC_END   = H_SYNC_START + H_SYNC;        // 2052
-
-// VSync: after active + FP  (line 1084..1088)
-//localparam V_SYNC_START = V_ACTIVE + V_FP;              // 1084
-//localparam V_SYNC_END   = V_SYNC_START + V_SYNC;        // 1089
 
 // ── Counters ───────────────────────────────────────────────
 always @(posedge clk or posedge rst) begin

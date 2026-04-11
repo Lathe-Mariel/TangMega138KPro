@@ -45,7 +45,7 @@ wire rst = ~rst_n | ~pll_lock;
 //   Total H: 2200  Total V: 1125
 //   HSync: 44px  VSync: 5 lines
 // ─────────────────────────────────────────────
-wire [11:0] hcount;   // 0..2199
+wire [10:0] hcount;   // 0..2199
 wire [10:0] vcount;   // 0..1124
 wire hsync, vsync, de, field_start;
 
@@ -75,13 +75,12 @@ end
 wire [7:0] r_out, g_out, b_out;
 wire shader_de;
 
-shader_mountains u_shader (
+pixel_core_sky u_shader (
     .clk      (clk_pixel),
-    .rst      (rst),
-    .hcount   (hcount),
-    .vcount   (vcount),
-    .de       (de),
-    .frame_cnt(frame_cnt),
+    .x   (hcount),
+    .y   (vcount),
+ //   .active       (de),
+    .time_f(frame_cnt),
     .r        (r_out),
     .g        (g_out),
     .b        (b_out)

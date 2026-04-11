@@ -1,0 +1,23 @@
+<?xml version="1" encoding="UTF-8"?>
+<GAO_CONFIG>
+    <Version>3.0</Version>
+    <Mode>Lite</Mode>
+    <AoCore_Lite index="0" sample_clock="clk_pixel" trig_type="0" capture_amount="2048" implemention="0" input_register_enabled="0" capture_init_data_enabled="0" module_name="top">
+        <SignalList>
+            <Bus capture_enable="true" name="u_shader/s3a_hc[10:0]">
+                <Signal>u_shader/s3a_hc[10]</Signal>
+                <Signal>u_shader/s3a_hc[9]</Signal>
+                <Signal>u_shader/s3a_hc[8]</Signal>
+                <Signal>u_shader/s3a_hc[7]</Signal>
+                <Signal>u_shader/s3a_hc[6]</Signal>
+                <Signal>u_shader/s3a_hc[5]</Signal>
+                <Signal>u_shader/s3a_hc[4]</Signal>
+                <Signal>u_shader/s3a_hc[3]</Signal>
+                <Signal>u_shader/s3a_hc[2]</Signal>
+                <Signal>u_shader/s3a_hc[1]</Signal>
+                <Signal>u_shader/s3a_hc[0]</Signal>
+            </Bus>
+        </SignalList>
+    </AoCore_Lite>
+    <GAO_ID>0100111011100011</GAO_ID>
+</GAO_CONFIG>
