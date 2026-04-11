@@ -583,10 +583,10 @@ function [7:0] noise_bilerp;
     reg [7:0]  n00, n10, n01, n11;
     reg [11:0] t0, t1;
     begin
-        n00 = noise_lut_f({uy,        ux});
-        n10 = noise_lut_f({uy,        ux + 4'h1});
-        n01 = noise_lut_f({uy + 4'h1, ux});
-        n11 = noise_lut_f({uy + 4'h1, ux + 4'h1});
+        n00 = noise_lut_f(uy,        ux};
+        n10 = noise_lut_f(uy,        ux + 4'h1};
+        n01 = noise_lut_f{uy + 4'h1, ux};
+        n11 = noise_lut_f{uy + 4'h1, ux + 4'h1};
         t0 = n00 * (4'd15 - fx) + n10 * fx;
         t1 = n01 * (4'd15 - fx) + n11 * fx;
         noise_bilerp = ((t0 * (4'd15 - fy) + t1 * fy) >> 8) & 8'hFF;
@@ -691,7 +691,7 @@ end
 //        +128 してUオフセット (0..255 の無符号座標へ変換)
 // ════════════════════════════════════════════════════════════
 wire [7:0] fly_z  = s1_time[10:3];
-wire [7:0] col_x  = (s1_nx[10:6] + 8'd128) & 8'hFF;
+wire [7:0] col_x  = (s1_nx[10:3] + 8'd128) & 8'hFF;
 wire [7:0] th_raw = fbm3(col_x, fly_z);
 
 always @(posedge clk or posedge rst) begin
