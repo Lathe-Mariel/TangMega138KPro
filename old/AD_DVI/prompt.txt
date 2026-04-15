@@ -1,0 +1,53 @@
+# アプリケーション：
+ステレオ音声信号を入力しA/D変換する
+A/D変換には，PmodAD1モジュールを使う
+A/D変換で取得した音声信号のレベルを折れ線グラフで描画する
+フレームバッファとしてDDR3 SDRAMを使う
+描画した画面をDVI出力する
+DVI出力するために，ボードのTX_HDMIコネクタを使う
+
+
+# ハードウェア：
+## FPGA:ボードTang Mega 138K Pro Dock
+## HDL：System Verilog
+## A/D変換モジュール：Pmod AD1（DIGILENT）
+
+## ポートのピン配置：
+### Pmod Port0： Pmod1　N18 CS
+　　　　　　　　Pmod2　N26 D0
+　　　　　　　　Pmod3　R16 D1
+　　　　　　　　Pmod4　R17 CLK
+　　　　　　　　Pmod5　M26 NC
+　　　　　　　　Pmod6　N17 NC
+　　　　　　　　Pmod7　L24 NC
+　　　　　　　　Pmod8　T24 NC
+
+### DVIポート： DVI_TXD2_P AA22
+                DVI_TXD2_N AA23
+                DVI_TX_D1_P V24
+                DVI_TX_D1_N W24
+                DVI_TX_D0_P AB24
+                DVI_TX_D0_N AC24
+                DVI_TX_CK_P Y22
+                DVI_TX_CK_N Y23
+
+
+
+# 詳細設計：
+## A/D変換
+### PmodAD1とはSPIで通信する
+### A/D変換のサンプリングレート：44.1kHz
+## 折れ線グラフ描画
+### 折れ線グラフはL音声を赤で描画する
+### 折れ線グラフはR音声を青で描画する
+### 1画面の横方向に1900サンプル分を表示する
+## DVI出力
+### GowinのIP：DVI TX
+### 画面解像度：1920x1080
+### フレームレート：60fps
+## PLL
+### GowinのIP：PLL_ADV
+## 画面描画用フレームバッファ
+### GowinのIP：Video Frame Buffer
+## DDR3 SDRAMインターフェース
+### GowinのIP：DDR3 Memory Interface

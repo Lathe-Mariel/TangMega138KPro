@@ -1,0 +1,54 @@
+# アプリケーション：
+DVIで映像入力し，映像を加工してDVI出力する
+DVI出力するために，ボードのTX_HDMIコネクタを使う
+
+
+# ハードウェア：
+## FPGA:ボードTang Mega 138K Pro Dock
+## HDL：System Verilog
+
+## ポートのピン配置：
+
+### DVI入力ポート： DVI_RX_D2_P AA22
+                    DVI_RX_D2_N AA23
+                    DVI_RX_D1_P V24
+                    DVI_RX_D1_N W24
+                    DVI_RX_D0_P AB24
+                    DVI_RX_D0_N AC24
+                    DVI_RX_CK_P Y22
+                    DVI_RX_CK_N Y23
+
+### DVI出力ポート： DVI_TX_D2_P AA22
+                    DVI_TX_D2_N AA23
+                    DVI_TX_D1_P V24
+                    DVI_TX_D1_N W24
+                    DVI_TX_D0_P AB24
+                    DVI_TX_D0_N AC24
+                    DVI_TX_CK_P Y22
+                    DVI_TX_CK_N Y23
+
+
+# 詳細設計：
+## A/D変換
+### PmodAD1とはSPIで通信する
+### A/D変換のサンプリングレート：44.1kHz
+## 折れ線グラフ描画
+### 折れ線グラフはL音声を赤で描画する
+### 折れ線グラフはR音声を青で描画する
+### 1画面の横方向に1900サンプル分を表示する
+## DVI入力
+### GowinのIP：DVI RX
+## DVI出力
+### GowinのIP：DVI TX
+### 画面解像度：1920x1080
+### フレームレート：60fps
+## PLL
+### GowinのIP：PLL_ADV
+
+
+
+
+## 画面描画用フレームバッファ
+### GowinのIP：Video Frame Buffer
+## DDR3 SDRAMインターフェース
+### GowinのIP：DDR3 Memory Interface

@@ -1,0 +1,23 @@
+module shader (
+    input wire clk,
+    input wire [11:0] x,
+    input wire [11:0] y,
+    input wire [23:0] time_f,
+
+    output reg [7:0] r,
+    output reg [7:0] g,
+    output reg [7:0] b
+);
+
+localparam CAMERA_x = 1920 / 2;
+localparam CAMERA_y = 1080 / 2;
+localparam CAMERA_z = 0;
+
+
+
+// =====================
+// Sphire
+// =====================
+
+
+endmodule
