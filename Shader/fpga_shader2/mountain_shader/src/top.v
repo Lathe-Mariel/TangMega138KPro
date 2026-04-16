@@ -75,8 +75,8 @@ end
 wire [7:0] r_out, g_out, b_out;
 wire shader_de;
 
-pixel_core_sky u_shader (
-    .clk      (clk_pixel),
+shader u_shader (
+    .clk (clk_pixel),
     .x   (hcount),
     .y   (vcount),
  //   .active       (de),
