@@ -3,7 +3,7 @@ Running parser ...
 Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v'
 Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll.v'
 Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\pll_init.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader.v'
 Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v'
 Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v'
 Compiling module 'top'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":7)
@@ -12,11 +12,8 @@ Compiling module 'video_timing'("H:\git\TangMega138KPro\Shader\fpga_shader2\moun
 WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v":51)
 WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v":54)
 WARN  (EX3791) : Expression size 25 truncated to fit in target size 24("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":69)
-Compiling module 'pixel_core_sky'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":1)
-WARN  (EX3791) : Expression size 32 truncated to fit in target size 16("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":23)
-WARN  (EX3791) : Expression size 32 truncated to fit in target size 16("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":24)
-WARN  (EX3791) : Expression size 7 truncated to fit in target size 6("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":78)
-WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader_mountains.v":116)
+Compiling module 'shader'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader.v":1)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 8("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader.v":61)
 WARN  (EX3670) : Actual bit length 11 differs from formal bit length 12 for port 'x'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":80)
 WARN  (EX3670) : Actual bit length 11 differs from formal bit length 12 for port 'y'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v":81)
 Compiling module 'DVI_TX_Top'("H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v":1091)

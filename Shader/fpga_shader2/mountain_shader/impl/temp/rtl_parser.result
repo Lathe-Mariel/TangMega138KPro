@@ -35,9 +35,9 @@
     "InstFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
     "InstLine" : 78,
     "InstName" : "u_shader",
-    "ModuleFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/shader_mountains.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/shader.v",
     "ModuleLine" : 1,
-    "ModuleName" : "pixel_core_sky"
+    "ModuleName" : "shader"
    },
    {
     "InstFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",

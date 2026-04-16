@@ -12,27 +12,27 @@
   <Part Number>: GW5AST-LV138FPG676AES
   <Device>: GW5AST-138
   <Device Version>: B
-  <Created Time>:Sun Apr 12 06:21:39 2026
+  <Created Time>:Fri Apr 17 02:45:18 2026
 
 
 2. PnR Details
 
   Running placement:
-    Placement Phase 0: CPU time = 0h 0m 0.086s, Elapsed time = 0h 0m 0.086s
-    Placement Phase 1: CPU time = 0h 0m 0.058s, Elapsed time = 0h 0m 0.059s
-    Placement Phase 2: CPU time = 0h 0m 0.254s, Elapsed time = 0h 0m 0.254s
+    Placement Phase 0: CPU time = 0h 0m 0.043s, Elapsed time = 0h 0m 0.043s
+    Placement Phase 1: CPU time = 0h 0m 0.034s, Elapsed time = 0h 0m 0.034s
+    Placement Phase 2: CPU time = 0h 0m 0.099s, Elapsed time = 0h 0m 0.099s
     Placement Phase 3: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
-    Total Placement: CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s
+    Total Placement: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
  Running routing:
     Routing Phase 0: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s
-    Routing Phase 1: CPU time = 0h 0m 16s, Elapsed time = 0h 0m 16s
-    Routing Phase 2: CPU time = 0h 0m 0.567s, Elapsed time = 0h 0m 0.567s
+    Routing Phase 1: CPU time = 0h 0m 14s, Elapsed time = 0h 0m 14s
+    Routing Phase 2: CPU time = 0h 0m 0.549s, Elapsed time = 0h 0m 0.549s
     Routing Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s
-    Total Routing: CPU time = 0h 0m 18s, Elapsed time = 0h 0m 18s
+    Total Routing: CPU time = 0h 0m 16s, Elapsed time = 0h 0m 16s
  Generate output files:
     CPU time = 0h 0m 17s, Elapsed time = 0h 0m 17s
 
- Total Time and Memory Usage: CPU time = 0h 0m 38s, Elapsed time = 0h 0m 38s, Peak memory usage = 1478MB
+ Total Time and Memory Usage: CPU time = 0h 0m 35s, Elapsed time = 0h 0m 35s, Peak memory usage = 1362MB
 
 
 3. Resource Usage Summary
@@ -40,15 +40,15 @@
   --------------------------------------------------------------------------------
   Resources                   | Usage                               | Utilization
   --------------------------------------------------------------------------------
-  Logic                       | 778/138240                          |  <1%
-    --LUT,ALU,ROM16           | 778(476 LUT, 302 ALU, 0 ROM16)      | -
+  Logic                       | 463/138240                          |  <1%
+    --LUT,ALU,ROM16           | 463(378 LUT, 85 ALU, 0 ROM16)       | -
     --SSRAM(RAM16)            | 0                                   | -
-  Register                    | 256/139140                          |  <1%
+  Register                    | 95/139140                           |  <1%
     --Logic Register as Latch | 0/138240                            |  0%
-    --Logic Register as FF    | 256/138240                          |  <1%
+    --Logic Register as FF    | 95/138240                           |  <1%
     --I/O Register as Latch   | 0/900                               |  0%
     --I/O Register as FF      | 0/900                               |  0%
-  CLS                         | 468/69120                           |  <1%
+  CLS                         | 264/69120                           |  <1%
   I/O Port                    | 16/311                              |  6%
   I/O Buf                     | 12                                  | -
     --Input Buf               | 2                                   | -
@@ -56,9 +56,6 @@
     --Inout Buf               | 0                                   | -
   IOLOGIC                     | 8/300                               | 3%
     --OSER10                  | 4
-  DSP                         | 5.5/298                             | 2%
-    --MULT12X12               | 1
-    --MULTALU27X18            | 5
   ================================================================================
 
 
@@ -96,7 +93,7 @@
   Signal         | Global Clock   | Location
   -------------------------------------------
   clk_d          | PRIMARY        |  PBR3
-  clk_pixel      | PRIMARY        |  PTR2 PTR3 PBR2 PBR3
+  clk_pixel      | PRIMARY        |  PTR3 PBR2 PBR3
   clk_tmds       | HCLK           | RIGHT[2]
   ===========================================
 

@@ -21,10 +21,10 @@ logic[7:0] pixel_value;
 
 
 function [11:0] length;
-    input [11:0] val1;
-    input [11:0] val2;
+    input [15:0] val1;
+    input [15:0] val2;
 
-    length = ( (((val1>val2)?val1:val2) << 4) + (((val1<val2)?val1:val2) <<3)) >> 7;
+    length = ( (((val1>val2)?val1:val2) << 16'd4) + (((val1<val2)?val1:val2) << 16'd3)) >> 16'd4;
 /*
   int x0, y0, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6;
   x0 = val1;
@@ -50,13 +50,16 @@ logic[11:0] c_x, c_y; // x/y from center
 
 assign c_x = (x < CAMERA_x)?CAMERA_x - x: x - CAMERA_x;
 assign c_y = (y < CAMERA_y)?CAMERA_y - y: y - CAMERA_y;
+logic[11:0] sphere_length;
+assign sphere_length = length(c_x,c_y);
 
 always_ff @(posedge clk)begin
 
-//    pixel_value <= 8'hff / ((length(c_x,c_y)<20)?1:2);
-
-    pixel_value <= 8'hff / length(c_x,c_y);
-
+    if (sphere_length[11:0] <64)begin
+        pixel_value <= 8'hff;
+    end else begin
+        pixel_value <= (8'hff < (sphere_length[11:0]*2))?8'b0:(8'hff - (sphere_length[7:0]*2));
+    end
     r <= pixel_value;
     g <= pixel_value;
     b <= pixel_value;

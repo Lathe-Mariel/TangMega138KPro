@@ -110,9 +110,9 @@ assign b_out = 8'h00;
 		.I_rst_n(rst_n), //input I_rst_n
 		.I_serial_clk(clk_tmds), //input I_serial_clk
 		.I_rgb_clk(clk_pixel), //input I_rgb_clk
-		.I_rgb_vs(vsync_7), //input I_rgb_vs
-		.I_rgb_hs(hsync_7), //input I_rgb_hs
-		.I_rgb_de(de_7), //input I_rgb_de
+		.I_rgb_vs(vsync), //input I_rgb_vs
+		.I_rgb_hs(hsync), //input I_rgb_hs
+		.I_rgb_de(de), //input I_rgb_de
 		.I_rgb_r(r_out), //input [7:0] I_rgb_r
 		.I_rgb_g(g_out), //input [7:0] I_rgb_g
 		.I_rgb_b(b_out), //input [7:0] I_rgb_b
