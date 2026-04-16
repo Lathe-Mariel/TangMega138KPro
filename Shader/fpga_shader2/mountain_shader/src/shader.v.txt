@@ -14,10 +14,28 @@ localparam CAMERA_y = 1080 / 2;
 localparam CAMERA_z = 0;
 
 
-
 // =====================
 // Sphire
 // =====================
+logic[7:0] pixel_value;
 
+function [11:0] length;
+    input [11:0] val1;
+    input [11:0] val2;
+
+    length  = $sqrt(val1 * val1 + val2 * val2);
+endfunction
+
+logic[12:0] c_x, c_y; // x/y from center
+
+always_ff @(posedge clk)begin
+    c_x = x - CAMERA_x;
+    c_y = y - CAMERA_y;
+    pixel_value <= 200 / length( ((c_x ^ -c_x) & -c_x), ((c_y ^ -c_y) & -c_y) );  // x/y absoluting
+
+    r <= pixel_value;
+    g <= pixel_value;
+    b <= pixel_value;
+end
 
 endmodule
