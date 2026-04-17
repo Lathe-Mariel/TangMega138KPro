@@ -86,6 +86,7 @@ shader u_shader (
     .b        (b_out)
 );
 
+/*
 reg de_1,de_2,de_3,de_4,de_5,de_6,de_7;
 reg hsync_1,hsync_2,hsync_3,hsync_4,hsync_5,hsync_6,hsync_7;
 reg vsync_1,vsync_2,vsync_3,vsync_4,vsync_5,vsync_6,vsync_7;
@@ -95,6 +96,7 @@ always_ff @(posedge clk_pixel)begin
     hsync_7 <= hsync_6;hsync_6 <= hsync_5;hsync_5 <= hsync_4;hsync_4 <= hsync_3;hsync_3 <= hsync_2;hsync_2<=hsync_1;hsync_1 <= hsync;
     vsync_7 <= vsync_6;vsync_6 <= vsync_5;vsync_5 <= vsync_4;vsync_4 <= vsync_3;vsync_3 <= vsync_2;vsync_2<=vsync_1;vsync_1 <= vsync;
 end
+*/
 
 /* test patter
 assign r_out = 8'hff;
