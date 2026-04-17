@@ -55,10 +55,10 @@ assign sphere_length = length(c_x,c_y);
 
 always_ff @(posedge clk)begin
 
-    if (sphere_length[11:0] <64)begin
+    if (sphere_length[11:0] <100)begin
         pixel_value <= 8'hff;
     end else begin
-        pixel_value <= (8'hff < (sphere_length[11:0]*2))?8'b0:(8'hff - (sphere_length[7:0]*2));
+        pixel_value <= (8'hff < (sphere_length[11:0]*2-100))?8'b0:(8'hff - (sphere_length[7:0]*2-100));
     end
     r <= pixel_value;
     g <= pixel_value;
