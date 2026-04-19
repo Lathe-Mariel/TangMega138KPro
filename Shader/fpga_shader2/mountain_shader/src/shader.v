@@ -17,8 +17,7 @@ localparam [11:0] CAMERA_z = 0;
 // =====================
 // Sphire
 // =====================
-logic[7:0] pixel_value;
-
+logic[7:0] sphere_value;
 
 function [11:0] length;
     input [15:0] val1;
@@ -55,14 +54,62 @@ assign sphere_length = length(c_x,c_y);
 
 always_ff @(posedge clk)begin
 
-    if (sphere_length[11:0] <100)begin
-        pixel_value <= 8'hff;
+    if (sphere_length[11:0] <110)begin
+        sphere_value <= 8'hff;
     end else begin
-        pixel_value <= (8'hff < (sphere_length[11:0]*2-100))?8'b0:(8'hff - (sphere_length[7:0]*2-100));
+        sphere_value <= (8'hff < (sphere_length[11:0]*2-90))?8'b0:(8'hff - (sphere_length[11:0]*2-90));
     end
-    r <= pixel_value;
-    g <= pixel_value;
-    b <= pixel_value;
+
 end
+
+// =====================
+// Grid
+// =====================
+logic[7:0] grid_value;
+
+always_ff @(posedge clk)begin
+    grid_value <= 8'h00;
+
+if(y > 300)begin
+    if((-2*(x-500)) == y || (-2*(x-500)) == y+1)begin
+        grid_value <= 8'hA0;
+    end
+    if((-3*(x-620)) == y || (-3*(x-620)) == y+1)begin
+        grid_value <= 8'hA0;
+    end
+    if((-4*(x-700)) == y || (-4*(x-700)) == y+1)begin
+        grid_value <= 8'hA0;
+    end
+    if((-8*(x-800)) == y || (-8*(x-800)) == y+3)begin
+        grid_value <= 8'hA0;
+    end
+
+end
+/*
+    if(y>100 && y<200)begin
+        grid_value <= 8'h80;
+    end else if (y>330 && y<490)begin
+        grid_value <= 8'h80;
+    end else if (y>650)begin
+        grid_value <= 8'h80;
+    end else begin
+        grid_value <= 8'h00;
+    end
+*/
+/*
+    if(x>100 && y<200)begin
+        grid_value <= 8'h80;
+    end else if (y>330 && y<490)begin
+        grid_value <= 8'h80;
+    end else if (y>650)begin
+        grid_value <= 8'h80;
+    end else begin
+        grid_value <= 8'h00;
+    end*/
+end
+
+assign r = sphere_value | grid_value;
+assign g = sphere_value | grid_value;
+assign b = sphere_value | grid_value;
 
 endmodule
