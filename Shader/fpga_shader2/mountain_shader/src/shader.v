@@ -77,14 +77,27 @@ if(y > 300)begin
     if((-3*(x-620)) == y || (-3*(x-620)) == y+1)begin
         grid_value <= 8'hA0;
     end
-    if((-4*(x-700)) == y || (-4*(x-700)) == y+1)begin
+    if((-4*(x-750)) == y || (-4*(x-750)) == y+1)begin
         grid_value <= 8'hA0;
     end
     if((-8*(x-800)) == y || (-8*(x-800)) == y+3)begin
         grid_value <= 8'hA0;
     end
 
+    if((2*(x-1300)) == y || (2*(x-1300)) == y+1)begin
+        grid_value <= 8'hA0;
+    end
+    if((3*(x-680)) == y || (3*(x-680)) == y+1)begin
+        grid_value <= 8'hA0;
+    end
+    if((4*(x-620)) == y || (4*(x-620)) == y+1)begin
+        grid_value <= 8'hA0;
+    end
+    if((8*(x-600)) == y || (8*(x-600)) == y+3)begin
+        grid_value <= 8'hA0;
+    end
 end
+
 /*
     if(y>100 && y<200)begin
         grid_value <= 8'h80;
