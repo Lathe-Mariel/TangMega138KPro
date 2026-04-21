@@ -69,31 +69,46 @@ logic[7:0] grid_value;
 
 always_ff @(posedge clk)begin
     grid_value <= 8'h00;
+    if(y == 300)begin
+        grid_value <= 8'hA0;
+    end
+    if(y == 420)begin
+        grid_value <= 8'hA0;
+    end
+    if(y == 520)begin
+        grid_value <= 8'hA0;
+    end
+    if(y == 600)begin
+        grid_value <= 8'hA0;
+    end
+    if(y == 675)begin
+        grid_value <= 8'hA0;
+    end
 
 if(y > 300)begin
-    if((-2*(x-500)) == y || (-2*(x-500)) == y+1)begin
+    if((-2*(x-530)) >= y && (-2*(x-530)) <= y+2)begin
         grid_value <= 8'hA0;
     end
-    if((-3*(x-620)) == y || (-3*(x-620)) == y+1)begin
+    if((-4*(x-640)) >= y && (-4*(x-640)) <= y+4)begin
         grid_value <= 8'hA0;
     end
-    if((-4*(x-750)) == y || (-4*(x-750)) == y+1)begin
+    if((-8*(x-730)) >= y && (-8*(x-730)) <= y+8)begin
         grid_value <= 8'hA0;
     end
-    if((-8*(x-800)) == y || (-8*(x-800)) == y+3)begin
+    if((-16*(x-800)) >= y && (-16*(x-800)) <= y+16)begin
         grid_value <= 8'hA0;
     end
 
-    if((2*(x-1300)) == y || (2*(x-1300)) == y+1)begin
+    if((2*(x-1150)) >= y && (2*(x-1150)) <= y+2)begin
         grid_value <= 8'hA0;
     end
-    if((3*(x-680)) == y || (3*(x-680)) == y+1)begin
+    if((4*(x-1050)) >= y && (4*(x-1050)) <= y+4)begin
         grid_value <= 8'hA0;
     end
-    if((4*(x-620)) == y || (4*(x-620)) == y+1)begin
+    if((8*(x-950)) >= y && (8*(x-950)) <= y+8)begin
         grid_value <= 8'hA0;
     end
-    if((8*(x-600)) == y || (8*(x-600)) == y+3)begin
+    if((16*(x-850)) >= y && (16*(x-850)) <= y+16)begin
         grid_value <= 8'hA0;
     end
 end
