@@ -1,8 +1,8 @@
 module shader (
     input wire clk,
     input wire [11:0] x,
-    input wire [11:0] y,
-    input wire [23:0] time_f,
+    input wire [10:0] y,
+//    input wire [23:0] time_f,
 
     output reg [7:0] r,
     output reg [7:0] g,
@@ -10,7 +10,7 @@ module shader (
 );
 
 localparam [11:0] CAMERA_x = 1650 / 2;
-localparam [11:0] CAMERA_y = 720 / 2;
+localparam [10:0] CAMERA_y = 720 / 2;
 localparam [11:0] CAMERA_z = 0;
 
 
@@ -20,29 +20,12 @@ localparam [11:0] CAMERA_z = 0;
 logic[7:0] sphere_value;
 
 function [11:0] length;
-    input [15:0] val1;
-    input [15:0] val2;
+    input [13:0] val1;
+    input [13:0] val2;
 
-    length = ( (((val1>val2)?val1:val2) << 16'd4) + (((val1<val2)?val1:val2) << 16'd3)) >> 16'd4;
-/*
-  int x0, y0, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6;
-  x0 = val1;
-  y0 = val2;
-  x3 = 4149 * x0;
-  y3 = 1112 * y0;
-  x4 = 1112 * x0;
-  y4 = 4149 * y0;
-  x5 = 3720 * x0;
-  y5 = 2148 * y0;
-  x6 = 2148 * x0;
-  y6 = 3720 * y0;
-  length =  ((x0 + y0) * 18461 + 
-            ((x0>y0)?(x0-y0):(y0-x0)) * 3037 +
-            ((x3>y3)?(x3-y3):(y3-x3)) +
-            ((x4>y4)?(x4-y4):(y4-x4)) +
-            ((x5>y5)?(x5-y5):(y5-x5)) +
-            ((x6>y6)?(x6-y6):(y6-x6)))   >> 15;
-*/
+    length = ( (((val1>val2)?val1:val2) << 4) + (((val1<val2)?val1:val2) << 3)) >> 4;
+//    length =  (((val1>val2)?val1:val2) *983 + (((val1<val2)?val1:val2) *407)) >> 10;
+
 endfunction
 
 logic[11:0] c_x, c_y; // x/y from center
@@ -52,12 +35,13 @@ assign c_y = (y < CAMERA_y)?CAMERA_y - y: y - CAMERA_y;
 logic[11:0] sphere_length;
 assign sphere_length = length(c_x,c_y);
 
-always_ff @(posedge clk)begin
+always_comb begin
 
-    if (sphere_length[11:0] <110)begin
-        sphere_value <= 8'hff;
+    if (sphere_length <110)begin
+        sphere_value <= 8'hfc;
     end else begin
-        sphere_value <= (8'hff < (sphere_length[11:0]*2-90))?8'b0:(8'hff - (sphere_length[11:0]*2-90));
+//        sphere_value <= (8'hff < (sphere_length[11:0]*2-90))?8'b0:(8'hff - (sphere_length[11:0]*2-90));
+        sphere_value <= (sphere_length<365)?365-sphere_length:0;
     end
 
 end
@@ -66,33 +50,34 @@ end
 // Grid
 // =====================
 logic[7:0] grid_value;
-
+/*
 always_ff @(posedge clk)begin
-    grid_value <= 8'h00;
+    grid_value <= 0;
+
     if(y == 300)begin
         grid_value <= 8'hA0;
     end
-    if(y == 420)begin
+    if(y == 360)begin
         grid_value <= 8'hA0;
     end
-    if(y == 520)begin
+    if(y == 440)begin
         grid_value <= 8'hA0;
     end
-    if(y == 600)begin
+    if(y == 545)begin
         grid_value <= 8'hA0;
     end
     if(y == 675)begin
         grid_value <= 8'hA0;
     end
 
-if(y > 300)begin
+  if(y > 300)begin
     if((-2*(x-530)) >= y && (-2*(x-530)) <= y+2)begin
         grid_value <= 8'hA0;
     end
-    if((-4*(x-640)) >= y && (-4*(x-640)) <= y+4)begin
+    if((-4*(x-590)) >= y && (-4*(x-590)) <= y+4)begin
         grid_value <= 8'hA0;
     end
-    if((-8*(x-730)) >= y && (-8*(x-730)) <= y+8)begin
+    if((-8*(x-685)) >= y && (-8*(x-685)) <= y+8)begin
         grid_value <= 8'hA0;
     end
     if((-16*(x-800)) >= y && (-16*(x-800)) <= y+16)begin
@@ -111,33 +96,32 @@ if(y > 300)begin
     if((16*(x-850)) >= y && (16*(x-850)) <= y+16)begin
         grid_value <= 8'hA0;
     end
-end
+  end
 
-/*
-    if(y>100 && y<200)begin
-        grid_value <= 8'h80;
-    end else if (y>330 && y<490)begin
-        grid_value <= 8'h80;
-    end else if (y>650)begin
-        grid_value <= 8'h80;
+end*/
+
+// =====================
+// Background
+// =====================
+
+logic[7:0] background_value;
+
+always_comb begin
+
+    if(y < 11'd256)begin
+        background_value = 11'd255-y;
     end else begin
-        grid_value <= 8'h00;
+        background_value = 0;
     end
-*/
-/*
-    if(x>100 && y<200)begin
-        grid_value <= 8'h80;
-    end else if (y>330 && y<490)begin
-        grid_value <= 8'h80;
-    end else if (y>650)begin
-        grid_value <= 8'h80;
-    end else begin
-        grid_value <= 8'h00;
-    end*/
 end
 
+/*
 assign r = sphere_value | grid_value;
-assign g = sphere_value | grid_value;
-assign b = sphere_value | grid_value;
+assign g = sphere_value | grid_value | background_value;
+assign b = sphere_value | grid_value | background_value;
+*/
+assign r = sphere_value | background_value;
+assign g = sphere_value | background_value;
+assign b = sphere_value | background_value;
 
 endmodule

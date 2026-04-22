@@ -12,7 +12,7 @@
 module video_timing (
     input  wire        clk,
     input  wire        rst,
-    output reg  [10:0] hcount,      // 0 .. H_TOTAL-1  (max 1649, 11bit)
+    output reg  [11:0] hcount,      // 0 .. H_TOTAL-1  (max 1649, 11bit)
     output reg  [10:0] vcount,      // 0 .. V_TOTAL-1  (max 749,  10bit)
     output wire        hsync,
     output wire        vsync,
