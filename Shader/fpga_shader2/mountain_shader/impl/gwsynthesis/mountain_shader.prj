@@ -2,21 +2,21 @@
 <!DOCTYPE gowin-synthesis-project>
 <Project>
     <Version>beta</Version>
-    <Device id="GW5AST-138B" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AES"/>
+    <Device id="GW5AST-138B" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
     <FileList>
-        <File path="C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\pll_init.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\dvi_tx\dvi_tx.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\gowin_pll\gowin_pll.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\pll_init.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\shader.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\top.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\src\video_timing.v" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>
         <Option type="enable_dsrm" value="0"/>
         <Option type="global_freq" value="100.000"/>
         <Option type="looplimit" value="2000"/>
-        <Option type="output_file" value="C:\Git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\impl\gwsynthesis\mountain_shader.vg"/>
+        <Option type="output_file" value="H:\git\TangMega138KPro\Shader\fpga_shader2\mountain_shader\impl\gwsynthesis\mountain_shader.vg"/>
         <Option type="print_all_synthesis_warning" value="0"/>
         <Option type="ram_rw_check" value="0"/>
         <Option type="top_module" value="top"/>

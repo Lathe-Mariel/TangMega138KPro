@@ -63,12 +63,13 @@ video_timing u_timing (
 // ─────────────────────────────────────────────
 // Frame Counter (for animation time)
 // ─────────────────────────────────────────────
+/*
 reg [23:0] frame_cnt;
 always @(posedge clk_pixel or posedge rst) begin
     if (rst) frame_cnt <= 0;
     else if (field_start) frame_cnt <= frame_cnt + 1;
 end
-
+*/
 // ─────────────────────────────────────────────
 // Shader Pixel Generator
 // ─────────────────────────────────────────────

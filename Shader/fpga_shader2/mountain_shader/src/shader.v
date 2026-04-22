@@ -35,13 +35,13 @@ assign c_y = (y < CAMERA_y)?CAMERA_y - y: y - CAMERA_y;
 logic[11:0] sphere_length;
 assign sphere_length = length(c_x,c_y);
 
-always_comb begin
+always_ff@(posedge clk) begin
 
-    if (sphere_length <110)begin
+    if (sphere_length <12'd110)begin
         sphere_value <= 8'hfc;
     end else begin
 //        sphere_value <= (8'hff < (sphere_length[11:0]*2-90))?8'b0:(8'hff - (sphere_length[11:0]*2-90));
-        sphere_value <= (sphere_length<365)?365-sphere_length:0;
+        sphere_value <= (sphere_length<9'd365)?9'd365-sphere_length[8:0]:8'b0;
     end
 
 end
@@ -50,7 +50,7 @@ end
 // Grid
 // =====================
 logic[7:0] grid_value;
-/*
+
 always_ff @(posedge clk)begin
     grid_value <= 0;
 
@@ -98,7 +98,7 @@ always_ff @(posedge clk)begin
     end
   end
 
-end*/
+end
 
 // =====================
 // Background
@@ -106,22 +106,22 @@ end*/
 
 logic[7:0] background_value;
 
-always_comb begin
+always_ff@(posedge clk) begin
 
     if(y < 11'd256)begin
         background_value = 11'd255-y;
     end else begin
-        background_value = 0;
+        background_value = 20;
     end
 end
 
-/*
+
 assign r = sphere_value | grid_value;
 assign g = sphere_value | grid_value | background_value;
 assign b = sphere_value | grid_value | background_value;
-*/
-assign r = sphere_value | background_value;
+/*
+assign r = sphere_value;
 assign g = sphere_value | background_value;
 assign b = sphere_value | background_value;
-
+*/
 endmodule
