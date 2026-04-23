@@ -34,7 +34,7 @@ assign c_x = (x < CAMERA_x)?CAMERA_x - x: x - CAMERA_x;
 assign c_y = (y < CAMERA_y)?CAMERA_y - y: y - CAMERA_y;
 logic[11:0] sphere_length;
 assign sphere_length = length(c_x,c_y);
-
+/*
 always_ff@(posedge clk) begin
 
     if (sphere_length <12'd110)begin
@@ -45,7 +45,7 @@ always_ff@(posedge clk) begin
     end
 
 end
-
+*/
 // =====================
 // Grid
 // =====================
@@ -109,19 +109,24 @@ logic[7:0] background_value;
 always_ff@(posedge clk) begin
 
     if(y < 11'd256)begin
-        background_value = 11'd255-y;
+        background_value <= 8'hff~^y;
     end else begin
-        background_value = 20;
+        background_value <= 0;
     end
 end
 
+// =====================
+// Pixel value
+// =====================
+logic[8:0] red, green, blue;
 
-assign r = sphere_value | grid_value;
-assign g = sphere_value | grid_value | background_value;
-assign b = sphere_value | grid_value | background_value;
-/*
-assign r = sphere_value;
-assign g = sphere_value | background_value;
-assign b = sphere_value | background_value;
-*/
+always_comb begin
+  r = (sphere_value > grid_value)?sphere_value:grid_value;
+  green = ((sphere_value > grid_value)?sphere_value:grid_value) + background_value;
+  blue  = ((sphere_value > grid_value)?sphere_value:grid_value) + background_value;
+
+  g = (green[8] == 1)?255:green[7:0];
+  b = (blue[8] == 1)?255:blue[7:0];
+
+end
 endmodule

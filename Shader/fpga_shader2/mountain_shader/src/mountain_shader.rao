@@ -4,16 +4,6 @@
     <Mode>Lite</Mode>
     <AoCore_Lite index="0" sample_clock="clk_pixel" trig_type="0" capture_amount="2048" implemention="0" input_register_enabled="0" capture_init_data_enabled="0" module_name="top">
         <SignalList>
-            <Bus capture_enable="true" name="u_shader/pixel_value[7:0]">
-                <Signal>u_shader/pixel_value[7]</Signal>
-                <Signal>u_shader/pixel_value[6]</Signal>
-                <Signal>u_shader/pixel_value[5]</Signal>
-                <Signal>u_shader/pixel_value[4]</Signal>
-                <Signal>u_shader/pixel_value[3]</Signal>
-                <Signal>u_shader/pixel_value[2]</Signal>
-                <Signal>u_shader/pixel_value[1]</Signal>
-                <Signal>u_shader/pixel_value[0]</Signal>
-            </Bus>
             <Bus capture_enable="true" name="u_shader/x[11:0]">
                 <Signal>u_shader/x[11]</Signal>
                 <Signal>u_shader/x[10]</Signal>
@@ -42,7 +32,55 @@
                 <Signal>u_shader/c_x[1]</Signal>
                 <Signal>u_shader/c_x[0]</Signal>
             </Bus>
+            <Bus capture_enable="true" name="u_shader/sphere_length[11:0]">
+                <Signal>u_shader/sphere_length[11]</Signal>
+                <Signal>u_shader/sphere_length[10]</Signal>
+                <Signal>u_shader/sphere_length[9]</Signal>
+                <Signal>u_shader/sphere_length[8]</Signal>
+                <Signal>u_shader/sphere_length[7]</Signal>
+                <Signal>u_shader/sphere_length[6]</Signal>
+                <Signal>u_shader/sphere_length[5]</Signal>
+                <Signal>u_shader/sphere_length[4]</Signal>
+                <Signal>u_shader/sphere_length[3]</Signal>
+                <Signal>u_shader/sphere_length[2]</Signal>
+                <Signal>u_shader/sphere_length[1]</Signal>
+                <Signal>u_shader/sphere_length[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_shader/c_y[11:0]">
+                <Signal>u_shader/c_y[11]</Signal>
+                <Signal>u_shader/c_y[10]</Signal>
+                <Signal>u_shader/c_y[9]</Signal>
+                <Signal>u_shader/c_y[8]</Signal>
+                <Signal>u_shader/c_y[7]</Signal>
+                <Signal>u_shader/c_y[6]</Signal>
+                <Signal>u_shader/c_y[5]</Signal>
+                <Signal>u_shader/c_y[4]</Signal>
+                <Signal>u_shader/c_y[3]</Signal>
+                <Signal>u_shader/c_y[2]</Signal>
+                <Signal>u_shader/c_y[1]</Signal>
+                <Signal>u_shader/c_y[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="b_out[7:0]">
+                <Signal>b_out[7]</Signal>
+                <Signal>b_out[6]</Signal>
+                <Signal>b_out[5]</Signal>
+                <Signal>b_out[4]</Signal>
+                <Signal>b_out[3]</Signal>
+                <Signal>b_out[2]</Signal>
+                <Signal>b_out[1]</Signal>
+                <Signal>b_out[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_shader/sphere_value[7:0]">
+                <Signal>u_shader/sphere_value[7]</Signal>
+                <Signal>u_shader/sphere_value[6]</Signal>
+                <Signal>u_shader/sphere_value[5]</Signal>
+                <Signal>u_shader/sphere_value[4]</Signal>
+                <Signal>u_shader/sphere_value[3]</Signal>
+                <Signal>u_shader/sphere_value[2]</Signal>
+                <Signal>u_shader/sphere_value[1]</Signal>
+                <Signal>u_shader/sphere_value[0]</Signal>
+            </Bus>
         </SignalList>
     </AoCore_Lite>
-    <GAO_ID>0011100001010101</GAO_ID>
+    <GAO_ID>1100101001100111</GAO_ID>
 </GAO_CONFIG>

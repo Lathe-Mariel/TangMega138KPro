@@ -28,6 +28,9 @@ wire pll_lock;
 assign state_led[0] = rst;
 assign state_led[1] = rst_n;
 assign state_led[2] = de;
+assign state_led[3] = 1;
+assign state_led[4] = 1;
+assign state_led[5] = 1;
 //assign state_led = 6'b10;
 
     Gowin_PLL pll_inst(
