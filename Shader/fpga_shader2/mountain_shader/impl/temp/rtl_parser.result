@@ -1,57 +1,57 @@
 [
  {
-  "InstFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/pll_init.v",
+  "InstFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/pll_init.v",
   "InstLine" : 3,
   "InstName" : "PLL_INIT",
-  "ModuleFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/pll_init.v",
+  "ModuleFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/pll_init.v",
   "ModuleLine" : 3,
   "ModuleName" : "PLL_INIT"
  },
  {
-  "InstFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
+  "InstFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
   "InstLine" : 7,
   "InstName" : "top",
-  "ModuleFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
+  "ModuleFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
   "ModuleLine" : 7,
   "ModuleName" : "top",
   "SubInsts" : [
    {
-    "InstFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
+    "InstFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
     "InstLine" : 36,
     "InstName" : "pll_inst",
-    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/gowin_pll/gowin_pll.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/gowin_pll/gowin_pll.v",
     "ModuleLine" : 10,
     "ModuleName" : "Gowin_PLL"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
+    "InstFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
     "InstLine" : 55,
     "InstName" : "u_timing",
-    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/video_timing.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/video_timing.v",
     "ModuleLine" : 12,
     "ModuleName" : "video_timing"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
+    "InstFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
     "InstLine" : 82,
     "InstName" : "u_shader",
-    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/shader.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/shader.v",
     "ModuleLine" : 1,
     "ModuleName" : "shader"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
+    "InstFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/top.v",
     "InstLine" : 115,
     "InstName" : "your_instance_name",
-    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/dvi_tx/dvi_tx.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/dvi_tx/dvi_tx.v",
     "ModuleLine" : 1091,
     "ModuleName" : "DVI_TX_Top",
     "SubInsts" : [
      {
-      "InstFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/dvi_tx/dvi_tx.v",
+      "InstFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/dvi_tx/dvi_tx.v",
       "InstLine" : 1122,
       "InstName" : "rgb2dvi_inst",
-      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/dvi_tx/dvi_tx.v",
+      "ModuleFile" : "H:/git/TangMega138KPro/Shader/fpga_shader2/mountain_shader/src/dvi_tx/dvi_tx.v",
       "ModuleLine" : 10,
       "ModuleName" : "~rgb2dvi.DVI_TX_Top"
      }

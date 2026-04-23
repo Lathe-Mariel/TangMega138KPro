@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="top" Lut="1" T_Register="114(0)" T_Alu="88(0)" T_Lut="714(1)">
+<Module name="top" Lut="1" T_Register="122(0)" T_Alu="87(0)" T_Lut="706(1)">
  <SubModule name="pll_inst"/>
- <SubModule name="u_timing" Register="23" Lut="72" T_Register="23(23)" T_Lut="72(72)"/>
- <SubModule name="u_shader" Register="18" Alu="19" Lut="412" T_Register="18(18)" T_Alu="19(19)" T_Lut="412(412)"/>
- <SubModule name="your_instance_name" Register="73" Alu="69" Lut="229" T_Register="73(73)" T_Alu="69(69)" T_Lut="229(229)"/>
+ <SubModule name="u_timing" Register="23" Lut="67" T_Register="23(23)" T_Lut="67(67)"/>
+ <SubModule name="u_shader" Register="34" Alu="18" Lut="409" T_Register="34(34)" T_Alu="18(18)" T_Lut="409(409)"/>
+ <SubModule name="your_instance_name" Register="65" Alu="69" Lut="229" T_Register="65(65)" T_Alu="69(69)" T_Lut="229(229)"/>
 </Module>

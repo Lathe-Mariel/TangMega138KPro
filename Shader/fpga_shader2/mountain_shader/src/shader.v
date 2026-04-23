@@ -41,7 +41,7 @@ always_ff@(posedge clk) begin
         sphere_value <= 8'hfc;
     end else begin
 //        sphere_value <= (8'hff < (sphere_length[11:0]*2-90))?8'b0:(8'hff - (sphere_length[11:0]*2-90));
-        sphere_value <= (sphere_length<9'd365)?9'd365-sphere_length[8:0]:8'b0;
+        sphere_value <= (sphere_length<8'd238)?8'd255 - (sphere_length[7:0]-110)*2:8'b0;
     end
 
 end
@@ -120,13 +120,13 @@ end
 // =====================
 logic[8:0] red, green, blue;
 
-always_comb begin
+always_ff @(posedge clk)begin
   red =   (sphere_value < grid_value)?grid_value:sphere_value;
   green = (sphere_value < grid_value)?grid_value:sphere_value;
   blue =  (sphere_value < grid_value)?grid_value:sphere_value;
 
-  r = red;
-  g = ((green + background_value)> 8'd254)?8'd255:green + background_value;
-  b = ((blue +  background_value)> 8'd254)?8'd255:blue + background_value;
+  r <= red;
+  g <= ((green + background_value)> 255)?8'd255:green + background_value;
+  b <= ((blue +  background_value)> 255)?8'd255:blue + background_value;
 end
 endmodule
