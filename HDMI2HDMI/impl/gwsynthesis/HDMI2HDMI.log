@@ -1,0 +1,122 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\ddr3_memory_interface\ddr3_memory_interface.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v'
+Undeclared symbol 'reset', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":117)
+Undeclared symbol 'dma_clk', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":216)
+Undeclared symbol 'I_vout0_vs_n', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":228)
+Undeclared symbol 'fb_de', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":229)
+Undeclared symbol 'O_vout0_den', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":230)
+Undeclared symbol 'read_data', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":231)
+Undeclared symbol 'cmd_ready', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":235)
+Undeclared symbol 'cmd', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":236)
+Undeclared symbol 'cmd_en', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":237)
+Undeclared symbol 'addr', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":238)
+Undeclared symbol 'wr_data_rdy', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":239)
+Undeclared symbol 'wr_data_en', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":240)
+Undeclared symbol 'wr_data_end', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":241)
+Undeclared symbol 'wr_data', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":242)
+Undeclared symbol 'wr_data_mask', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":243)
+Undeclared symbol 'rd_data_valid', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":244)
+Undeclared symbol 'rd_data_end', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":245)
+Undeclared symbol 'rd_data', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":246)
+Undeclared symbol 'init_calib_complete', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":247)
+WARN  (EX3638) : 'dma_clk' is already implicitly declared on line 216("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":283)
+WARN  (EX3638) : 'init_calib_complete' is already implicitly declared on line 247("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":284)
+WARN  (EX3638) : 'cmd_ready' is already implicitly declared on line 235("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":285)
+WARN  (EX3638) : 'cmd' is already implicitly declared on line 236("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":286)
+WARN  (EX3638) : 'cmd_en' is already implicitly declared on line 237("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":287)
+WARN  (EX3638) : 'addr' is already implicitly declared on line 238("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":288)
+WARN  (EX3638) : 'wr_data_rdy' is already implicitly declared on line 239("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":289)
+WARN  (EX3638) : 'wr_data' is already implicitly declared on line 242("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":290)
+WARN  (EX3638) : 'wr_data_en' is already implicitly declared on line 240("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":291)
+WARN  (EX3638) : 'wr_data_end' is already implicitly declared on line 241("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":292)
+WARN  (EX3638) : 'wr_data_mask' is already implicitly declared on line 243("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":293)
+WARN  (EX3638) : 'rd_data' is already implicitly declared on line 246("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":294)
+WARN  (EX3638) : 'rd_data_valid' is already implicitly declared on line 244("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":295)
+WARN  (EX3638) : 'rd_data_end' is already implicitly declared on line 245("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":296)
+Undeclared symbol 'O_ddr_cke', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":334)
+Undeclared symbol 'O_ddr_odt', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":335)
+Undeclared symbol 'O_ddr_reset_n', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":336)
+Undeclared symbol 'O_ddr_dqm', assumed default net type 'wire'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":337)
+WARN  (EX3638) : 'fb_de' is already implicitly declared on line 229("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":349)
+WARN  (EX3638) : 'read_data' is already implicitly declared on line 231("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":350)
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_rx\dvi_rx.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_tx\dvi_tx.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_clkdiv\gowin_clkdiv.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll\gowin_pll.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll_dvi\gowin_pll_dvi.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\image_composer.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\video_frame_buffer\video_frame_buffer.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll_dvi\gowin_pll_dvi_mod.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\HDMI2HDMI\src\pll_init.v'
+Compiling module 'dvi_frame_buffer_top'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":32)
+Compiling module 'Gowin_PLL_DVI'("C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll_dvi\gowin_pll_dvi.v":1)
+Compiling module 'Gowin_PLL_DVI_MOD'("C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll_dvi\gowin_pll_dvi_mod.v":10)
+Compiling module 'PLL_INIT(CLK_PERIOD=20,MULTI_FAC=25)'("C:\Git\TangMega138KPro\HDMI2HDMI\src\pll_init.v":3)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Git\TangMega138KPro\HDMI2HDMI\src\pll_init.v":179)
+WARN  (EX3791) : Expression size 18 truncated to fit in target size 17("C:\Git\TangMega138KPro\HDMI2HDMI\src\pll_init.v":207)
+Compiling module 'Gowin_CLKDIV'("C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_clkdiv\gowin_clkdiv.v":10)
+Compiling module 'Gowin_PLL'("C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll\gowin_pll.v":10)
+Compiling module 'DVI_RX_Top'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_rx\dvi_rx.v":2961)
+Compiling module '**'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_rx\dvi_rx.v":2960)
+Compiling module 'Video_Frame_Buffer_Top'("C:\Git\TangMega138KPro\HDMI2HDMI\src\video_frame_buffer\video_frame_buffer.v":5744)
+Compiling module '**'("C:\Git\TangMega138KPro\HDMI2HDMI\src\video_frame_buffer\video_frame_buffer.v":5743)
+Compiling module 'DDR3_Memory_Interface_Top'("C:\Git\TangMega138KPro\HDMI2HDMI\src\ddr3_memory_interface\ddr3_memory_interface.v":28349)
+Compiling module '**'("C:\Git\TangMega138KPro\HDMI2HDMI\src\ddr3_memory_interface\ddr3_memory_interface.v":28348)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 15 for port 'O_ddr_addr'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":325)
+WARN  (EX3670) : Actual bit length 1 differs from formal bit length 4 for port 'O_ddr_dqm'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":337)
+Compiling module 'image_composer'("C:\Git\TangMega138KPro\HDMI2HDMI\src\image_composer.v":29)
+Extracting RAM for identifier 'font_rom'("C:\Git\TangMega138KPro\HDMI2HDMI\src\image_composer.v":278)
+WARN  (EX3791) : Expression size 11 truncated to fit in target size 9("C:\Git\TangMega138KPro\HDMI2HDMI\src\image_composer.v":271)
+WARN  (EX3791) : Expression size 11 truncated to fit in target size 7("C:\Git\TangMega138KPro\HDMI2HDMI\src\image_composer.v":272)
+Compiling module 'DVI_TX_Top'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_tx\dvi_tx.v":1091)
+Compiling module '**'("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_tx\dvi_tx.v":1090)
+WARN  (EX1998) : Net 'pll_sys_lock' does not have a driver("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":104)
+WARN  (EX1998) : Net 'rx_pll_lock' does not have a driver("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":146)
+WARN  (EX1998) : Net 'reset' does not have a driver("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":117)
+WARN  (EX1998) : Net 'I_vout0_vs_n' does not have a driver("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":228)
+WARN  (EX2565) : Input 'init_clk' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":118)
+WARN  (EX2565) : Input 'I_serial_clk' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":181)
+WARN  (EX2565) : Input 'I_wr_halt[0]' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":248)
+WARN  (EX2565) : Input 'I_rd_halt[0]' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":248)
+WARN  (EX2565) : Input 'fb_valid' on this instance is undriven. Assigning to 0, simulation mismatch possible. Please assign the input or remove the declaration("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":388)
+NOTE  (EX0101) : Current top module is "dvi_frame_buffer_top"
+WARN  (EX0211) : The output port "ddr_odt" of module "dvi_frame_buffer_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":64)
+WARN  (EX0211) : The output port "ddr_cke" of module "dvi_frame_buffer_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":65)
+WARN  (EX0211) : The output port "ddr_reset_n" of module "dvi_frame_buffer_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":66)
+WARN  (EX0211) : The output port "ddr_dm[3]" of module "dvi_frame_buffer_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":72)
+WARN  (EX0211) : The output port "ddr_dm[2]" of module "dvi_frame_buffer_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":72)
+WARN  (EX0211) : The output port "ddr_dm[1]" of module "dvi_frame_buffer_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":72)
+WARN  (EX0211) : The output port "ddr_dm[0]" of module "dvi_frame_buffer_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":72)
+[5%] Running netlist conversion ...
+WARN  (CV0016) : Input tmds_rx_clk_p is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":42)
+WARN  (CV0016) : Input tmds_rx_clk_n is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":43)
+WARN  (CV0016) : Input cmos_pclk is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":77)
+WARN  (CV0016) : Input cmos_href is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":78)
+WARN  (CV0016) : Input cmos_vsync is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":79)
+WARN  (CV0016) : Input cmos_db is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":80)
+WARN  (CV0016) : Input sw0 is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":91)
+WARN  (CV0016) : Input sw1 is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":92)
+WARN  (CV0017) : Inout cmos_scl is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":84)
+WARN  (CV0017) : Inout cmos_sda is unused("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":85)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+WARN  (NL0002) : The module "PLL_INIT" instantiated to "u_pll_init" is swept in optimizing("C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll_dvi\gowin_pll_dvi.v":40)
+WARN  (NL0002) : The module "image_composer" instantiated to "u_composer" is swept in optimizing("C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v":388)
+[95%] Generate netlist file "C:\Git\TangMega138KPro\HDMI2HDMI\impl\gwsynthesis\HDMI2HDMI.vg" completed
+[100%] Generate report file "C:\Git\TangMega138KPro\HDMI2HDMI\impl\gwsynthesis\HDMI2HDMI_syn.rpt.html" completed
+GowinSynthesis finish

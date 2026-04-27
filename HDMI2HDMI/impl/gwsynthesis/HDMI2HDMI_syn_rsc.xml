@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="dvi_frame_buffer_top" Lut="1" T_Register="6036(0)" T_Alu="293(0)" T_Lut="5253(1)" T_Bsram="32(0)">
+ <SubModule name="pll_dvi">
+  <SubModule name="u_pll"/>
+ </SubModule>
+ <SubModule name="clkdiv_dvi"/>
+ <SubModule name="pll_memory"/>
+ <SubModule name="dvi_rx_instance" Register="323" Lut="740" T_Register="323(323)" T_Lut="740(740)"/>
+ <SubModule name="vfb_instance" Register="461" Alu="34" Lut="1206" Bsram="16" T_Register="461(461)" T_Alu="34(34)" T_Lut="1206(1206)" T_Bsram="16(16)"/>
+ <SubModule name="your_instance_name" Register="5179" Alu="190" Lut="3077" Bsram="16" T_Register="5179(5179)" T_Alu="190(190)" T_Lut="3077(3077)" T_Bsram="16(16)"/>
+ <SubModule name="dvi_tx_instance" Register="73" Alu="69" Lut="229" T_Register="73(73)" T_Alu="69(69)" T_Lut="229(229)"/>
+</Module>

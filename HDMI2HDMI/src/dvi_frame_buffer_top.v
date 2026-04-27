@@ -112,15 +112,15 @@ module dvi_frame_buffer_top (
 
     Gowin_PLL_DVI pll_dvi(
         .lock(pll_video_lock), //output lock
-        .clkout0(clk_5x), //output clkout0
-        .clkin(clk), //input clkin
-        .reset(reset) //input reset
+        .clkout0(clk_5x),      //output clkout0
+        .clkin(clk),           //input clkin
+        .reset(reset)          //input reset
     );
 
     Gowin_CLKDIV clkdiv_dvi(
-        .clkout(clk_pixel), //output clkout
-        .hclkin(clk_5x), //input hclkin
-        .resetn(rst_n) //input resetn
+        .clkout(clk_pixel),    //output clkout
+        .hclkin(clk_5x),       //input hclkin
+        .resetn(rst_n)         //input resetn
     );
 
     wire memory_clk;
@@ -128,10 +128,10 @@ module dvi_frame_buffer_top (
 
     Gowin_PLL pll_memory(
         .lock(memory_pll_lock), //output lock
-        .clkout0(memory_clk), //output clkout0
-        .clkout1(clk_100), //output clkout1
-        .clkin(clk), //input clkin
-        .reset(rst_n) //input reset
+        .clkout0(memory_clk),   //output clkout0
+        .clkout1(clk_100),      //output clkout1
+        .clkin(clk),            //input clkin
+        .reset(rst_n)           //input reset
     );
 
 //==============================================================================
@@ -163,21 +163,21 @@ module dvi_frame_buffer_top (
     //     .pll_lock    (rx_pll_lock)
     // );
 
-	DVI_RX_Top your_instance_name(
+	DVI_RX_Top dvi_rx_instance(
 		.I_rst_n(rst_n), //input I_rst_n
 		.I_tmds_clk_p(tmds_rx_clk_p), //input I_tmds_clk_p
 		.I_tmds_clk_n(tmds_rx_clk_n), //input I_tmds_clk_n
-		.I_tmds_data_p(tmds_rx_d_p), //input [2:0] I_tmds_data_p
-		.I_tmds_data_n(tmds_rx_d_n), //input [2:0] I_tmds_data_n
-		.O_tmds_clk(), //output O_tmds_clk
-		.I_serial_clk(), //input I_serial_clk
-		.O_rgb_clk(rx_pclk), //output O_rgb_clk
-		.O_rgb_vs(rx_vsync), //output O_rgb_vs
-		.O_rgb_hs(rx_hsync), //output O_rgb_hs
-		.O_rgb_de(rx_de), //output O_rgb_de
-		.O_rgb_r(rx_r), //output [7:0] O_rgb_r
-		.O_rgb_g(rx_g), //output [7:0] O_rgb_g
-		.O_rgb_b(rx_b) //output [7:0] O_rgb_b
+		.I_tmds_data_p(tmds_rx_d_p),  //input [2:0] I_tmds_data_p
+		.I_tmds_data_n(tmds_rx_d_n),  //input [2:0] I_tmds_data_n
+		.O_tmds_clk(),                //output O_tmds_clk
+		.I_serial_clk(),              //input I_serial_clk
+		.O_rgb_clk(rx_pclk),          //output O_rgb_clk
+		.O_rgb_vs(rx_vsync),          //output O_rgb_vs
+		.O_rgb_hs(rx_hsync),          //output O_rgb_hs
+		.O_rgb_de(rx_de),             //output O_rgb_de
+		.O_rgb_r(rx_r),               //output [7:0] O_rgb_r
+		.O_rgb_g(rx_g),               //output [7:0] O_rgb_g
+		.O_rgb_b(rx_b)                //output [7:0] O_rgb_b
 	);
 
 //==============================================================================
@@ -211,7 +211,7 @@ module dvi_frame_buffer_top (
     //     // AXI4 write master port ...
     // );
 
-	Video_Frame_Buffer_Top your_instance_name(
+	Video_Frame_Buffer_Top vfb_instance(
 		.I_rst_n(rst_n),     //input I_rst_n (or sys_rst_n)
 		.I_dma_clk(dma_clk), //input I_dma_clk < from DDR3 controller>
 
@@ -335,9 +335,9 @@ module dvi_frame_buffer_top (
 		.O_ddr_odt(O_ddr_odt), //output O_ddr_odt
 		.O_ddr_reset_n(O_ddr_reset_n), //output O_ddr_reset_n
 		.O_ddr_dqm(O_ddr_dqm), //output [3:0] O_ddr_dqm
-		.IO_ddr_dq(IO_ddr_dq), //inout [31:0] IO_ddr_dq
-		.IO_ddr_dqs(IO_ddr_dqs), //inout [3:0] IO_ddr_dqs
-		.IO_ddr_dqs_n(IO_ddr_dqs_n) //inout [3:0] IO_ddr_dqs_n
+		.IO_ddr_dq(ddr_dq), //inout [31:0] IO_ddr_dq
+		.IO_ddr_dqs(ddr_dqs), //inout [3:0] IO_ddr_dqs
+		.IO_ddr_dqs_n(ddr_dqs_n) //inout [3:0] IO_ddr_dqs_n
 	);
 
 //==============================================================================
@@ -413,7 +413,7 @@ module dvi_frame_buffer_top (
     //     .tmds_data_p (O_tmds_data_p)
     // );
 
-	DVI_TX_Top your_instance_name(
+	DVI_TX_Top dvi_tx_instance(
 		.I_rst_n(rst_n), //input I_rst_n
 		.I_serial_clk(clk_5x), //input I_serial_clk
 		.I_rgb_clk(clk_pixel), //input I_rgb_clk

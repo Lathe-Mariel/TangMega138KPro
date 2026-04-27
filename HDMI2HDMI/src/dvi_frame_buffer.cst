@@ -22,16 +22,12 @@ IO_PORT "rst_n"  IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
 //------------------------------------------------------------------------------
 
 // TMDS Clock Input
-IO_LOC  "tmds_rx_clk_p"   K20;
-IO_LOC  "tmds_rx_clk_n"   J20;
+IO_LOC  "tmds_rx_clk_p"   K20,J20;
 IO_PORT "tmds_rx_clk_p"   IO_TYPE=LVDS25;
-IO_PORT "tmds_rx_clk_n"   IO_TYPE=LVDS25;
 
 // TMDS Data Lane 0 (Blue channel)
-IO_LOC  "tmds_rx_d_p[0]"  D19;
-IO_LOC  "tmds_rx_d_n[0]"  C19;
+IO_LOC  "tmds_rx_d_p[0]"  D19,C19;
 IO_PORT "tmds_rx_d_p[0]"  IO_TYPE=LVDS25;
-IO_PORT "tmds_rx_d_n[0]"  IO_TYPE=LVDS25;
 
 // TMDS Data Lane 1 (Green channel)
 IO_LOC  "tmds_rx_d_p[1]"  M15;
@@ -51,20 +47,20 @@ IO_PORT "tmds_rx_d_n[2]"  IO_TYPE=LVDS25;
 //------------------------------------------------------------------------------
 
 // TMDS Clock Output
-IO_LOC  "O_tmds_clk_p"       Y22,Y23;
-IO_PORT "O_tmds_clk_p"       IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+IO_LOC  "tmds_tx_clk_p"       Y22,Y23;
+IO_PORT "tmds_tx_clk_p"       IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
 
 // TMDS Data Lane 0 (Blue channel)
-IO_LOC  "O_tmds_data_p[0]"   AB24,AC24;
-IO_PORT "O_tmds_data_p[0]"   IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+IO_LOC  "tmds_tx_data_p[0]"   AB24,AC24;
+IO_PORT "tmds_tx_data_p[0]"   IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
 
 // TMDS Data Lane 1 (Green channel)
-IO_LOC  "O_tmds_data_p[1]"   V24,W24;
-IO_PORT "O_tmds_data_p[1]"   IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+IO_LOC  "tmds_tx_data_p[1]"   V24,W24;
+IO_PORT "tmds_tx_data_p[1]"   IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
 
 // TMDS Data Lane 2 (Red channel)
-IO_LOC  "O_tmds_data_p[2]"   AA22,AA23;
-IO_PORT "O_tmds_data_p[2]"   IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+IO_LOC  "tmds_tx_data_p[2]"   AA22,AA23;
+IO_PORT "tmds_tx_data_p[2]"   IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
 
 //------------------------------------------------------------------------------
 // DDR3 SDRAM - Address & Bank (SSTL15, 1.5V)

@@ -1,0 +1,142 @@
+[
+ {
+  "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+  "InstLine" : 32,
+  "InstName" : "dvi_frame_buffer_top",
+  "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+  "ModuleLine" : 32,
+  "ModuleName" : "dvi_frame_buffer_top",
+  "SubInsts" : [
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+    "InstLine" : 113,
+    "InstName" : "pll_dvi",
+    "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/gowin_pll_dvi/gowin_pll_dvi.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "Gowin_PLL_DVI",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/gowin_pll_dvi/gowin_pll_dvi.v",
+      "InstLine" : 21,
+      "InstName" : "u_pll",
+      "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
+      "ModuleLine" : 10,
+      "ModuleName" : "Gowin_PLL_DVI_MOD"
+     },
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/gowin_pll_dvi/gowin_pll_dvi.v",
+      "InstLine" : 32,
+      "InstName" : "u_pll_init",
+      "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/pll_init.v",
+      "ModuleLine" : 3,
+      "ModuleName" : "PLL_INIT"
+     }
+    ]
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+    "InstLine" : 120,
+    "InstName" : "clkdiv_dvi",
+    "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/gowin_clkdiv/gowin_clkdiv.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "Gowin_CLKDIV"
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+    "InstLine" : 129,
+    "InstName" : "pll_memory",
+    "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/gowin_pll/gowin_pll.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "Gowin_PLL"
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+    "InstLine" : 166,
+    "InstName" : "dvi_rx_instance",
+    "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_rx/dvi_rx.v",
+    "ModuleLine" : 2961,
+    "ModuleName" : "DVI_RX_Top",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_rx/dvi_rx.v",
+      "InstLine" : 2994,
+      "InstName" : "dvi2rgb_inst",
+      "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_rx/dvi_rx.v",
+      "ModuleLine" : 10,
+      "ModuleName" : "~dvi2rgb.DVI_RX_Top"
+     }
+    ]
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+    "InstLine" : 214,
+    "InstName" : "vfb_instance",
+    "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/video_frame_buffer/video_frame_buffer.v",
+    "ModuleLine" : 5744,
+    "ModuleName" : "Video_Frame_Buffer_Top",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/video_frame_buffer/video_frame_buffer.v",
+      "InstLine" : 5805,
+      "InstName" : "vfb_ddr3_wrapper_inst",
+      "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/video_frame_buffer/video_frame_buffer.v",
+      "ModuleLine" : 10,
+      "ModuleName" : "~vfb_ddr3_wrapper.Video_Frame_Buffer_Top"
+     }
+    ]
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+    "InstLine" : 298,
+    "InstName" : "your_instance_name",
+    "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/ddr3_memory_interface/ddr3_memory_interface.v",
+    "ModuleLine" : 28349,
+    "ModuleName" : "DDR3_Memory_Interface_Top",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/ddr3_memory_interface/ddr3_memory_interface.v",
+      "InstLine" : 28434,
+      "InstName" : "gw3_top",
+      "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/ddr3_memory_interface/ddr3_memory_interface.v",
+      "ModuleLine" : 10,
+      "ModuleName" : "~GW_DDR3_PHY_MC.DDR3_Memory_Interface_Top"
+     }
+    ]
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+    "InstLine" : 369,
+    "InstName" : "u_composer",
+    "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/image_composer.v",
+    "ModuleLine" : 29,
+    "ModuleName" : "image_composer"
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+    "InstLine" : 416,
+    "InstName" : "dvi_tx_instance",
+    "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_tx/dvi_tx.v",
+    "ModuleLine" : 1091,
+    "ModuleName" : "DVI_TX_Top",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_tx/dvi_tx.v",
+      "InstLine" : 1122,
+      "InstName" : "rgb2dvi_inst",
+      "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_tx/dvi_tx.v",
+      "ModuleLine" : 10,
+      "ModuleName" : "~rgb2dvi.DVI_TX_Top"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "InstFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+  "InstLine" : 471,
+  "InstName" : "font_rom_lathe",
+  "ModuleFile" : "C:/Git/TangMega138KPro/HDMI2HDMI/src/dvi_frame_buffer_top.v",
+  "ModuleLine" : 471,
+  "ModuleName" : "font_rom_lathe"
+ }
+]
