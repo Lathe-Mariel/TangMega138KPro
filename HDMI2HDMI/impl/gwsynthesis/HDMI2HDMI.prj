@@ -4,24 +4,24 @@
     <Version>beta</Version>
     <Device id="GW5AST-138B" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AES"/>
     <FileList>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\ddr3_memory_interface\ddr3_memory_interface.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_rx\dvi_rx.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\dvi_tx\dvi_tx.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_clkdiv\gowin_clkdiv.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll\gowin_pll.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll_dvi\gowin_pll_dvi.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\image_composer.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\video_frame_buffer\video_frame_buffer.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\gowin_pll_dvi\gowin_pll_dvi_mod.v" type="verilog"/>
-        <File path="C:\Git\TangMega138KPro\HDMI2HDMI\src\pll_init.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\ddr3_memory_interface\ddr3_memory_interface.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\dvi_frame_buffer_top.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\dvi_rx\dvi_rx.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\dvi_tx\dvi_tx.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\gowin_clkdiv\gowin_clkdiv.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\gowin_pll\gowin_pll.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\gowin_pll_dvi\gowin_pll_dvi.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\gowin_pll_dvi\gowin_pll_dvi_mod.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\image_composer.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\pll_init.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\HDMI2HDMI\src\video_frame_buffer\video_frame_buffer.v" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>
         <Option type="enable_dsrm" value="0"/>
         <Option type="global_freq" value="100.000"/>
         <Option type="looplimit" value="2000"/>
-        <Option type="output_file" value="C:\Git\TangMega138KPro\HDMI2HDMI\impl\gwsynthesis\HDMI2HDMI.vg"/>
+        <Option type="output_file" value="H:\git\TangMega138KPro\HDMI2HDMI\impl\gwsynthesis\HDMI2HDMI.vg"/>
         <Option type="print_all_synthesis_warning" value="0"/>
         <Option type="ram_rw_check" value="0"/>
         <Option type="top_module" value="dvi_frame_buffer_top"/>

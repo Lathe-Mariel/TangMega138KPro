@@ -170,7 +170,7 @@ module dvi_frame_buffer_top (
 		.I_tmds_data_p(tmds_rx_d_p),  //input [2:0] I_tmds_data_p
 		.I_tmds_data_n(tmds_rx_d_n),  //input [2:0] I_tmds_data_n
 		.O_tmds_clk(),                //output O_tmds_clk
-		.I_serial_clk(),              //input I_serial_clk
+		.I_serial_clk(clk),              //input I_serial_clk
 		.O_rgb_clk(rx_pclk),          //output O_rgb_clk
 		.O_rgb_vs(rx_vsync),          //output O_rgb_vs
 		.O_rgb_hs(rx_hsync),          //output O_rgb_hs
