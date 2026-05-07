@@ -1,0 +1,33 @@
+{
+ "Device" : "GW5AST-138C",
+ "Files" : [
+  {
+   "Path" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_rx/dvi_rx.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_tx/dvi_tx.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/edid_prom/edid_prom.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/gowin_pll/gowin_pll.v",
+   "Type" : "verilog"
+  }
+ ],
+ "IncludePath" : [
+  "src/dvi_rx"
+ ],
+ "LoopLimit" : 2000,
+ "ResultFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/impl/temp/rtl_parser.result",
+ "Top" : "video_top",
+ "VerilogStd" : "sysv",
+ "VhdlStd" : "vhdl_93"
+}

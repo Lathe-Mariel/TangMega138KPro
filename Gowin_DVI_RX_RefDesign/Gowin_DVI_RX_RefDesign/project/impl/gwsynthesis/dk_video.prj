@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-synthesis-project>
+<Project>
+    <Version>beta</Version>
+    <Device id="GW5AST-138C" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
+    <FileList>
+        <File path="H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_rx\dvi_rx.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_tx\dvi_tx.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\edid_prom\edid_prom.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\video_top.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\gowin_pll\gowin_pll.v" type="verilog"/>
+    </FileList>
+    <OptionList>
+        <Option type="disable_insert_pad" value="0"/>
+        <Option type="global_freq" value="100.000"/>
+        <Option type="include_path" value="H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_rx"/>
+        <Option type="looplimit" value="2000"/>
+        <Option type="output_file" value="H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\dk_video.vg"/>
+        <Option type="print_all_synthesis_warning" value="0"/>
+        <Option type="ram_rw_check" value="1"/>
+        <Option type="top_module" value="video_top"/>
+        <Option type="vcc" value="0.9"/>
+        <Option type="verilog_language" value="sysv-2017"/>
+        <Option type="vhdl_language" value="vhdl-1993"/>
+    </OptionList>
+</Project>

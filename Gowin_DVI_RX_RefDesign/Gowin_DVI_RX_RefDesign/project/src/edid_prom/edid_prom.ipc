@@ -1,0 +1,13 @@
+[General]
+ipc_version=4
+file=edid_prom
+module=EDID_PROM_Top
+target_device=gw5ast138c-003
+type=edid_prom
+version=1.0
+
+[Config]
+LANG=0
+Memory_Ini_File=../edid_1280x720.mi
+Memory_Type=ROM
+Synthesis_tool=GowinSynthesis
