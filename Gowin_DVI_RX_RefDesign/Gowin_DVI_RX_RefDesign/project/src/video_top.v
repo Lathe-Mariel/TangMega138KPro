@@ -2,7 +2,8 @@
 module video_top
 (
     input             I_clk           , //50Mhz
-    input             I_rst_n         ,
+    input             rst_sw          ,
+    input             sw0             ,
     output     [5:0]  O_led           , 
     input             I_tmds_clk_p    ,
     input             I_tmds_clk_n    ,
@@ -32,6 +33,9 @@ wire [7:0]  rx0_b      ;
 wire		rx_pll_lock	  ;
 wire [3:0]  pll_phase     ;  
 wire        pll_phase_lock;
+wire I_rst_n;
+
+assign I_rst_n = sw0;
 
 //------------------------------------
 wire serial_clk;
@@ -57,6 +61,8 @@ assign  O_led[0] = running;
 assign  O_led[1] = ~pll_phase_lock;
 assign  O_led[2] = 1'b1;
 assign  O_led[3] = ~I_rst_n;
+assign  O_led[4] = 1'b0;
+assign  O_led[5] = sw0;
 
 //===========================================================================
 EDID_PROM_Top EDID_PROM_Top_inst 
