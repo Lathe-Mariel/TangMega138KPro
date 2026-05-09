@@ -33,9 +33,10 @@ wire [7:0]  rx0_b      ;
 wire		rx_pll_lock	  ;
 wire [3:0]  pll_phase     ;  
 wire        pll_phase_lock;
-wire I_rst_n;
+logic I_rst_n;
 
-assign I_rst_n = sw0;
+assign fan = 1'b1;
+assign I_rst_n = 1'b1;
 
 //------------------------------------
 wire serial_clk;
@@ -50,7 +51,7 @@ begin
     if(!I_rst_n)
         run_cnt <= 32'd0;
     else if(run_cnt >= 32'd50_000_000)
-        run_cnt <= 32'd0;
+        run_cnt <= 32'd50_000_000;
     else
         run_cnt <= run_cnt + 1'b1;
 end
@@ -59,9 +60,9 @@ assign  running = (run_cnt < 32'd25_000_000) ? 1'b1 : 1'b0;
 
 assign  O_led[0] = running;
 assign  O_led[1] = ~pll_phase_lock;
-assign  O_led[2] = 1'b1;
+assign  O_led[2] = 1'b0;
 assign  O_led[3] = ~I_rst_n;
-assign  O_led[4] = 1'b0;
+assign  O_led[4] = rst_sw;
 assign  O_led[5] = sw0;
 
 //===========================================================================

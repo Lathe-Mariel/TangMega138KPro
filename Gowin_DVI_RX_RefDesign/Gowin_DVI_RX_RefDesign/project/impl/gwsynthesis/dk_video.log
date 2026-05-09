@@ -14,9 +14,7 @@ Compiling module 'Gowin_PLL'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowi
 Compiling module 'DVI_TX_Top'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_tx\dvi_tx.v":1091)
 Compiling module '**'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_tx\dvi_tx.v":1090)
 NOTE  (EX0101) : Current top module is "video_top"
-WARN  (EX0211) : The output port "fan" of module "video_top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\video_top.v":18)
 [5%] Running netlist conversion ...
-WARN  (CV0016) : Input rst_sw is unused("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\video_top.v":5)
 Running device independent optimization ...
 [10%] Optimizing Phase 0 completed
 [15%] Optimizing Phase 1 completed
