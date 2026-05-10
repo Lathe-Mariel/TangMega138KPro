@@ -2,7 +2,7 @@
 ipc_version=4
 file=edid_prom
 module=EDID_PROM_Top
-target_device=gw5ast138c-003
+target_device=gw5ast138b-007
 type=edid_prom
 version=1.0
 

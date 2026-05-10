@@ -2,13 +2,14 @@
 <!DOCTYPE gowin-synthesis-project>
 <Project>
     <Version>beta</Version>
-    <Device id="GW5AST-138C" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
+    <Device id="GW5AST-138B" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
     <FileList>
         <File path="H:/Gowin/Gowin_V1.9.11.01_x64/IDE/ipcore/EDID_PROM/data/edid_prom_top.v" type="verilog"/>
         <File path="H:/Gowin/Gowin_V1.9.11.01_x64/IDE/ipcore/EDID_PROM/data/i2c_slave_wrapper.v" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="1"/>
+        <Option type="enable_dsrm" value="0"/>
         <Option type="include_path" value="H:/Gowin/Gowin_V1.9.11.01_x64/IDE/ipcore/EDID_PROM/data"/>
         <Option type="include_path" value="H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/edid_prom/temp/EDID_PROM"/>
         <Option type="output_file" value="edid_prom.vg"/>

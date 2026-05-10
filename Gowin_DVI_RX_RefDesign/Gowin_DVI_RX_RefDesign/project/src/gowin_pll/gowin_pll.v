@@ -4,8 +4,8 @@
 //Tool Version: V1.9.11.01 (64-bit)
 //Part Number: GW5AST-LV138FPG676AC1/I0
 //Device: GW5AST-138
-//Device Version: C
-//Created Time: Fri May  8 01:06:05 2026
+//Device Version: B
+//Created Time: Sun May 10 10:09:45 2026
 
 module Gowin_PLL (lock, clkout0, clkin);
 

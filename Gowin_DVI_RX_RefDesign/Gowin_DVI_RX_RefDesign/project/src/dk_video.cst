@@ -1,63 +1,49 @@
+//Copyright (C)2014-2025 Gowin Semiconductor Corporation.
+//All rights reserved. 
+//File Title: Physical Constraints file
+//Tool Version: V1.9.11.01 (64-bit)
+//Part Number: GW5AST-LV138FPG676AC1/I0
+//Device: GW5AST-138
+//Device Version: B
+//Created Time: Sun 05 10 18:11:26 2026
 
-
-IO_LOC "I_clk" P16;
-IO_PORT "I_clk" IO_TYPE=LVCMOS33;
-
-IO_LOC "rst_sw" G15;
-IO_PORT "rst_sw" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
-IO_LOC "sw0" K16;
-IO_PORT "sw0" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
-
-IO_LOC "O_led[0]" J14;
-IO_LOC "O_led[1]" R26;
-IO_LOC "O_led[2]" L20;
-IO_LOC "O_led[3]" M25;
-IO_LOC "O_led[4]" N21;
-IO_LOC "O_led[5]" N23;
-
-IO_PORT "O_led[0]" IO_TYPE=LVCMOS33;
-IO_PORT "O_led[1]" IO_TYPE=LVCMOS33;
-IO_PORT "O_led[2]" IO_TYPE=LVCMOS33;
-IO_PORT "O_led[3]" IO_TYPE=LVCMOS33;
-IO_PORT "O_led[4]" IO_TYPE=LVCMOS33;
-IO_PORT "O_led[5]" IO_TYPE=LVCMOS33;
-
-//====================================
-//HDMI3 RX
-IO_LOC "I_tmds_clk_p"      K20,J20 ;
-IO_LOC "I_tmds_data_p[2]"  J25,J26 ;
-IO_LOC "I_tmds_data_p[1]"  M15,L15 ;
-IO_LOC "I_tmds_data_p[0]"  D19,C19 ;
-
-IO_PORT "I_tmds_clk_p"        IO_TYPE=LVDS25;
-IO_PORT "I_tmds_data_p[2]"    IO_TYPE=LVDS25;
-IO_PORT "I_tmds_data_p[1]"    IO_TYPE=LVDS25;
-IO_PORT "I_tmds_data_p[0]"    IO_TYPE=LVDS25;
-
-//======================================
-//HDMI4 TX
-IO_LOC "O_tmds_data_p[2]" AA22,AA23;
-IO_LOC "O_tmds_data_p[1]" V24,W24;
+IO_LOC "O_tmds_clk_p" Y22,Y23;
+IO_PORT "O_tmds_clk_p" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
 IO_LOC "O_tmds_data_p[0]" AB24,AC24;
-IO_LOC "O_tmds_clk_p"     Y22,Y23;
-
-IO_PORT "O_tmds_data_p[2]"       IO_TYPE=LVDS25;
-IO_PORT "O_tmds_data_p[1]"       IO_TYPE=LVDS25;
-IO_PORT "O_tmds_data_p[0]"       IO_TYPE=LVDS25;
-IO_PORT "O_tmds_clk_p"           IO_TYPE=LVDS25;
-
-//======================================
+IO_PORT "O_tmds_data_p[0]" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+IO_LOC "O_tmds_data_p[1]" V24,W24;
+IO_PORT "O_tmds_data_p[1]" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+IO_LOC "O_tmds_data_p[2]" AA22,AA23;
+IO_PORT "O_tmds_data_p[2]" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+IO_LOC "I_tmds_data_p[2]" J25,J26;
+IO_PORT "I_tmds_data_p[2]" IO_TYPE=LVDS25 PULL_MODE=NONE BANK_VCCIO=2.5;
+IO_LOC "I_tmds_data_p[1]" M15,L15;
+IO_PORT "I_tmds_data_p[1]" IO_TYPE=LVDS25 PULL_MODE=NONE BANK_VCCIO=2.5;
+IO_LOC "I_tmds_data_p[0]" D19,C19;
+IO_PORT "I_tmds_data_p[0]" IO_TYPE=LVDS25 PULL_MODE=NONE BANK_VCCIO=2.5;
+IO_LOC "I_tmds_clk_p" K20,J20;
+IO_PORT "I_tmds_clk_p" IO_TYPE=LVDS25 PULL_MODE=NONE BANK_VCCIO=2.5;
 IO_LOC "IO_sda" K26;
-IO_LOC "I_scl"  K25;
-IO_PORT "IO_sda" IO_TYPE=LVCMOS33 ;
-IO_PORT "I_scl"  IO_TYPE=LVCMOS33 ;
-
-IO_LOC  "fan"  T18;
-IO_PORT "fan"  IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
-
-/*
-IO_LOC  "sw0"  F15;
-IO_PORT "sw0"  IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
-IO_LOC  "sw1"  G15;
-IO_PORT "sw1"  IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
-*/
+IO_PORT "IO_sda" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "fan" T18;
+IO_PORT "fan" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+IO_LOC "O_led[5]" N23;
+IO_PORT "O_led[5]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "O_led[4]" N21;
+IO_PORT "O_led[4]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "O_led[3]" M25;
+IO_PORT "O_led[3]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "O_led[2]" L20;
+IO_PORT "O_led[2]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "O_led[1]" R26;
+IO_PORT "O_led[1]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "O_led[0]" J14;
+IO_PORT "O_led[0]" IO_TYPE=LVCMOS25 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=2.5;
+IO_LOC "I_scl" K25;
+IO_PORT "I_scl" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_LOC "sw0" K16;
+IO_PORT "sw0" IO_TYPE=LVCMOS25 PULL_MODE=UP BANK_VCCIO=2.5;
+IO_LOC "rst_sw" G15;
+IO_PORT "rst_sw" IO_TYPE=LVCMOS25 PULL_MODE=UP BANK_VCCIO=2.5;
+IO_LOC "I_clk" P16;
+IO_PORT "I_clk" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;

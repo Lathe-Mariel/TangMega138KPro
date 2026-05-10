@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="video_top" Register="32" Alu="31" Lut="19" T_Register="984(32)" T_Alu="135(31)" T_Lut="1980(19)" T_Bsram="1(0)">
+<Module name="video_top" Register="30" Lut="61" T_Register="1289(30)" T_Alu="121(0)" T_Lut="2522(61)" T_Bsram="10(0)">
+ <SubModule name="gw_gao_inst_0" Register="304" Alu="17" Lut="486" Bsram="9" T_Register="304(304)" T_Alu="17(17)" T_Lut="486(486)" T_Bsram="9(9)"/>
  <SubModule name="EDID_PROM_Top_inst" Register="70" Lut="177" Bsram="1" T_Register="70(70)" T_Lut="177(177)" T_Bsram="1(1)"/>
- <SubModule name="DVI_RX_Top_inst" Register="809" Alu="35" Lut="1555" T_Register="809(809)" T_Alu="35(35)" T_Lut="1555(1555)"/>
+ <SubModule name="DVI_RX_Top_inst" Register="812" Alu="35" Lut="1569" T_Register="812(812)" T_Alu="35(35)" T_Lut="1569(1569)"/>
  <SubModule name="your_instance_name"/>
  <SubModule name="DVI_TX_Top_inst" Register="73" Alu="69" Lut="229" T_Register="73(73)" T_Alu="69(69)" T_Lut="229(229)"/>
 </Module>

@@ -2,7 +2,7 @@
 ipc_version=4
 file=gowin_pll
 module=Gowin_PLL
-target_device=gw5ast138c-003
+target_device=gw5ast138b-007
 type=clock_plladv
 version=1.0
 
@@ -41,7 +41,7 @@ Clkout0ExpectedFrequency=371.25
 Clkout0PhaseDynamic=false
 Clkout0PhaseStatic=true
 Clkout0PhaseStaticValue=0
-Clkout0Tolerance=0.2
+Clkout0Tolerance=0.0
 Clkout0VCODivideFactorDynamic=true
 Clkout0VCODivideFactorDynamicValue=8
 Clkout0VCODivideFactorStatic=false

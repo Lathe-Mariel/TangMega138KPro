@@ -1,18 +1,56 @@
 GowinSynthesis start
 Running parser ...
-Analyzing Verilog file 'C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_rx\dvi_rx.v'
-Analyzing Verilog file 'C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_tx\dvi_tx.v'
-Analyzing Verilog file 'C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\edid_prom\edid_prom.v'
-Analyzing Verilog file 'C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\gowin_pll\gowin_pll.v'
-Analyzing Verilog file 'C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\video_top.v'
-Compiling module 'video_top'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\video_top.v":2)
-Compiling module 'EDID_PROM_Top'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\edid_prom\edid_prom.v":794)
-Compiling module '**'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\edid_prom\edid_prom.v":793)
-Compiling module 'DVI_RX_Top'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_rx\dvi_rx.v":7429)
-Compiling module '**'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_rx\dvi_rx.v":7428)
-Compiling module 'Gowin_PLL'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\gowin_pll\gowin_pll.v":10)
-Compiling module 'DVI_TX_Top'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_tx\dvi_tx.v":1091)
-Compiling module '**'("C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_tx\dvi_tx.v":1090)
+Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_rx\dvi_rx.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_tx\dvi_tx.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\edid_prom\edid_prom.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\gowin_pll\gowin_pll.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\video_top.v'
+Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v'
+Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'
+Analyzing included file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Analyzing included file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_top_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Analyzing included file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_init.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v'
+Analyzing included file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_top_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
+Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'
+Analyzing included file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing included file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_top_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing included file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_expression.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing included file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_parameter.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing included file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_init.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v'
+Analyzing included file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\ao_control\gw_con_top_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
+Analyzing included file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\ao_control\gw_con_parameter.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
+Back to file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
+Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\gw_jtag.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\gw_gao_top.v'
+Compiling module 'video_top'("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\video_top.v":2)
+Compiling module 'EDID_PROM_Top'("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\edid_prom\edid_prom.v":794)
+Compiling module '**'("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\edid_prom\edid_prom.v":793)
+Compiling module 'DVI_RX_Top'("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_rx\dvi_rx.v":7429)
+Compiling module '**'("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_rx\dvi_rx.v":7428)
+Compiling module 'Gowin_PLL'("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\gowin_pll\gowin_pll.v":10)
+Compiling module 'DVI_TX_Top'("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_tx\dvi_tx.v":1091)
+Compiling module '**'("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\dvi_tx\dvi_tx.v":1090)
+Compiling module 'gw_gao'("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\RTL_GAO\gw_gao_top.v":1)
+Compiling module 'GW_JTAG'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\gw_jtag.v":1)
+Compiling module '**'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
+Compiling module '**'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Compiling module '**'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
+Extracting RAM for identifier '**'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
+Compiling module '**'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v":74)
+Compiling module '**'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Trying to combine GAO to RTL design
 NOTE  (EX0101) : Current top module is "video_top"
 [5%] Running netlist conversion ...
 Running device independent optimization ...
@@ -30,6 +68,6 @@ Running technical mapping ...
 [75%] Tech-Mapping Phase 2 completed
 [80%] Tech-Mapping Phase 3 completed
 [90%] Tech-Mapping Phase 4 completed
-[95%] Generate netlist file "C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\dk_video.vg" completed
-[100%] Generate report file "C:\Git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\dk_video_syn.rpt.html" completed
+[95%] Generate netlist file "H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\dk_video.vg" completed
+[100%] Generate report file "H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\impl\gwsynthesis\dk_video_syn.rpt.html" completed
 GowinSynthesis finish

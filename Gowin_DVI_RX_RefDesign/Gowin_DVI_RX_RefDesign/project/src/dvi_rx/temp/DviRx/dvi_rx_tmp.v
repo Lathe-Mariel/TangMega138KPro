@@ -4,8 +4,8 @@
 //Tool Version: V1.9.11.01 (64-bit)
 //Part Number: GW5AST-LV138FPG676AC1/I0
 //Device: GW5AST-138
-//Device Version: C
-//Created Time: Fri May  8 01:25:39 2026
+//Device Version: B
+//Created Time: Sun May 10 10:08:12 2026
 
 //Change the instance name and port connections to the signal names
 //--------Copy here to design--------

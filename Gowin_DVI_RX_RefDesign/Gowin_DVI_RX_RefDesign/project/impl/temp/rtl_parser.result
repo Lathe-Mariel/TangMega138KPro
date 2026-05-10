@@ -1,69 +1,69 @@
 [
  {
-  "InstFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
+  "InstFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
   "InstLine" : 2,
   "InstName" : "video_top",
-  "ModuleFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
+  "ModuleFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
   "ModuleLine" : 2,
   "ModuleName" : "video_top",
   "SubInsts" : [
    {
-    "InstFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
-    "InstLine" : 69,
+    "InstFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
+    "InstLine" : 80,
     "InstName" : "EDID_PROM_Top_inst",
-    "ModuleFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/edid_prom/edid_prom.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/edid_prom/edid_prom.v",
     "ModuleLine" : 794,
     "ModuleName" : "EDID_PROM_Top",
     "SubInsts" : [
      {
-      "InstFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/edid_prom/edid_prom.v",
+      "InstFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/edid_prom/edid_prom.v",
       "InstLine" : 815,
       "InstName" : "i2c_slave_wrapper_inst",
-      "ModuleFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/edid_prom/edid_prom.v",
+      "ModuleFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/edid_prom/edid_prom.v",
       "ModuleLine" : 10,
       "ModuleName" : "~i2c_slave_wrapper.EDID_PROM_Top"
      }
     ]
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
-    "InstLine" : 79,
+    "InstFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
+    "InstLine" : 90,
     "InstName" : "DVI_RX_Top_inst",
-    "ModuleFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_rx/dvi_rx.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_rx/dvi_rx.v",
     "ModuleLine" : 7429,
     "ModuleName" : "DVI_RX_Top",
     "SubInsts" : [
      {
-      "InstFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_rx/dvi_rx.v",
+      "InstFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_rx/dvi_rx.v",
       "InstLine" : 7464,
       "InstName" : "dvi2rgb_inst",
-      "ModuleFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_rx/dvi_rx.v",
+      "ModuleFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_rx/dvi_rx.v",
       "ModuleLine" : 10,
       "ModuleName" : "~dvi2rgb.DVI_RX_Top"
      }
     ]
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
-    "InstLine" : 108,
+    "InstFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
+    "InstLine" : 119,
     "InstName" : "your_instance_name",
-    "ModuleFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/gowin_pll/gowin_pll.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/gowin_pll/gowin_pll.v",
     "ModuleLine" : 10,
     "ModuleName" : "Gowin_PLL"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
-    "InstLine" : 117,
+    "InstFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/video_top.v",
+    "InstLine" : 128,
     "InstName" : "DVI_TX_Top_inst",
-    "ModuleFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_tx/dvi_tx.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_tx/dvi_tx.v",
     "ModuleLine" : 1091,
     "ModuleName" : "DVI_TX_Top",
     "SubInsts" : [
      {
-      "InstFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_tx/dvi_tx.v",
+      "InstFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_tx/dvi_tx.v",
       "InstLine" : 1122,
       "InstName" : "rgb2dvi_inst",
-      "ModuleFile" : "C:/Git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_tx/dvi_tx.v",
+      "ModuleFile" : "H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_tx/dvi_tx.v",
       "ModuleLine" : 10,
       "ModuleName" : "~rgb2dvi.DVI_TX_Top"
      }
