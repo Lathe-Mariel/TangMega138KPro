@@ -5,6 +5,7 @@ Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_
 Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\edid_prom\edid_prom.v'
 Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\gowin_pll\gowin_pll.v'
 Analyzing Verilog file 'H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\video_top.v'
+WARN  (EX3628) : Redeclaration of ANSI port 'HPD' is not allowed("H:\git\TangMega138KPro\Gowin_DVI_RX_RefDesign\Gowin_DVI_RX_RefDesign\project\src\video_top.v":26)
 Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v'
 Analyzing Verilog file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'
 Analyzing included file 'H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_define.v'("H:\Gowin\Gowin_V1.9.11.01_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)

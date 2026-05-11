@@ -15,12 +15,15 @@ module video_top
     output     [2:0]  O_tmds_data_n   ,
     inout             IO_sda          ,
     input             I_scl           ,
-    output            fan           
+    output            fan             ,
+    output            HPD              // Hot Plug Detection
 );
 
 //==================================================
 reg  [31:0] run_cnt;
 wire        running;
+
+wire HPD = 1'b1;
 
 //-------------------------
 wire        rx0_pclk   ;
