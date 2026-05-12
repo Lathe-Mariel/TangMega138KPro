@@ -16,7 +16,10 @@ module video_top
     inout             IO_sda          ,
     input             I_scl           ,
     output            fan             ,
-    output            HPD              // Hot Plug Detection
+    output            HPD             , // Hot Plug Detection
+    output            mux_s0          ,
+    output            mux_s1          ,
+    output            mux_s2          
 );
 
 //==================================================
@@ -24,6 +27,9 @@ reg  [31:0] run_cnt;
 wire        running;
 
 wire HPD = 1'b1;
+wire mux_s0 = 1'b1;
+wire mux_s1 = 1'b0;
+wire mux_s2 = 1'b0;
 
 //-------------------------
 wire        rx0_pclk   ;
