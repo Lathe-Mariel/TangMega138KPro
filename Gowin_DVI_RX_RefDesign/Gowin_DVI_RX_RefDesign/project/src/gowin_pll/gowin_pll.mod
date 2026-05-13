@@ -1,6 +1,6 @@
 -series GW5AST
 -device GW5AST-138
--device_version C
+-device_version B
 -package FCPBGA676A
 -part_number GW5AST-LV138FPG676AC1/I0
 

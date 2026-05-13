@@ -15,12 +15,21 @@ module video_top
     output     [2:0]  O_tmds_data_n   ,
     inout             IO_sda          ,
     input             I_scl           ,
-    output            fan           
+    output            fan             ,
+    output            HPD             , // Hot Plug Detection
+    output            mux_s0          ,
+    output            mux_s1          ,
+    output            mux_s2          
 );
 
 //==================================================
 reg  [31:0] run_cnt;
 wire        running;
+
+wire HPD = 1'b1;
+wire mux_s0 = 1'b1;
+wire mux_s1 = 1'b0;
+wire mux_s2 = 1'b0;
 
 //-------------------------
 wire        rx0_pclk   ;
@@ -36,7 +45,7 @@ wire        pll_phase_lock;
 logic I_rst_n;
 
 assign fan = 1'b1;
-assign I_rst_n = 1'b1;
+assign I_rst_n = sw0;
 
 //------------------------------------
 wire serial_clk;
@@ -51,7 +60,7 @@ begin
     if(!I_rst_n)
         run_cnt <= 32'd0;
     else if(run_cnt >= 32'd50_000_000)
-        run_cnt <= 32'd50_000_000;
+        run_cnt <= 32'd0;
     else
         run_cnt <= run_cnt + 1'b1;
 end
@@ -65,10 +74,21 @@ assign  O_led[3] = ~I_rst_n;
 assign  O_led[4] = rst_sw;
 assign  O_led[5] = sw0;
 
+logic [2:0] div_counter;
+logic tenth_clk;
+
+always @(posedge I_clk)begin
+    if(div_counter >4)begin
+        div_counter <= 0;
+        tenth_clk <= ~tenth_clk;
+    end else begin
+        div_counter <= div_counter + 3'b1;
+    end
+end
 //===========================================================================
 EDID_PROM_Top EDID_PROM_Top_inst 
 (
-    .I_clk     (I_clk  ),//>= 5MHz, <=200MHz 
+    .I_clk     (tenth_clk  ),//>= 5MHz, <=200MHz 
     .I_rst_n   (I_rst_n),
     .I_scl     (I_scl  ),    
     .IO_sda    (IO_sda )

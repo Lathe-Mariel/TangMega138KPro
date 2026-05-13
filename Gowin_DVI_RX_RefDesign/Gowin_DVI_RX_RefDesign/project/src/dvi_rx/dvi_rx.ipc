@@ -2,7 +2,7 @@
 ipc_version=4
 file=dvi_rx
 module=DVI_RX_Top
-target_device=gw5ast138c-003
+target_device=gw5ast138b-007
 type=dvi_rx
 version=1.1
 

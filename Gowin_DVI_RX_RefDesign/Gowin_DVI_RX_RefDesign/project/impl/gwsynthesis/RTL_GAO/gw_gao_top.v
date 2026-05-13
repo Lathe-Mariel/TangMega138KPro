@@ -1,216 +1,45 @@
 module gw_gao(
-    pll_phase_lock,
+    rst_sw,
+    sw0,
     \pll_phase[3] ,
     \pll_phase[2] ,
     \pll_phase[1] ,
     \pll_phase[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[15] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[14] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[13] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[12] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[11] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[10] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[9] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[8] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[7] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[6] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[5] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[4] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[4] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_flag ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_flag_d1 ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[3] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[2] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[1] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[0] ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d1 ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d2 ,
-    \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/HDMI_CLK ,
+    I_scl,
+    tenth_clk,
+    \run_cnt[1] ,
+    I_clk,
     tms_pad_i,
     tck_pad_i,
     tdi_pad_i,
     tdo_pad_o
 );
 
-input pll_phase_lock;
+input rst_sw;
+input sw0;
 input \pll_phase[3] ;
 input \pll_phase[2] ;
 input \pll_phase[1] ;
 input \pll_phase[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[15] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[14] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[13] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[12] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[11] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[10] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[9] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[8] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[7] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[6] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[5] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[4] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[4] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_flag ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_flag_d1 ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[3] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[2] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[1] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[0] ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d1 ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d2 ;
-input \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/HDMI_CLK ;
+input I_scl;
+input tenth_clk;
+input \run_cnt[1] ;
+input I_clk;
 input tms_pad_i;
 input tck_pad_i;
 input tdi_pad_i;
 output tdo_pad_o;
 
-wire pll_phase_lock;
+wire rst_sw;
+wire sw0;
 wire \pll_phase[3] ;
 wire \pll_phase[2] ;
 wire \pll_phase[1] ;
 wire \pll_phase[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[15] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[14] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[13] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[12] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[11] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[10] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[9] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[8] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[7] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[6] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[5] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[4] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[4] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_flag ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_flag_d1 ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[3] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[2] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[1] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[0] ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d1 ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d2 ;
-wire \DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/HDMI_CLK ;
+wire I_scl;
+wire tenth_clk;
+wire \run_cnt[1] ;
+wire I_clk;
 wire tms_pad_i;
 wire tck_pad_i;
 wire tdi_pad_i;
@@ -284,10 +113,9 @@ gw_con_top  u_icon_top(
 
 ao_top_0  u_la0_top(
     .control(control0[9:0]),
-    .trig0_i({\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[0] }),
-    .trig1_i({\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d1 ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d2 ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[0] }),
-    .data_i({pll_phase_lock,\pll_phase[3] ,\pll_phase[2] ,\pll_phase[1] ,\pll_phase[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/Align_sta[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/pllps[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[15] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[14] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[13] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[12] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[11] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[10] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[9] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[8] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[7] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[6] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[5] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[4] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_flag[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[4] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/judge_cnt[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_flag ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_flag_d1 ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phs_start_r[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/phase_diff[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/confim_phase[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_cnt[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[3] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/align_num[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[2] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[1] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/seam_cnt[0] ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d1 ,\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/ali_match_d2 }),
-    .clk_i(\DVI_RX_Top_inst/dvi2rgb_inst/u_Data_Aligning_Auto/HDMI_CLK )
+    .trig0_i(\run_cnt[1] ),
+    .data_i({rst_sw,sw0,\pll_phase[3] ,\pll_phase[2] ,\pll_phase[1] ,\pll_phase[0] ,I_scl,tenth_clk}),
+    .clk_i(I_clk)
 );
 
 endmodule

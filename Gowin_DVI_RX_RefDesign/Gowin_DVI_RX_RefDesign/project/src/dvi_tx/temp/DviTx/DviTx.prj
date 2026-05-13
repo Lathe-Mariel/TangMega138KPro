@@ -2,13 +2,14 @@
 <!DOCTYPE gowin-synthesis-project>
 <Project>
     <Version>beta</Version>
-    <Device id="GW5AST-138C" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
+    <Device id="GW5AST-138B" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
     <FileList>
         <File path="H:/Gowin/Gowin_V1.9.11.01_x64/IDE/ipcore/DVI_TX/data/dvi_tx_top.v" type="verilog"/>
         <File path="H:/Gowin/Gowin_V1.9.11.01_x64/IDE/ipcore/DVI_TX/data/rgb2dvi.v" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="1"/>
+        <Option type="enable_dsrm" value="0"/>
         <Option type="include_path" value="H:/Gowin/Gowin_V1.9.11.01_x64/IDE/ipcore/DVI_TX/data"/>
         <Option type="include_path" value="H:/git/TangMega138KPro/Gowin_DVI_RX_RefDesign/Gowin_DVI_RX_RefDesign/project/src/dvi_tx/temp/DviTx"/>
         <Option type="output_file" value="dvi_tx.vg"/>
