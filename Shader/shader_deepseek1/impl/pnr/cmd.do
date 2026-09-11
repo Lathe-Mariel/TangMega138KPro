@@ -1,0 +1,22 @@
+-d C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1.vg
+-p GW5AST-138B-FCPBGA676A-1
+-pn GW5AST-LV138FPG676AC1/I0
+-cst C:\Git\TangMega138KPro\Shader\shader_deepseek1\tang_mega_138k_pro.cst
+-cfg C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\device.cfg
+-sdc C:\Git\TangMega138KPro\Shader\shader_deepseek1\tang_mega_138k_pro.sdc
+-bit
+-tr
+-ph
+-timing
+-ireg_not_in_iob
+-oreg_not_in_iob
+-ioreg_not_in_iob
+-cst_error
+-convert_sdp32_36_to_sdp16_18
+-place_option 3
+-route_option 2
+-clock_route_order 0
+-correct_hold 1
+-route_maxfan 23
+-global_freq 100.000
+-enable_dsrm 0
