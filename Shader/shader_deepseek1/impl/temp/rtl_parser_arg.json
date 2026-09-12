@@ -2,47 +2,47 @@
  "Device" : "GW5AST-138B",
  "Files" : [
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/color_bar.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/pll.sv",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/dvi_tx/dvi_tx.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/vga_timing.sv",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_clkdiv/gowin_clkdiv.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/color_bar.sv",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/tmds_encoder.sv",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll_mod.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/oser16_wrap.sv",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/oser16_wrap.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll.v",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/pll.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll_mod.v",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/pll_init.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/pll_init.v",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/tmds_encoder.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_clkdiv/gowin_clkdiv.v",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/dvi_tx/dvi_tx.v",
+   "Path" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/vga_timing.sv",
    "Type" : "verilog"
   }
  ],
@@ -50,7 +50,7 @@
 
  ],
  "LoopLimit" : 2000,
- "ResultFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/impl/temp/rtl_parser.result",
+ "ResultFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/impl/temp/rtl_parser.result",
  "Top" : "",
  "VerilogStd" : "sysv",
  "VhdlStd" : "vhdl_93"

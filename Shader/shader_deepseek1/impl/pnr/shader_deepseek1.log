@@ -1,12 +1,13 @@
-Reading netlist file: "C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1.vg"
-Parsing netlist file "C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1.vg" completed
+Reading netlist file: "H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1.vg"
+Parsing netlist file "H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1.vg" completed
 Processing netlist completed
-Reading constraint file: "C:\Git\TangMega138KPro\Shader\shader_deepseek1\tang_mega_138k_pro.cst"
+Reading constraint file: "H:\git\TangMega138KPro\Shader\shader_deepseek1\tang_mega_138k_pro.cst"
 Physical Constraint parsed completed
 Running placement......
 [10%] Placement Phase 0 completed
 [20%] Placement Phase 1 completed
 [30%] Placement Phase 2 completed
+WARN  (TA1123) : the clock "clk_ser"'s frequency does not match u_pll/u_pll_0/PLL_inst/CLKOUT0's 
 [50%] Placement Phase 3 completed
 Running routing......
 [60%] Routing Phase 0 completed
@@ -21,10 +22,10 @@ Bitstream generation in progress......
 Bitstream generation completed
 Running power analysis......
 [100%] Power analysis completed
-Generate file "C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.power.html" completed
-Generate file "C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.pin.html" completed
-Generate file "C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.rpt.html" completed
-Generate file "C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.rpt.txt" completed
-Generate file "C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.tr.html" completed
-Fri Sep 11 20:25:27 2026
+Generate file "H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.power.html" completed
+Generate file "H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.pin.html" completed
+Generate file "H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.rpt.html" completed
+Generate file "H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.rpt.txt" completed
+Generate file "H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\shader_deepseek1.tr.html" completed
+Sat Sep 12 13:19:01 2026
 

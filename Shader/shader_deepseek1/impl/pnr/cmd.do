@@ -1,9 +1,9 @@
--d C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1.vg
+-d H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1.vg
 -p GW5AST-138B-FCPBGA676A-1
 -pn GW5AST-LV138FPG676AC1/I0
--cst C:\Git\TangMega138KPro\Shader\shader_deepseek1\tang_mega_138k_pro.cst
--cfg C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\device.cfg
--sdc C:\Git\TangMega138KPro\Shader\shader_deepseek1\tang_mega_138k_pro.sdc
+-cst H:\git\TangMega138KPro\Shader\shader_deepseek1\tang_mega_138k_pro.cst
+-cfg H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\pnr\device.cfg
+-sdc H:\git\TangMega138KPro\Shader\shader_deepseek1\tang_mega_138k_pro.sdc
 -bit
 -tr
 -ph
