@@ -1,0 +1,98 @@
+float cosNoise(in vec2 pos){
+    return 0.5*(sin(pos.x) + sin(pos.y));
+}
+
+const mat2 m2 = mat2(0.8, -0.6,
+                     0.6, 0.8); 
+
+float map(in vec3 pos){// pos:レイの位置
+//  return length(pos - vec3(0.0,0.0,-2.0)) -1.0;
+    vec2 q = pos.xz * 0.5; // 山々の感覚を広げる
+    float h = 0.0;
+
+    float s = 0.5;  // noiseの量
+    for(int i = 0; i<10; i++){
+        h += s*cosNoise(q);   // xzから高さを求める
+        s *= 0.5;            // noiseの量を減らす 減らすことで山の先端の細さを作ってる
+        q = m2 * q * 1.7;    // 回転することでボコボコさせる
+    }
+    
+    h *= 3.0;   // 山を高くする
+  
+    return pos.y - h;   // レイの位置から高さを引く　判定側で山のほうが高かったら衝突しているとみなす
+}
+
+
+
+// ノーマルの計算
+vec3 calcNormal(in vec3 pos){
+    vec3 nor;
+    vec2 e = vec2(0.01,0.0);
+    nor.x = map(pos + e.xyy) - map(pos - e.xyy);    //少しだけずらしたときにあたる場所をもとめて　差分からノーマルを作成
+    nor.y = map(pos + e.yxy) - map(pos - e.yxy);
+    nor.z = map(pos + e.yyx) - map(pos - e.yyx);
+    return normalize(nor);
+}
+
+float calcShadow(in vec3 ro, in vec3 rd){ // ro:カメラの座標 rd:ライトベクトル
+    //ライト方向にレイを飛ばして、衝突したら影にする
+    float res = 1.0;
+    float t = 0.1;
+    for (int i = 0; i <64; i++){
+        vec3 pos = ro + t*rd;
+        float h = map(pos);
+       res = min( res, max(h,0.0)*164.0/t );
+        if(res< 0.0001) break;
+        t+=h*0.5;
+    }
+    return res;
+}
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
+{
+    vec2 p = fragCoord.xy / iResolution.xy; //解像度の比
+    vec2 q = -1.0 + 2.0*p;                  // 解像度の比を-1~1にまとめた
+    q.x *= 1.777;                           // x方向を大きく　なぜ1.777?
+ 
+    vec3 ro = vec3(0.0, 1.65, -iTime);      // カメラのポジション
+    vec3 rd = normalize( vec3(q, -1.0));    // レイの方向
+    
+    vec3 col = vec3(0.7, 0.8, 1.0);         // 初期カラー
+    col *= 1.0 -0.5 *rd.y;                  // 上ほど色を落としている
+    float tmax =40.0;                       // 探索最大距離　４０以上奥になにかあっても打ち切られる
+    float t = 0.0;                          // レイを伸ばしていく係数
+    
+    for(int i=0; i<256; i++){               // 256回レイを進めていく 
+        vec3 pos = ro + rd*t;               // カメラ位置からレイ方向にｔ分だけ移動する
+        float h = map(pos);                 // レイ方向にある一番近い山の面までの距離を取得
+        if(h < 0.001 || t > tmax) break;    // 0.001以下だったらそこに山の面がある　tmax以上だったらなにもない
+        
+        t += h*0.5;                         // 山の面までの半分の距離分だけレイをすすめる
+    }
+    
+    vec3 light = normalize(vec3(1.0,0.1,-0.5)); // ライトベクトル
+    
+    if(t < tmax){   // 山の面に衝突している
+        vec3 pos = ro + t*rd;   // 山の面の座標
+        vec3 nor = calcNormal(pos); // 法線を計算
+        float sha = calcShadow(pos + nor *0.1,light); // 影を計算
+
+        float dif = clamp (dot(nor,light), 0.0,1.0);  // lumbert拡散照明によるライティング
+        vec3 lig = vec3(2.0, 1.5,1.0)*dif *sha;       // ライト色*ライティング*影
+        lig += vec3(0.1,0.2,0.3)*nor.y *2.0;          // 上方向ほど色を明るめに
+        
+        // 法線による色変化　上に向いているほど色をつけている
+        vec3 mate = vec3(0.2, 0.3, 0.3)*0.5; 
+        mate = mix(mate, vec3(0.2,0.15,0.1), smoothstep(0.7,0.9,nor.y));
+        col = lig * mate;
+        
+        float fog = exp(-0.002 *t * t); // fog
+        col *= fog;
+        col += ((1.0 - fog)*vec3(0.5,0.6,0.7));
+    }
+    
+    // gamut for monitor
+    col = sqrt(col);
+    
+    fragColor = vec4(col,1.0);
+}

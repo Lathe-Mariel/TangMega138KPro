@@ -54,9 +54,13 @@ module top (
         .vcount(vcount)
     );
 
-    // 7色カラーバー生成
-    color_bar u_color_bar (
+    // 座標と時間から色を生成するシェーダ
+    shader u_shader (
+        .clk   (clk_pix),
+        .rst   (rst_pix),
+        .de    (de),
         .hcount(hcount),
+        .vcount(vcount),
         .r     (r),
         .g     (g),
         .b     (b)
@@ -77,28 +81,5 @@ module top (
 		.O_tmds_data_p(hdmi_tx_p), //output [2:0] O_tmds_data_p
 		.O_tmds_data_n(hdmi_tx_n) //output [2:0] O_tmds_data_n
 	);
-
-/*
-    // DVI送信
-    dvi_tx u_dvi_tx (
-        .clk_pix (clk_pix),
-        .clk_ser (clk_ser),
-        .rst     (rst_pix),
-        .r       (r),
-        .g       (g),
-        .b       (b),
-        .hsync   (hsync),
-        .vsync   (vsync),
-        .de      (de),
-        .tx_clk_p(hdmi_tx_clk_p),
-        .tx_clk_n(hdmi_tx_clk_n),
-        .tx_d0_p (hdmi_tx_d0_p),
-        .tx_d0_n (hdmi_tx_d0_n),
-        .tx_d1_p (hdmi_tx_d1_p),
-        .tx_d1_n (hdmi_tx_d1_n),
-        .tx_d2_p (hdmi_tx_d2_p),
-        .tx_d2_n (hdmi_tx_d2_n)
-    );
-*/
 
 endmodule

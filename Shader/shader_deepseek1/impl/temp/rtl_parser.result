@@ -1,83 +1,91 @@
 [
  {
-  "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/tmds_encoder.sv",
+  "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/color_bar.sv",
+  "InstLine" : 2,
+  "InstName" : "color_bar",
+  "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/color_bar.sv",
+  "ModuleLine" : 2,
+  "ModuleName" : "color_bar"
+ },
+ {
+  "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/tmds_encoder.sv",
   "InstLine" : 2,
   "InstName" : "tmds_encoder",
-  "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/tmds_encoder.sv",
+  "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/tmds_encoder.sv",
   "ModuleLine" : 2,
   "ModuleName" : "tmds_encoder"
  },
  {
-  "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
+  "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
   "InstLine" : 1,
   "InstName" : "top",
-  "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
+  "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
   "ModuleLine" : 1,
   "ModuleName" : "top",
   "SubInsts" : [
    {
-    "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
     "InstLine" : 27,
     "InstName" : "u_pll",
-    "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll.v",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll.v",
     "ModuleLine" : 1,
     "ModuleName" : "Gowin_PLL",
     "SubInsts" : [
      {
-      "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll.v",
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll.v",
       "InstLine" : 21,
       "InstName" : "u_pll",
-      "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll_mod.v",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll_mod.v",
       "ModuleLine" : 10,
       "ModuleName" : "Gowin_PLL_MOD"
      },
      {
-      "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll.v",
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_pll/gowin_pll.v",
       "InstLine" : 32,
       "InstName" : "u_pll_init",
-      "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/pll_init.v",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/pll_init.v",
       "ModuleLine" : 3,
       "ModuleName" : "PLL_INIT"
      }
     ]
    },
    {
-    "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
     "InstLine" : 35,
     "InstName" : "u_divider",
-    "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_clkdiv/gowin_clkdiv.v",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/gowin_clkdiv/gowin_clkdiv.v",
     "ModuleLine" : 10,
     "ModuleName" : "Gowin_CLKDIV"
    },
    {
-    "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
     "InstLine" : 47,
     "InstName" : "u_timing",
-    "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/vga_timing.sv",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/vga_timing.sv",
     "ModuleLine" : 2,
     "ModuleName" : "vga_timing"
    },
    {
-    "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
     "InstLine" : 58,
-    "InstName" : "u_color_bar",
-    "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/color_bar.sv",
-    "ModuleLine" : 2,
-    "ModuleName" : "color_bar"
+    "InstName" : "u_shader",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/shader.sv",
+    "ModuleLine" : 24,
+    "ModuleName" : "shader"
    },
    {
-    "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
-    "InstLine" : 65,
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/top.sv",
+    "InstLine" : 69,
     "InstName" : "u_dvi_tx",
-    "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/dvi_tx/dvi_tx.v",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/dvi_tx/dvi_tx.v",
     "ModuleLine" : 1091,
     "ModuleName" : "DVI_TX_Top",
     "SubInsts" : [
      {
-      "InstFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/dvi_tx/dvi_tx.v",
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/dvi_tx/dvi_tx.v",
       "InstLine" : 1122,
       "InstName" : "rgb2dvi_inst",
-      "ModuleFile" : "H:/git/TangMega138KPro/Shader/shader_deepseek1/src/dvi_tx/dvi_tx.v",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_deepseek1/src/dvi_tx/dvi_tx.v",
       "ModuleLine" : 10,
       "ModuleName" : "~rgb2dvi.DVI_TX_Top"
      }

@@ -1,30 +1,31 @@
 GowinSynthesis start
 Running parser ...
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\color_bar.sv'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\dvi_tx\dvi_tx.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_clkdiv\gowin_clkdiv.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_pll\gowin_pll.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_pll\gowin_pll_mod.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\oser16_wrap.sv'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\pll.sv'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\pll_init.v'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\tmds_encoder.sv'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\top.sv'
-Analyzing Verilog file 'H:\git\TangMega138KPro\Shader\shader_deepseek1\src\vga_timing.sv'
-Compiling module 'top'("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\top.sv":1)
-Compiling module 'Gowin_PLL'("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_pll\gowin_pll.v":1)
-Compiling module 'Gowin_PLL_MOD'("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_pll\gowin_pll_mod.v":10)
-Compiling module 'PLL_INIT(CLK_PERIOD=20,MULTI_FAC=37)'("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\pll_init.v":3)
-WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\pll_init.v":179)
-WARN  (EX3791) : Expression size 18 truncated to fit in target size 17("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\pll_init.v":207)
-Compiling module 'Gowin_CLKDIV'("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_clkdiv\gowin_clkdiv.v":10)
-Compiling module 'vga_timing'("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\vga_timing.sv":2)
-Compiling module 'color_bar'("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\color_bar.sv":2)
-Compiling module 'DVI_TX_Top'("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\dvi_tx\dvi_tx.v":1091)
-Compiling module '**'("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\dvi_tx\dvi_tx.v":1090)
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\color_bar.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\dvi_tx\dvi_tx.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_clkdiv\gowin_clkdiv.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_pll\gowin_pll.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_pll\gowin_pll_mod.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\oser16_wrap.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\pll.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\pll_init.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\shader.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\tmds_encoder.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\top.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\vga_timing.sv'
+Compiling module 'top'("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\top.sv":1)
+Compiling module 'Gowin_PLL'("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_pll\gowin_pll.v":1)
+Compiling module 'Gowin_PLL_MOD'("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_pll\gowin_pll_mod.v":10)
+Compiling module 'PLL_INIT(CLK_PERIOD=20,MULTI_FAC=37)'("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\pll_init.v":3)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\pll_init.v":179)
+WARN  (EX3791) : Expression size 18 truncated to fit in target size 17("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\pll_init.v":207)
+Compiling module 'Gowin_CLKDIV'("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\gowin_clkdiv\gowin_clkdiv.v":10)
+Compiling module 'vga_timing'("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\vga_timing.sv":2)
+Compiling module 'shader'("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\shader.sv":24)
+Compiling module 'DVI_TX_Top'("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\dvi_tx\dvi_tx.v":1091)
+Compiling module '**'("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\dvi_tx\dvi_tx.v":1090)
 NOTE  (EX0101) : Current top module is "top"
 [5%] Running netlist conversion ...
-WARN  (CV0016) : Input leds is unused("H:\git\TangMega138KPro\Shader\shader_deepseek1\src\top.sv":4)
+WARN  (CV0016) : Input leds is unused("C:\Git\TangMega138KPro\Shader\shader_deepseek1\src\top.sv":4)
 Running device independent optimization ...
 [10%] Optimizing Phase 0 completed
 [15%] Optimizing Phase 1 completed
@@ -40,6 +41,6 @@ Running technical mapping ...
 [75%] Tech-Mapping Phase 2 completed
 [80%] Tech-Mapping Phase 3 completed
 [90%] Tech-Mapping Phase 4 completed
-[95%] Generate netlist file "H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1.vg" completed
-[100%] Generate report file "H:\git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1_syn.rpt.html" completed
+[95%] Generate netlist file "C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1.vg" completed
+[100%] Generate report file "C:\Git\TangMega138KPro\Shader\shader_deepseek1\impl\gwsynthesis\shader_deepseek1_syn.rpt.html" completed
 GowinSynthesis finish
