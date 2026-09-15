@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-synthesis-project>
+<Project>
+    <Version>beta</Version>
+    <Device id="GW5AST-138B" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
+    <FileList>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\fixed_div.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\frame_scan.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\isqrt.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\map_core.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pixel_render.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\rm_pkg.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\top.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\vga_timing.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\dvi_tx\dvi_tx.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\gowin_pll\gowin_pll.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\gowin_pll\gowin_pll_mod.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pll_init.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\gowin_clkdiv\gowin_clkdiv.v" type="verilog"/>
+    </FileList>
+    <OptionList>
+        <Option type="disable_insert_pad" value="0"/>
+        <Option type="enable_dsrm" value="0"/>
+        <Option type="global_freq" value="100.000"/>
+        <Option type="looplimit" value="2000"/>
+        <Option type="output_file" value="C:\Git\TangMega138KPro\Shader\shader_claude1\shader\impl\gwsynthesis\shader.vg"/>
+        <Option type="print_all_synthesis_warning" value="0"/>
+        <Option type="ram_rw_check" value="0"/>
+        <Option type="top_module" value="top"/>
+        <Option type="vcc" value="0.9"/>
+        <Option type="verilog_language" value="sysv-2017"/>
+        <Option type="vhdl_language" value="vhdl-1993"/>
+    </OptionList>
+</Project>

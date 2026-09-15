@@ -1,0 +1,57 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\rm_pkg.sv'
+Analyzing included file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\sin_lut.svh'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\rm_pkg.sv":65)
+Back to file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\rm_pkg.sv'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\rm_pkg.sv":65)
+Analyzing included file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\exp_lut.svh'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\rm_pkg.sv":88)
+Back to file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\rm_pkg.sv'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\rm_pkg.sv":88)
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\fixed_div.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\frame_scan.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\isqrt.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\map_core.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pixel_render.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\top.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\vga_timing.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\dvi_tx\dvi_tx.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\gowin_pll\gowin_pll.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\gowin_pll\gowin_pll_mod.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pll_init.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\gowin_clkdiv\gowin_clkdiv.v'
+Compiling module 'top'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\top.sv":1)
+Compiling module 'Gowin_PLL'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\gowin_pll\gowin_pll.v":1)
+Compiling module 'Gowin_PLL_MOD'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\gowin_pll\gowin_pll_mod.v":10)
+Compiling module 'PLL_INIT(CLK_PERIOD=20,MULTI_FAC=37)'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pll_init.v":3)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pll_init.v":179)
+WARN  (EX3791) : Expression size 18 truncated to fit in target size 17("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pll_init.v":207)
+Compiling module 'Gowin_CLKDIV'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\gowin_clkdiv\gowin_clkdiv.v":10)
+Compiling module 'vga_timing'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\vga_timing.sv":2)
+Compiling module 'pixel_render'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pixel_render.sv":7)
+Compiling module 'map_core'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\map_core.sv":10)
+Compiling module 'isqrt_fx'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\isqrt.sv":8)
+Compiling module 'fixed_div'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\fixed_div.sv":8)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 5("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pixel_render.sv":369)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 6("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pixel_render.sv":370)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 5("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\pixel_render.sv":371)
+Compiling module 'DVI_TX_Top'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\dvi_tx\dvi_tx.v":1091)
+Compiling module '**'("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\dvi_tx\dvi_tx.v":1090)
+NOTE  (EX0101) : Current top module is "top"
+[5%] Running netlist conversion ...
+WARN  (CV0016) : Input leds is unused("C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\top.sv":4)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "C:\Git\TangMega138KPro\Shader\shader_claude1\shader\impl\gwsynthesis\shader.vg" completed
+[100%] Generate report file "C:\Git\TangMega138KPro\Shader\shader_claude1\shader\impl\gwsynthesis\shader_syn.rpt.html" completed
+GowinSynthesis finish

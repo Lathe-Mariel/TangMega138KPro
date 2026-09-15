@@ -1,0 +1,25 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AST-138B" pn="GW5AST-LV138FPG676AC1/I0">gw5ast138b-007</Device>
+    <FileList>
+        <File path="src/dvi_tx/dvi_tx.v" type="file.verilog" enable="1"/>
+        <File path="src/fixed_div.sv" type="file.verilog" enable="1"/>
+        <File path="src/frame_scan.sv" type="file.verilog" enable="1"/>
+        <File path="src/gowin_clkdiv/gowin_clkdiv.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_pll/gowin_pll.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_pll/gowin_pll_mod.v" type="file.verilog" enable="1"/>
+        <File path="src/isqrt.sv" type="file.verilog" enable="1"/>
+        <File path="src/map_core.sv" type="file.verilog" enable="1"/>
+        <File path="src/pixel_render.sv" type="file.verilog" enable="1"/>
+        <File path="src/pll_init.v" type="file.verilog" enable="1"/>
+        <File path="src/rm_pkg.sv" type="file.verilog" enable="1"/>
+        <File path="src/top.sv" type="file.verilog" enable="1"/>
+        <File path="src/vga_timing.sv" type="file.verilog" enable="1"/>
+        <File path="src/tang_mega_138k_pro.cst" type="file.cst" enable="1"/>
+        <File path="src/exp_lut.svh" type="file.other" enable="1"/>
+        <File path="src/sin_lut.svh" type="file.other" enable="1"/>
+    </FileList>
+</Project>

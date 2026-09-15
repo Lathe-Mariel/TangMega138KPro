@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="top" Register="13" Alu="11" Lut="1" T_Register="1533(13)" T_Alu="1877(11)" T_Lut="6142(1)" T_MULT27X36="87(0)">
+ <SubModule name="u_pll" T_Register="41(0)" T_Alu="16(0)" T_Lut="54(0)">
+  <SubModule name="u_pll"/>
+  <SubModule name="u_pll_init" Register="41" Alu="16" Lut="54" T_Register="41(41)" T_Alu="16(16)" T_Lut="54(54)"/>
+ </SubModule>
+ <SubModule name="u_divider"/>
+ <SubModule name="u_timing" Register="24" Alu="11" Lut="37" T_Register="24(24)" T_Alu="11(11)" T_Lut="37(37)"/>
+ <SubModule name="inst_shader" Register="890" Alu="1407" Lut="2433" MULT27X36="71" T_Register="1382(890)" T_Alu="1770(1407)" T_Lut="5821(2433)" T_MULT27X36="87(71)">
+  <SubModule name="u_map" Register="186" Alu="239" Lut="2968" MULT27X36="16" T_Register="186(186)" T_Alu="239(239)" T_Lut="2968(2968)" T_MULT27X36="16(16)"/>
+  <SubModule name="u_sqrt" Register="136" Alu="62" Lut="136" T_Register="136(136)" T_Alu="62(62)" T_Lut="136(136)"/>
+  <SubModule name="u_div" Register="170" Alu="62" Lut="284" T_Register="170(170)" T_Alu="62(62)" T_Lut="284(284)"/>
+ </SubModule>
+ <SubModule name="u_dvi_tx" Register="73" Alu="69" Lut="229" T_Register="73(73)" T_Alu="69(69)" T_Lut="229(229)"/>
+</Module>

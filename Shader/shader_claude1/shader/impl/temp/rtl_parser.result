@@ -1,0 +1,150 @@
+[
+ {
+  "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/frame_scan.sv",
+  "InstLine" : 21,
+  "InstName" : "frame_scan",
+  "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/frame_scan.sv",
+  "ModuleLine" : 21,
+  "ModuleName" : "frame_scan",
+  "SubInsts" : [
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/frame_scan.sv",
+    "InstLine" : 55,
+    "InstName" : "u_pixel",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pixel_render.sv",
+    "ModuleLine" : 7,
+    "ModuleName" : "pixel_render",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pixel_render.sv",
+      "InstLine" : 62,
+      "InstName" : "u_map",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/map_core.sv",
+      "ModuleLine" : 10,
+      "ModuleName" : "map_core"
+     },
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pixel_render.sv",
+      "InstLine" : 70,
+      "InstName" : "u_sqrt",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/isqrt.sv",
+      "ModuleLine" : 8,
+      "ModuleName" : "isqrt_fx"
+     },
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pixel_render.sv",
+      "InstLine" : 77,
+      "InstName" : "u_div",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/fixed_div.sv",
+      "ModuleLine" : 8,
+      "ModuleName" : "fixed_div"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/top.sv",
+  "InstLine" : 1,
+  "InstName" : "top",
+  "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/top.sv",
+  "ModuleLine" : 1,
+  "ModuleName" : "top",
+  "SubInsts" : [
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/top.sv",
+    "InstLine" : 17,
+    "InstName" : "u_pll",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_pll/gowin_pll.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "Gowin_PLL",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_pll/gowin_pll.v",
+      "InstLine" : 21,
+      "InstName" : "u_pll",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_pll/gowin_pll_mod.v",
+      "ModuleLine" : 10,
+      "ModuleName" : "Gowin_PLL_MOD"
+     },
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_pll/gowin_pll.v",
+      "InstLine" : 32,
+      "InstName" : "u_pll_init",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pll_init.v",
+      "ModuleLine" : 3,
+      "ModuleName" : "PLL_INIT"
+     }
+    ]
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/top.sv",
+    "InstLine" : 25,
+    "InstName" : "u_divider",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_clkdiv/gowin_clkdiv.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "Gowin_CLKDIV"
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/top.sv",
+    "InstLine" : 37,
+    "InstName" : "u_timing",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/vga_timing.sv",
+    "ModuleLine" : 2,
+    "ModuleName" : "vga_timing"
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/top.sv",
+    "InstLine" : 63,
+    "InstName" : "inst_shader",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pixel_render.sv",
+    "ModuleLine" : 7,
+    "ModuleName" : "pixel_render",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pixel_render.sv",
+      "InstLine" : 62,
+      "InstName" : "u_map",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/map_core.sv",
+      "ModuleLine" : 10,
+      "ModuleName" : "map_core"
+     },
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pixel_render.sv",
+      "InstLine" : 70,
+      "InstName" : "u_sqrt",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/isqrt.sv",
+      "ModuleLine" : 8,
+      "ModuleName" : "isqrt_fx"
+     },
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pixel_render.sv",
+      "InstLine" : 77,
+      "InstName" : "u_div",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/fixed_div.sv",
+      "ModuleLine" : 8,
+      "ModuleName" : "fixed_div"
+     }
+    ]
+   },
+   {
+    "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/top.sv",
+    "InstLine" : 81,
+    "InstName" : "u_dvi_tx",
+    "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/dvi_tx/dvi_tx.v",
+    "ModuleLine" : 1091,
+    "ModuleName" : "DVI_TX_Top",
+    "SubInsts" : [
+     {
+      "InstFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/dvi_tx/dvi_tx.v",
+      "InstLine" : 1122,
+      "InstName" : "rgb2dvi_inst",
+      "ModuleFile" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/dvi_tx/dvi_tx.v",
+      "ModuleLine" : 10,
+      "ModuleName" : "~rgb2dvi.DVI_TX_Top"
+     }
+    ]
+   }
+  ]
+ }
+]

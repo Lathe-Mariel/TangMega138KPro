@@ -1,0 +1,72 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv'
+Undeclared symbol 'out_vsync', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":246)
+Undeclared symbol 'out_de', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":247)
+Undeclared symbol 'vout_den', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":248)
+Undeclared symbol 'vout_data', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":249)
+WARN  (EX3638) : 'out_vsync' is already implicitly declared on line 246("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":318)
+WARN  (EX3638) : 'out_de' is already implicitly declared on line 247("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":319)
+WARN  (EX3638) : 'vout_den' is already implicitly declared on line 248("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":321)
+WARN  (EX3638) : 'vout_data' is already implicitly declared on line 249("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":322)
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\vga_timing.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\sd_reader.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\bmp_parser.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\frame_writer.sv'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\ddr3_memory_interface\ddr3_memory_interface.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_tx\dvi_tx.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_clkdiv\gowin_clkdiv.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll\gowin_pll.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll_dvi\gowin_pll_dvi.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll_dvi\gowin_pll_dvi_mod.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\pll_init.v'
+Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\video_frame_buffer\video_frame_buffer.v'
+Compiling module 'top'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":22)
+Compiling module 'Gowin_PLL_DVI'("C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll_dvi\gowin_pll_dvi.v":1)
+Compiling module 'Gowin_PLL_DVI_MOD'("C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll_dvi\gowin_pll_dvi_mod.v":10)
+Compiling module 'PLL_INIT(CLK_PERIOD=20,MULTI_FAC=25)'("C:\Git\TangMega138KPro\sdcard2dvi\src\pll_init.v":3)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Git\TangMega138KPro\sdcard2dvi\src\pll_init.v":179)
+WARN  (EX3791) : Expression size 18 truncated to fit in target size 17("C:\Git\TangMega138KPro\sdcard2dvi\src\pll_init.v":207)
+Compiling module 'Gowin_CLKDIV'("C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_clkdiv\gowin_clkdiv.v":10)
+Compiling module 'Gowin_PLL'("C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll\gowin_pll.v":10)
+Compiling module 'sd_reader'("C:\Git\TangMega138KPro\sdcard2dvi\src\sd_reader.sv":27)
+Compiling module 'bmp_parser'("C:\Git\TangMega138KPro\sdcard2dvi\src\bmp_parser.sv":24)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 16("C:\Git\TangMega138KPro\sdcard2dvi\src\bmp_parser.sv":207)
+Compiling module 'frame_writer'("C:\Git\TangMega138KPro\sdcard2dvi\src\frame_writer.sv":18)
+Compiling module 'Video_Frame_Buffer_Top'("C:\Git\TangMega138KPro\sdcard2dvi\src\video_frame_buffer\video_frame_buffer.v":5744)
+Compiling module '**'("C:\Git\TangMega138KPro\sdcard2dvi\src\video_frame_buffer\video_frame_buffer.v":5743)
+Compiling module 'DDR3_Memory_Interface_Top'("C:\Git\TangMega138KPro\sdcard2dvi\src\ddr3_memory_interface\ddr3_memory_interface.v":28349)
+Compiling module '**'("C:\Git\TangMega138KPro\sdcard2dvi\src\ddr3_memory_interface\ddr3_memory_interface.v":28348)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 15 for port 'O_ddr_addr'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":296)
+Compiling module 'vga_timing'("C:\Git\TangMega138KPro\sdcard2dvi\src\vga_timing.sv":2)
+Compiling module 'DVI_TX_Top'("C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_tx\dvi_tx.v":1091)
+Compiling module '**'("C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_tx\dvi_tx.v":1090)
+NOTE  (EX0101) : Current top module is "top"
+WARN  (EX0211) : The output port "state_led[5]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":64)
+WARN  (EX0211) : The output port "state_led[4]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":64)
+WARN  (EX0211) : The output port "state_led[3]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":64)
+WARN  (EX0211) : The output port "state_led[2]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":64)
+WARN  (EX0211) : The output port "state_led[1]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":64)
+WARN  (EX0211) : The output port "state_led[0]" of module "top" has no driver, assigning undriven bits to Z, simulation mismatch possible("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":64)
+[5%] Running netlist conversion ...
+WARN  (CV0016) : Input sw0 is unused("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":65)
+WARN  (CV0016) : Input sw1 is unused("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":66)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg" completed
+WARN  (CK3000) : Can't calculate clocks' relationship between: "clk" and "pll_dvi/u_pll/PLL_inst/CLKOUT0.default_gen_clk"
+[100%] Generate report file "C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi_syn.rpt.html" completed
+GowinSynthesis finish

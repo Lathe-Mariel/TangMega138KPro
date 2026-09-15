@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-synthesis-project>
+<Project>
+    <Version>beta</Version>
+    <Device id="GW5AST-138B" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AES"/>
+    <FileList>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\vga_timing.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\sd_reader.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\bmp_parser.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\frame_writer.sv" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\ddr3_memory_interface\ddr3_memory_interface.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_tx\dvi_tx.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_clkdiv\gowin_clkdiv.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll\gowin_pll.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll_dvi\gowin_pll_dvi.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll_dvi\gowin_pll_dvi_mod.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\pll_init.v" type="verilog"/>
+        <File path="C:\Git\TangMega138KPro\sdcard2dvi\src\video_frame_buffer\video_frame_buffer.v" type="verilog"/>
+    </FileList>
+    <OptionList>
+        <Option type="disable_insert_pad" value="0"/>
+        <Option type="enable_dsrm" value="0"/>
+        <Option type="global_freq" value="100.000"/>
+        <Option type="looplimit" value="2000"/>
+        <Option type="output_file" value="C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg"/>
+        <Option type="print_all_synthesis_warning" value="0"/>
+        <Option type="ram_rw_check" value="0"/>
+        <Option type="vcc" value="0.9"/>
+        <Option type="verilog_language" value="sysv-2017"/>
+        <Option type="vhdl_language" value="vhdl-1993"/>
+    </OptionList>
+</Project>

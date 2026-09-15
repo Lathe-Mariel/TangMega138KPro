@@ -1,0 +1,22 @@
+-d C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg
+-p GW5AST-138B-FCPBGA676A-1
+-pn GW5AST-LV138FPG676AES
+-cst C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst
+-cfg C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\device.cfg
+-sdc C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.sdc
+-bit
+-tr
+-ph
+-timing
+-ireg_not_in_iob
+-oreg_not_in_iob
+-ioreg_not_in_iob
+-cst_error
+-convert_sdp32_36_to_sdp16_18
+-place_option 3
+-route_option 2
+-clock_route_order 0
+-correct_hold 1
+-route_maxfan 23
+-global_freq 100.000
+-enable_dsrm 0
