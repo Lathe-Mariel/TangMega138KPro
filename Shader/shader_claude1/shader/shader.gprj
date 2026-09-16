@@ -19,6 +19,7 @@
         <File path="src/top.sv" type="file.verilog" enable="1"/>
         <File path="src/vga_timing.sv" type="file.verilog" enable="1"/>
         <File path="src/tang_mega_138k_pro.cst" type="file.cst" enable="1"/>
+        <File path="src/shader.sdc" type="file.sdc" enable="1"/>
         <File path="src/exp_lut.svh" type="file.other" enable="1"/>
         <File path="src/sin_lut.svh" type="file.other" enable="1"/>
     </FileList>

@@ -64,9 +64,9 @@ pixel_render inst_shader(
 .clk(clk_pix),
 .rst_n(rst_n),
 .start(rst_n),      // qx_in/qy_in/time_inが有効、計算開始
-.qx_in({12'b0,hcount,8'b0}),      // 画面空間座標 (アスペクト補正済み, -1..1相当)
-.qy_in({12'b0,vcount,8'b0}),
-.time_in({12'b0,frame_counter,8'b0}),    // iTime
+.qx_in({8'b0,hcount}),      // 画面空間座標 (アスペクト補正済み, -1..1相当)
+.qy_in({8'b0,vcount}),
+.time_in({8'b0,frame_counter}),    // iTime
 .busy(),
 .done(),       // 1クロックパルス
 .rgb565(shader_output)

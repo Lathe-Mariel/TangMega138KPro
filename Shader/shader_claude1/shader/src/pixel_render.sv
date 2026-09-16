@@ -21,40 +21,43 @@ module pixel_render
     output logic   done,       // 1クロックパルス
     output logic [15:0] rgb565
 );
-    // ---- シーン定数 (Q12.20) -------------------------------------
-    localparam fixed_t CAM_Y     = fixed_t'(1730150);   // 1.65
-    localparam fixed_t LIGHT_X   = fixed_t'(934146);
-    localparam fixed_t LIGHT_Y   = fixed_t'(93415);
-    localparam fixed_t LIGHT_Z   = -fixed_t'(467073);
-    localparam fixed_t SKY_R     = fixed_t'(734003);
-    localparam fixed_t SKY_G     = fixed_t'(838861);
-    localparam fixed_t SKY_B     = fixed_t'(1048576);
-    localparam fixed_t LCOL_R    = fixed_t'(2097152);
-    localparam fixed_t LCOL_G    = fixed_t'(1572864);
-    localparam fixed_t LCOL_B    = fixed_t'(1048576);
-    localparam fixed_t AMB_R     = fixed_t'(104858);
-    localparam fixed_t AMB_G     = fixed_t'(209715);
-    localparam fixed_t AMB_B     = fixed_t'(314573);
-    localparam fixed_t MATE0_R   = fixed_t'(104858);
-    localparam fixed_t MATE0_G   = fixed_t'(157286);
-    localparam fixed_t MATE0_B   = fixed_t'(157286);
-    localparam fixed_t MATE1_R   = fixed_t'(209715);
-    localparam fixed_t MATE1_G   = fixed_t'(157286);
-    localparam fixed_t MATE1_B   = fixed_t'(104858);
-    localparam fixed_t FOG_R     = fixed_t'(524288);
-    localparam fixed_t FOG_G     = fixed_t'(629146);
-    localparam fixed_t FOG_B     = fixed_t'(734003);
-    localparam fixed_t EPS       = fixed_t'(10486);     // 0.01  (法線計算オフセット)
-    localparam fixed_t HIT_EPS   = fixed_t'(1049);       // 0.001 (march終了判定)
-    localparam fixed_t TMAX      = fixed_t'(41943040);   // 40.0
-    localparam fixed_t SMOOTH_RECIP = fixed_t'(5242880); // 1/(0.9-0.7)
-    localparam fixed_t SS_E0     = fixed_t'(734003);     // 0.7
-    localparam fixed_t SHADOW_T0 = fixed_t'(104858);     // 0.1
-    localparam fixed_t SHADOW_RES_EPS = fixed_t'(105);   // 0.0001
-    localparam fixed_t K164      = fixed_t'(171966464);  // 164.0
-    localparam fixed_t K0_002    = fixed_t'(2097);       // 0.002
-    localparam fixed_t K31       = fixed_t'(32505856);   // 31.0
-    localparam fixed_t K63       = fixed_t'(66060288);   // 63.0
+    // ---- シーン定数 (Q8.16) -------------------------------------
+    localparam fixed_t CAM_Y     = fixed_t'(108134);    // 1.65
+    localparam fixed_t LIGHT_X   = fixed_t'(58384);
+    localparam fixed_t LIGHT_Y   = fixed_t'(5838);
+    localparam fixed_t LIGHT_Z   = -fixed_t'(29192);
+    localparam fixed_t SKY_R     = fixed_t'(45875);
+    localparam fixed_t SKY_G     = fixed_t'(52429);
+    localparam fixed_t SKY_B     = fixed_t'(65536);
+    localparam fixed_t LCOL_R    = fixed_t'(131072);
+    localparam fixed_t LCOL_G    = fixed_t'(98304);
+    localparam fixed_t LCOL_B    = fixed_t'(65536);
+    localparam fixed_t AMB_R     = fixed_t'(6554);
+    localparam fixed_t AMB_G     = fixed_t'(13107);
+    localparam fixed_t AMB_B     = fixed_t'(19661);
+    localparam fixed_t MATE0_R   = fixed_t'(6554);
+    localparam fixed_t MATE0_G   = fixed_t'(9830);
+    localparam fixed_t MATE0_B   = fixed_t'(9830);
+    localparam fixed_t MATE1_R   = fixed_t'(13107);
+    localparam fixed_t MATE1_G   = fixed_t'(9830);
+    localparam fixed_t MATE1_B   = fixed_t'(6554);
+    localparam fixed_t FOG_R     = fixed_t'(32768);
+    localparam fixed_t FOG_G     = fixed_t'(39322);
+    localparam fixed_t FOG_B     = fixed_t'(45875);
+    localparam fixed_t EPS       = fixed_t'(655);       // 0.01  (法線計算オフセット)
+    localparam fixed_t HIT_EPS   = fixed_t'(66);         // 0.001 (march終了判定)
+    localparam fixed_t TMAX      = fixed_t'(2621440);    // 40.0
+    localparam fixed_t SMOOTH_RECIP = fixed_t'(327680);  // 1/(0.9-0.7)
+    localparam fixed_t SS_E0     = fixed_t'(45875);      // 0.7
+    localparam fixed_t SHADOW_T0 = fixed_t'(6554);       // 0.1
+    localparam fixed_t SHADOW_RES_EPS = fixed_t'(7);     // 0.0001
+    localparam fixed_t K0_002    = fixed_t'(131);        // 0.002
+    localparam fixed_t K31       = fixed_t'(2031616);    // 31.0
+    localparam fixed_t K63       = fixed_t'(4128768);    // 63.0
+    // NOTE: 164.0 はQ8.16(整数部最大約127)に定数として収まらないため、
+    //       fmul用の定数は用意せず、下のS_SHAD_WAIT内で
+    //       「fixed_t × 整数164の広い中間結果 → 飽和変換」という
+    //       専用の計算(sat_from_wide)を行う。
 
     // ---- 共有演算ユニット -------------------------------------------
     logic map_start, map_busy, map_done;
@@ -269,9 +272,9 @@ module pixel_render
             end
             S_NOR_FIN: begin
                 // シャドウレイ原点 = hit_pos + nor*0.1
-                sro_x <= hit_x + fmul(nor_x, fixed_t'(104858));
-                sro_y <= hit_y + fmul(nor_y, fixed_t'(104858));
-                sro_z <= hit_z + fmul(nor_z, fixed_t'(104858));
+                sro_x <= hit_x + fmul(nor_x, SHADOW_T0);
+                sro_y <= hit_y + fmul(nor_y, SHADOW_T0);
+                sro_z <= hit_z + fmul(nor_z, SHADOW_T0);
                 ts_reg    <= SHADOW_T0;
                 sres_reg  <= ONE;
                 shadow_cnt <= '0;
@@ -287,8 +290,10 @@ module pixel_render
                 state <= S_SHAD_WAIT;
             end
             S_SHAD_WAIT: if (map_done) begin
+                logic signed [2*WIDTH-1:0] h164_wide;
                 h_reg <= map_h;
-                div_a <= fmul(fmax(map_h, ZERO), K164);
+                h164_wide = fmax(map_h, ZERO) * 164;   // 164.0はQ8.16に収まらないため整数乗算+飽和で計算
+                div_a <= sat_from_wide(h164_wide);
                 div_b <= ts_reg;
                 div_start <= 1'b1;
                 state <= S_SHAD_EVAL;

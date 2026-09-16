@@ -1,0 +1,11 @@
+Miro sd card | function | fpga pin
+DAT2 | A25_SDIO_D2 | A25
+DAT3/CD | B25_SDIO_D3 | B25
+CMD | D24_SDIO_CMD | D24
+VDD | VDD | none
+CLK | D23_SDIO_CLK | D23
+VSS | GND | none
+DAT0 | H23_SDIO_D0 | H23
+DAT1 | J23_SDIO_D1 | J23
+DET_A | J15_SDIO_DET | J15
+DET_B | 3V3 | none

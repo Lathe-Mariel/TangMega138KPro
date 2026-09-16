@@ -3,6 +3,7 @@
 -pn GW5AST-LV138FPG676AC1/I0
 -cst C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\tang_mega_138k_pro.cst
 -cfg C:\Git\TangMega138KPro\Shader\shader_claude1\shader\impl\pnr\device.cfg
+-sdc C:\Git\TangMega138KPro\Shader\shader_claude1\shader\src\shader.sdc
 -bit
 -tr
 -ph

@@ -89,8 +89,17 @@ module fixed_div
                 end
 
                 S_DONE: begin
-                    quotient <= (sign_a ^ sign_b) ? -(fixed_t'(quot_r[WIDTH-1:0]))
-                                                   :  fixed_t'(quot_r[WIDTH-1:0]);
+                    // quot_rの上位(NBITS-WIDTH)ビットが立っていれば、真の商が
+                    // fixed_tの表現範囲(整数部)を超えている(オーバーフロー)。
+                    // 黙ってラップアラウンドさせず、符号付きの最大値へ飽和させる。
+                    logic ovf;
+                    fixed_t mag;
+                    // quot_rは非負の「大きさ」を表す。fixed_t(符号付きWIDTHビット)の
+                    // 最大値は2^(WIDTH-1)-1なので、WIDTH-1ビット目(符号ビット位置)
+                    // 以上のどこかが立っていたらオーバーフロー。
+                    ovf = |quot_r[NBITS-1:WIDTH-1];
+                    mag = ovf ? MAXVAL : fixed_t'(quot_r[WIDTH-1:0]);
+                    quotient <= (sign_a ^ sign_b) ? (ovf ? MINVAL : -mag) : mag;
                     busy     <= 1'b0;
                     done     <= 1'b1;
                     state    <= S_IDLE;

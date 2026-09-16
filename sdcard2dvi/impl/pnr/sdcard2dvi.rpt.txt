@@ -12,27 +12,27 @@
   <Part Number>: GW5AST-LV138FPG676AES
   <Device>: GW5AST-138
   <Device Version>: B
-  <Created Time>:Tue Sep 15 21:56:14 2026
+  <Created Time>:Wed Sep 16 19:54:19 2026
 
 
 2. PnR Details
 
   Running placement:
     Placement Phase 0: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
-    Placement Phase 1: CPU time = 0h 0m 0.578s, Elapsed time = 0h 0m 0.578s
-    Placement Phase 2: CPU time = 0h 0m 5s, Elapsed time = 0h 0m 5s
-    Placement Phase 3: CPU time = 0h 0m 12s, Elapsed time = 0h 0m 12s
-    Total Placement: CPU time = 0h 0m 19s, Elapsed time = 0h 0m 19s
+    Placement Phase 1: CPU time = 0h 0m 0.587s, Elapsed time = 0h 0m 0.587s
+    Placement Phase 2: CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
+    Placement Phase 3: CPU time = 0h 0m 14s, Elapsed time = 0h 0m 14s
+    Total Placement: CPU time = 0h 0m 22s, Elapsed time = 0h 0m 22s
  Running routing:
-    Routing Phase 0: CPU time = 0h 0m 0.577s, Elapsed time = 0h 0m 0.577s
-    Routing Phase 1: CPU time = 0h 0m 36s, Elapsed time = 0h 0m 36s
-    Routing Phase 2: CPU time = 0h 0m 0.213s, Elapsed time = 0h 0m 0.213s
+    Routing Phase 0: CPU time = 0h 0m 0.694s, Elapsed time = 0h 0m 0.694s
+    Routing Phase 1: CPU time = 0h 0m 37s, Elapsed time = 0h 0m 37s
+    Routing Phase 2: CPU time = 0h 0m 0.205s, Elapsed time = 0h 0m 0.204s
     Routing Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s
-    Total Routing: CPU time = 0h 0m 37s, Elapsed time = 0h 0m 37s
+    Total Routing: CPU time = 0h 0m 38s, Elapsed time = 0h 0m 38s
  Generate output files:
-    CPU time = 0h 0m 11s, Elapsed time = 0h 0m 11s
+    CPU time = 0h 0m 12s, Elapsed time = 0h 0m 12s
 
- Total Time and Memory Usage: CPU time = 0h 1m 8s, Elapsed time = 0h 1m 8s, Peak memory usage = 1559MB
+ Total Time and Memory Usage: CPU time = 0h 1m 12s, Elapsed time = 0h 1m 12s, Peak memory usage = 1479MB
 
 
 3. Resource Usage Summary
@@ -48,7 +48,7 @@
     --Logic Register as FF    | 6326/138240                         |  5%
     --I/O Register as Latch   | 0/900                               |  0%
     --I/O Register as FF      | 0/900                               |  0%
-  CLS                         | 5534/69120                          |  8%
+  CLS                         | 5544/69120                          |  9%
   I/O Port                    | 95/312                              |  31%
   I/O Buf                     | 84                                  | -
     --Input Buf               | 3                                   | -
@@ -72,10 +72,10 @@
   --------------------------------------
   I/O Bank  | Usage       | Utilization 
   --------------------------------------
-  bank 2   | 10/50       | 20%         
-  bank 3   | 6/50        | 12%         
-  bank 4   | 3/50        | 6%          
-  bank 5   | 5/50        | 10%         
+  bank 2   | 8/50        | 16%         
+  bank 3   | 8/50        | 16%         
+  bank 4   | 2/50        | 4%          
+  bank 5   | 3/50        | 6%          
   bank 6   | 44/50       | 88%         
   bank 7   | 28/50       | 56%         
   bank 10  | 0/12        | 0%          
@@ -89,7 +89,7 @@
   ------------------------------------------
   PRIMARY       | 6/8           | 75%
   LW            | 2/8           | 25%
-  GCLK_PIN      | 9/24          | 38%
+  GCLK_PIN      | 8/24          | 34%
   CLKDIV        | 2/24          | 9%
   DDRDLL        | 1/4           | 25%
   DQS           | 4/24          | 17%
@@ -102,11 +102,11 @@
   -------------------------------------------
   Signal         | Global Clock   | Location
   -------------------------------------------
-  clk_d          | PRIMARY        |  PTR2 PTR3 PBR2 PBR3
+  clk_d          | PRIMARY        |  PTR2 PTR3 PBR1 PBR2 PBR3
   clk_5x         | PRIMARY        |  PTR3
   clk_pixel      | PRIMARY        |  PTR2 PTR3 PBR2
   memory_clk     | PRIMARY        |  PTR0 PBR0
-  clk_100        | PRIMARY        |  PBR1 PBR2
+  clk_100        | PRIMARY        |  PTR1 PBR1 PBR2
   dma_clk        | PRIMARY        |  PTR0 PTR1 PTR2 PTR3 PBR0 PBR1 PBR2
   rst_n_d        | LW             |  -
   u_ddr3/gw3_top/ddr_rst| LW             |  -
@@ -122,12 +122,10 @@ Port Name          | Diff Pair | Loc./Bank     | Constraint | Dir.  | Site     |
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 clk                | -         | P16/3         | Y          | in    | IOR103[B] | EMCCLK          | LVCMOS33   | OFF   | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 rst_n              | -         | K16/4         | Y          | in    | IOB104[A] | -               | LVCMOS33   | OFF   | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-sd_dat             | -         | A22/5         | N          | in    | IOB74[B] | -               | LVCMOS33   | OFF   | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-sw0                | -         | F15/5         | Y          | in    | IOB78[B] | -               | LVCMOS33   | OFF   | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-sw1                | -         | G15/5         | Y          | in    | IOB78[A] | -               | LVCMOS33   | OFF   | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-sd_clk             | -         | B20/5         | N          | out   | IOB70[A] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-sd_cmd             | -         | M16/4         | N          | out   | IOB102[A] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-sd_cs_n            | -         | D21/5         | N          | out   | IOB76[B] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+sd_dat             | -         | H23/4         | Y          | in    | IOB114[B] | SGCLKC_4/BPLL2_C_FB1/BPLL3_C_FB1 | LVCMOS33   | OFF   | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+sd_clk             | -         | D23/5         | Y          | out   | IOB38[A] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+sd_cmd             | -         | D24/5         | Y          | out   | IOB38[B] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+sd_cs_n            | -         | B25/5         | Y          | out   | IOB44[A] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 tmds_tx_clk_p      | tmds_tx_clk_n | Y22/2         | Y          | out   | IOR29[A] | SGCLKT_0/RPLL0_T_IN0/RPLL1_T_IN0 | LVDS25     | 3.5   | NONE      | OFF       | OFF        | NONE       | OFF        | OFF             | OFF           | 2.5        | MEDIUM        | NONE         
 tmds_tx_clk_n      | tmds_tx_clk_p | Y23/2         | Y          | out   | IOR29[B] | SGCLKC_0/RPLL0_C_IN0/RPLL1_C_IN0 | LVDS25     | 3.5   | NONE      | OFF       | OFF        | NONE       | OFF        | OFF             | OFF           | 2.5        | MEDIUM        | NONE         
 tmds_tx_data_p[0]  | tmds_tx_data_n[0] | AB24/2        | Y          | out   | IOR35[A] | -               | LVDS25     | 3.5   | NONE      | OFF       | OFF        | NONE       | OFF        | OFF             | OFF           | 2.5        | MEDIUM        | NONE         
@@ -168,12 +166,13 @@ ddr_dm[0]          | -         | F4/6          | Y          | out   | IOL78[B] |
 ddr_dm[1]          | -         | H9/6          | Y          | out   | IOL107[A] | MCKTEST         | SSTL15     | 12    | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 1.5        | MEDIUM        | NONE         
 ddr_dm[2]          | -         | E3/6          | Y          | out   | IOL89[B] | -               | SSTL15     | 12    | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 1.5        | MEDIUM        | NONE         
 ddr_dm[3]          | -         | A3/6          | Y          | out   | IOL67[A] | -               | SSTL15     | 12    | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 1.5        | MEDIUM        | NONE         
-state_led[0]       | -         | J14/4         | Y          | out   | IOB97[A] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-state_led[1]       | -         | R26/3         | Y          | out   | IOR65[A] | D21             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-state_led[2]       | -         | L20/3         | Y          | out   | IOR92[B] | D12             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-state_led[3]       | -         | M25/3         | Y          | out   | IOR87[B] | D15             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-state_led[4]       | -         | N21/3         | Y          | out   | IOR80[A] | MGCLKT_3/RPLL2_T_FB1/RPLL3_T_FB1 | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-state_led[5]       | -         | N23/3         | Y          | out   | IOR76[A] | RDWR            | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+state_led[0]       | -         | R22/3         | N          | out   | IOR56[B] | D18             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+state_led[1]       | -         | T25/3         | N          | out   | IOR58[B] | D22             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+state_led[2]       | -         | R25/3         | N          | out   | IOR60[A] | D26             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+state_led[3]       | -         | P25/3         | N          | out   | IOR60[B] | D25/VREF        | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+state_led[4]       | -         | T23/3         | N          | out   | IOR62[A] | D17             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+state_led[5]       | -         | R23/3         | N          | out   | IOR62[B] | D16             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+fan                | -         | T22/3         | N          | out   | IOR56[A] | D19             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 ddr_dq[0]          | -         | G4/6          | Y          | io    | IOL78[A] | SGCLKT_8/LPLL2_T_IN0/LPLL3_T_IN0 | SSTL15     | 12    | NONE      | OFF       | NONE       | OFF        | INTERNAL   | OFF             | OFF           | 1.5        | MEDIUM        | OFF          
 ddr_dq[1]          | -         | J6/6          | Y          | io    | IOL74[A] | -               | SSTL15     | 12    | NONE      | OFF       | NONE       | OFF        | INTERNAL   | OFF             | OFF           | 1.5        | MEDIUM        | OFF          
 ddr_dq[2]          | -         | L8/6          | Y          | io    | IOL76[A] | -               | SSTL15     | 12    | NONE      | OFF       | NONE       | OFF        | INTERNAL   | OFF             | OFF           | 1.5        | MEDIUM        | OFF          
@@ -226,13 +225,13 @@ Loc./Bank| Signal             | Dir.  | Site     | CFG             | IO Type  | 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 E22/5    | -                  | in    | IOB37[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-D23/5    | -                  | in    | IOB38[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-D24/5    | -                  | in    | IOB38[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+D23/5    | sd_clk             | out   | IOB38[A] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+D24/5    | sd_cmd             | out   | IOB38[B] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 C24/5    | -                  | in    | IOB40[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 B24/5    | -                  | in    | IOB40[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 A23/5    | -                  | in    | IOB42[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 A24/5    | -                  | in    | IOB42[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-B25/5    | -                  | in    | IOB44[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+B25/5    | sd_cs_n            | out   | IOB44[A] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 A25/5    | -                  | in    | IOB44[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 C26/5    | -                  | in    | IOB47[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 B26/5    | -                  | in    | IOB47[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
@@ -254,16 +253,16 @@ D19/5    | -                  | in    | IOB66[A] | MGCLKT_7/BPLL0_T_FB0/BPLL1_T_
 C19/5    | -                  | in    | IOB66[B] | MGCLKC_7/BPLL0_C_FB0/BPLL1_C_FB0 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 E20/5    | -                  | in    | IOB68[A] | SGCLKT_7/BPLL0_T_FB1/BPLL1_T_FB1 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 D20/5    | -                  | in    | IOB68[B] | SGCLKC_7/BPLL0_C_FB1/BPLL1_C_FB1 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-B20/5    | sd_clk             | out   | IOB70[A] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+B20/5    | -                  | in    | IOB70[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 A20/5    | -                  | in    | IOB70[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 C21/5    | -                  | in    | IOB72[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 B21/5    | -                  | in    | IOB72[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 B22/5    | -                  | in    | IOB74[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-A22/5    | sd_dat             | in    | IOB74[B] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+A22/5    | -                  | in    | IOB74[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 E21/5    | -                  | in    | IOB76[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-D21/5    | sd_cs_n            | out   | IOB76[B] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-G15/5    | sw1                | in    | IOB78[A] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-F15/5    | sw0                | in    | IOB78[B] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+D21/5    | -                  | in    | IOB76[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+G15/5    | -                  | in    | IOB78[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+F15/5    | -                  | in    | IOB78[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 G17/5    | -                  | in    | IOB80[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 F17/5    | -                  | in    | IOB80[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 H14/5    | -                  | in    | IOB83[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
@@ -280,11 +279,11 @@ M14/4    | -                  | in    | IOB93[A] | -               | LVCMOS33 | 
 L14/4    | -                  | in    | IOB93[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 M15/4    | -                  | in    | IOB95[A] | ADCINCK1        | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 L15/4    | -                  | in    | IOB95[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-J14/4    | state_led[0]       | out   | IOB97[A] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+J14/4    | -                  | in    | IOB97[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 J15/4    | -                  | in    | IOB97[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 K15/4    | -                  | in    | IOB99[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 J16/4    | -                  | in    | IOB99[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-M16/4    | sd_cmd             | out   | IOB102[A] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+M16/4    | -                  | in    | IOB102[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 M17/4    | -                  | in    | IOB102[B] | VREF            | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 K16/4    | rst_n              | in    | IOB104[A] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 K17/4    | -                  | in    | IOB104[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
@@ -297,7 +296,7 @@ F22/4    | -                  | in    | IOB110[B] | -               | LVCMOS33 |
 J24/4    | -                  | in    | IOB112[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 H24/4    | -                  | in    | IOB112[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 J23/4    | -                  | in    | IOB114[A] | SGCLKT_4/BPLL2_T_FB1/BPLL3_T_FB1 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-H23/4    | -                  | in    | IOB114[B] | SGCLKC_4/BPLL2_C_FB1/BPLL3_C_FB1 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+H23/4    | sd_dat             | in    | IOB114[B] | SGCLKC_4/BPLL2_C_FB1/BPLL3_C_FB1 | LVCMOS33 | OFF   | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 H21/4    | -                  | in    | IOB116[A] | MGCLKT_4/BPLL2_T_FB0/BPLL3_T_FB0 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 H22/4    | -                  | in    | IOB116[B] | MGCLKC_4/BPLL2_C_FB0/BPLL3_C_FB0 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 G20/4    | -                  | in    | IOB120[A] | SGCLKT_5/BPLL2_T_IN0/BPLL3_T_IN0 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
@@ -446,8 +445,8 @@ V18/2    | -                  | in    | IOR4[A]  | -               | LVCMOS25 | 
 W18/2    | -                  | in    | IOR4[B]  | VREF            | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U15/2    | -                  | in    | IOR6[A]  | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U16/2    | -                  | in    | IOR6[B]  | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
-T17/2    | fan(p)             | out   | IOR8[A]  | -               | LVDS25   | 3.5   | NONE      | OFF       | OFF        | NONE       | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
-T18/2    | fan(n)             | out   | IOR8[B]  | -               | LVDS25   | 3.5   | NONE      | OFF       | OFF        | NONE       | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
+T17/2    | -                  | in    | IOR8[A]  | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
+T18/2    | -                  | in    | IOR8[B]  | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U14/2    | -                  | in    | IOR11[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 V14/2    | -                  | in    | IOR11[B] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 T14/2    | -                  | in    | IOR13[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
@@ -489,15 +488,15 @@ W26/2    | -                  | in    | IOR51[B] | -               | LVCMOS25 | 
 U25/2    | -                  | in    | IOR53[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U26/2    | -                  | in    | IOR53[B] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U24/2    | -                  | in    | IOR55[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
-T22/3    | -                  | in    | IOR56[A] | D19             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-R22/3    | -                  | in    | IOR56[B] | D18             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+T22/3    | fan                | out   | IOR56[A] | D19             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+R22/3    | state_led[0]       | out   | IOR56[B] | D18             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 T24/3    | -                  | in    | IOR58[A] | CLKHOLD_N       | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-T25/3    | -                  | in    | IOR58[B] | D22             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-R25/3    | -                  | in    | IOR60[A] | D26             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-P25/3    | -                  | in    | IOR60[B] | D25/VREF        | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-T23/3    | -                  | in    | IOR62[A] | D17             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-R23/3    | -                  | in    | IOR62[B] | D16             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-R26/3    | state_led[1]       | out   | IOR65[A] | D21             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+T25/3    | state_led[1]       | out   | IOR58[B] | D22             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+R25/3    | state_led[2]       | out   | IOR60[A] | D26             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+P25/3    | state_led[3]       | out   | IOR60[B] | D25/VREF        | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+T23/3    | state_led[4]       | out   | IOR62[A] | D17             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+R23/3    | state_led[5]       | out   | IOR62[B] | D16             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+R26/3    | -                  | in    | IOR65[A] | D21             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 P26/3    | -                  | in    | IOR65[B] | D20             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 N26/3    | -                  | in    | IOR67[A] | D24             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 M26/3    | -                  | in    | IOR67[B] | D23             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
@@ -508,22 +507,22 @@ N19/3    | -                  | in    | IOR71[B] | D31             | LVCMOS33 | 
 R18/3    | -                  | in    | IOR73[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 P23/3    | -                  | in    | IOR74[A] | D30             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 P24/3    | -                  | in    | IOR74[B] | D29             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-N23/3    | state_led[5]       | out   | IOR76[A] | RDWR            | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+N23/3    | -                  | in    | IOR76[A] | RDWR            | LVCMOS33 | 8     | DOWN      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 N24/3    | -                  | out   | IOR76[B] | DOUT_CSO_B      | LVCMOS33 | 8     | UP        | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 P20/3    | -                  | in    | IOR78[A] | SGCLKT_3/RPLL2_T_FB0/RPLL3_T_FB0 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 P21/3    | -                  | in    | IOR78[B] | SGCLKC_3/RPLL2_C_FB0/RPLL3_C_FB0 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-N21/3    | state_led[4]       | out   | IOR80[A] | MGCLKT_3/RPLL2_T_FB1/RPLL3_T_FB1 | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+N21/3    | -                  | in    | IOR80[A] | MGCLKT_3/RPLL2_T_FB1/RPLL3_T_FB1 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 N22/3    | -                  | in    | IOR80[B] | MGCLKC_3/RPLL2_C_FB1/RPLL3_C_FB1 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 M21/3    | -                  | in    | IOR83[A] | MGCLKT_2/RPLL2_T_IN1/RPLL3_T_IN1 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 M22/3    | -                  | in    | IOR83[B] | MGCLKC_2/RPLL2_C_IN1/RPLL3_C_IN1 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 L22/3    | -                  | in    | IOR85[A] | SGCLKT_2/RPLL2_T_IN0/RPLL3_T_IN0 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 L23/3    | -                  | in    | IOR85[B] | SGCLKC_2/RPLL2_C_IN0/RPLL3_C_IN0 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 M24/3    | -                  | in    | IOR87[A] | D14             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-M25/3    | state_led[3]       | out   | IOR87[B] | D15             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+M25/3    | -                  | in    | IOR87[B] | D15             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 L24/3    | -                  | in    | IOR89[A] | SSPI_CS_N       | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 L25/3    | -                  | in    | IOR89[B] | D13             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 M20/3    | -                  | in    | IOR92[A] | D11             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-L20/3    | state_led[2]       | out   | IOR92[B] | D12             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+L20/3    | -                  | in    | IOR92[B] | D12             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 K25/3    | -                  | in    | IOR94[A] | D09             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 K26/3    | -                  | in    | IOR94[B] | D10             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 P18/3    | -                  | in    | IOR96[A] | MCS_N           | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         

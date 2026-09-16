@@ -215,37 +215,24 @@ IO_PORT "ddr_dm[3]"   IO_TYPE=SSTL15 PULL_MODE=NONE DRIVE=12 BANK_VCCIO=1.5;
 
 
 //------------------------------------------------------------------------------
-// Status LEDs (LVCMOS33)
+// SD Card Slot (SPI Mode, LVCMOS33)
+//   CLK  = SDIO_CLK  = D23
+//   CMD  = SDIO_CMD  = D24  (SPI: MOSI)
+//   DAT0 = SDIO_D0   = H23  (SPI: MISO)
+//   DAT3 = SDIO_D3   = B25  (SPI: CS)
 //------------------------------------------------------------------------------
 
-IO_LOC  "state_led[0]"  J14;
-IO_PORT "state_led[0]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
-IO_LOC  "state_led[1]"  R26;
-IO_PORT "state_led[1]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
-IO_LOC  "state_led[2]"  L20;
-IO_PORT "state_led[2]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
-IO_LOC  "state_led[3]"  M25;
-IO_PORT "state_led[3]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
-IO_LOC  "state_led[4]"  N21;
-IO_PORT "state_led[4]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
-IO_LOC  "state_led[5]"  N23;
-IO_PORT "state_led[5]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "sd_clk"   D23;
+IO_PORT "sd_clk"   IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
 
-//------------------------------------------------------------------------------
-// User Switches (LVCMOS33)
-//------------------------------------------------------------------------------
+IO_LOC  "sd_cmd"   D24;
+IO_PORT "sd_cmd"   IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
 
-IO_LOC  "sw0"  F15;
-IO_PORT "sw0"  IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
-IO_LOC  "sw1"  G15;
-IO_PORT "sw1"  IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
+IO_LOC  "sd_dat"   H23;
+IO_PORT "sd_dat"   IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 
-//------------------------------------------------------------------------------
-// Fan Control
-//------------------------------------------------------------------------------
-
-IO_LOC  "fan"  T18;
-IO_PORT "fan"  IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+IO_LOC  "sd_cs_n"  B25;
+IO_PORT "sd_cs_n"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
 
 //==============================================================================
 // END OF CONSTRAINT FILE

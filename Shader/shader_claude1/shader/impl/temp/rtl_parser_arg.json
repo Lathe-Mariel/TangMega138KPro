@@ -2,11 +2,27 @@
  "Device" : "GW5AST-138B",
  "Files" : [
   {
+   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/dvi_tx/dvi_tx.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/fixed_div.sv",
    "Type" : "verilog"
   },
   {
    "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/frame_scan.sv",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_clkdiv/gowin_clkdiv.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_pll/gowin_pll.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_pll/gowin_pll_mod.v",
    "Type" : "verilog"
   },
   {
@@ -22,6 +38,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pll_init.v",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/rm_pkg.sv",
    "Type" : "verilog"
   },
@@ -31,26 +51,6 @@
   },
   {
    "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/vga_timing.sv",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/dvi_tx/dvi_tx.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_pll/gowin_pll.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_pll/gowin_pll_mod.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/pll_init.v",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Git/TangMega138KPro/Shader/shader_claude1/shader/src/gowin_clkdiv/gowin_clkdiv.v",
    "Type" : "verilog"
   }
  ],
