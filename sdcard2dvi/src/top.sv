@@ -104,7 +104,6 @@ assign sd_dat2 = 1'b1;
     // ---- ビデオ PLL: 50MHz → 371.25MHz (clk_5x) ---------------------------
     Gowin_PLL_DVI pll_dvi(
         .clkin   (clk),
-        .init_clk(clk),
         .clkout0 (clk_5x),
         .lock    (pll_video_lock),
         .reset   (~rst_n)

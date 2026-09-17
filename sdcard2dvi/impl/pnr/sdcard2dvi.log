@@ -1,14 +1,13 @@
-Reading netlist file: "C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg"
-Parsing netlist file "C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg" completed
+Reading netlist file: "H:\git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg"
+Parsing netlist file "H:\git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg" completed
 Processing netlist completed
-Reading constraint file: "C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst"
+Reading constraint file: "H:\git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst"
 Physical Constraint parsed completed
 Running placement......
 [10%] Placement Phase 0 completed
 [20%] Placement Phase 1 completed
 [30%] Placement Phase 2 completed
 WARN  (TA1132) :  'tck_pad_i' was determined to be a clock but was not created.
-WARN  (TA1132) :  'clkdiv_dvi/clkdiv_inst/CLKOUT.default_gen_clk' was determined to be a clock but was not created.
 WARN  (TA1132) :  'u_ddr3/gw3_top/u_ddr_phy_top/fclkdiv/CLKOUT.default_gen_clk' was determined to be a clock but was not created.
 [50%] Placement Phase 3 completed
 Running routing......
@@ -24,10 +23,10 @@ Bitstream generation in progress......
 Bitstream generation completed
 Running power analysis......
 [100%] Power analysis completed
-Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.power.html" completed
-Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.pin.html" completed
-Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.html" completed
-Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.txt" completed
-Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.tr.html" completed
-Thu Sep 17 21:49:36 2026
+Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.power.html" completed
+Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.pin.html" completed
+Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.html" completed
+Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.txt" completed
+Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.tr.html" completed
+Fri Sep 18 01:41:29 2026
 

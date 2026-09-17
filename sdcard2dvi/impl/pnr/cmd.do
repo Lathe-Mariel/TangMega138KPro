@@ -1,10 +1,10 @@
--d C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg
+-d H:\git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg
 -p GW5AST-138B-FCPBGA676A-1
--pn GW5AST-LV138FPG676AES
--cst C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst
--cfg C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\device.cfg
--sdc C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.sdc
--gao_crc 0110001011010010
+-pn GW5AST-LV138FPG676AC1/I0
+-cst H:\git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst
+-cfg H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\device.cfg
+-sdc H:\git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.sdc
+-gao_crc 0001001001111010
 -bit
 -tr
 -ph

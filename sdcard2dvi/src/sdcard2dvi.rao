@@ -18,7 +18,17 @@
                     <Signal>u_ddr3/init_calib_complete</Signal>
                 </SignalList>
             </Trigger>
-            <Trigger index="1"/>
+            <Trigger index="1">
+                <SignalList>
+                    <Bus restorename="u_sd_reader/state[4:0]">
+                        <Signal>u_sd_reader/state[4]</Signal>
+                        <Signal>u_sd_reader/state[3]</Signal>
+                        <Signal>u_sd_reader/state[2]</Signal>
+                        <Signal>u_sd_reader/state[1]</Signal>
+                        <Signal>u_sd_reader/state[0]</Signal>
+                    </Bus>
+                </SignalList>
+            </Trigger>
             <Trigger index="2"/>
             <Trigger index="3"/>
             <Trigger index="4"/>
@@ -36,7 +46,7 @@
         </Triggers>
         <MatchUnits>
             <MatchUnit index="0" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="1" value1="0" trigger="0"/>
-            <MatchUnit index="1" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
+            <MatchUnit index="1" enabled="1" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="00010" value1="00000" trigger="1"/>
             <MatchUnit index="2" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="3" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
             <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1=""/>
@@ -56,5 +66,5 @@
             <Expression>M0</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0110001011010010</GAO_ID>
+    <GAO_ID>0001001001111010</GAO_ID>
 </GAO_CONFIG>
