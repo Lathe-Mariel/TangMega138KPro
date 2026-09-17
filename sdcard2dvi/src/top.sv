@@ -33,6 +33,8 @@ module top (
     output wire        sd_cmd,        // MOSI
     input  wire        sd_dat,        // MISO
     output wire        sd_cs_n,
+    output wire        sd_dat1,       // DAT1 (SPIでは未使用、High固定)
+    output wire        sd_dat2,       // DAT2 (SPIでは未使用、High固定)
 
     //-----------------------------------------------------------------------
     // HDMI TX (DVI 出力)
@@ -64,10 +66,17 @@ module top (
     output logic[5:0] state_led,
     input wire sw0,
     input wire sw1,
-    output wire fan
+    output wire fan,
+    output wire led_color,
+    input wire DET_A
 );
 
-assign fan = 1;
+assign fan = 0;
+assign led_color = 0;
+
+// SDカード SPIモードでは DAT1/DAT2 は未使用のため High に固定する
+assign sd_dat1 = 1'b1;
+assign sd_dat2 = 1'b1;
 
 // ============================================================================
 // クロック & リセット
@@ -80,6 +89,17 @@ assign fan = 1;
     wire memory_pll_lock;
 
     wire sys_rst_n = rst_n & pll_video_lock & memory_pll_lock;
+
+    // リセット同期化 (clk_pixel ドメイン)
+    // 非同期リセット rst_n を 2段同期し、PLL ロックを反映する。
+    // ※ D入力は定数1をシフトする（コンビ信号を D に入れない）ことで
+    //   非同期リセット由来の HOLD 違反を防ぐ。
+    reg  [1:0] rst_pixel_sync;
+    always_ff @(posedge clk_pixel or negedge rst_n) begin
+        if (!rst_n)      rst_pixel_sync <= 2'b00;
+        else             rst_pixel_sync <= {rst_pixel_sync[0], 1'b1};
+    end
+    wire rst_pixel_n = rst_pixel_sync[1] & pll_video_lock;
 
     // ---- ビデオ PLL: 50MHz → 371.25MHz (clk_5x) ---------------------------
     Gowin_PLL_DVI pll_dvi(
@@ -116,6 +136,8 @@ assign fan = 1;
     localparam int MAX_BLOCKS = 6000;
 
     wire        sd_busy;
+    wire        sd_init_done;
+    wire [2:0]  sd_debug_stage;
     wire [7:0]  sd_byte;
     wire        sd_byte_valid;
 
@@ -154,7 +176,9 @@ assign fan = 1;
         .block_addr (block_cnt),
         .data       (sd_byte),
         .data_valid (sd_byte_valid),
-        .busy       (sd_busy)
+        .busy       (sd_busy),
+        .init_done  (sd_init_done),
+        .debug_stage(sd_debug_stage)
     );
 
 // ============================================================================
@@ -266,7 +290,7 @@ assign fan = 1;
     );
 
     DDR3_Memory_Interface_Top u_ddr3 (
-        .clk                 (clk_100),
+        .clk                 (clk),
         .pll_stop            (),
         .memory_clk          (memory_clk),
         .pll_lock            (memory_pll_lock),
@@ -323,7 +347,7 @@ assign fan = 1;
 
     vga_timing u_vga_timing (
         .clk    (clk_pixel),
-        .rst    (~sys_rst_n),
+        .rst    (~rst_pixel_n),
         .hsync  (out_hsync),
         .vsync  (out_vsync),
         .de     (out_de),
@@ -339,7 +363,7 @@ assign fan = 1;
     assign {out_r, out_g, out_b} = vout_den ? vout_data : 24'h000000;
 
     DVI_TX_Top u_dvi_tx (
-        .I_rst_n       (sys_rst_n),
+        .I_rst_n       (rst_pixel_n),
         .I_serial_clk  (clk_5x),
         .I_rgb_clk     (clk_pixel),
         .I_rgb_vs      (out_vsync),
@@ -353,5 +377,51 @@ assign fan = 1;
         .O_tmds_data_p (tmds_tx_data_p),
         .O_tmds_data_n (tmds_tx_data_n)
     );
+
+// ============================================================================
+// デバッグ LED (state_led[5:0]) — 各段階の状態を表示
+//   [5] vout_den 活動 (フレームバッファ読み出しデータ有効)
+//   [4] frame_done (フレーム書き込み完了)
+//   [3] sd_done    (SD画像読み出し完了)
+//   [2] init_calib_complete (DDR3 初期化完了)
+//   [1] memory_pll_lock (メモリPLLロック)
+//   [0] pll_video_lock  (ビデオPLLロック)
+//   点灯 = 正常にその段階まで到達
+// ============================================================================
+
+    // vout_den は clk_pixel ドメインの高速トグル信号なので、
+    // 点灯確認用に clk ドメインへ粗く同期してレベルを出す
+    reg  [23:0] den_watchdog;
+    reg         den_active;
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            den_watchdog <= 24'd0;
+            den_active   <= 1'b0;
+        end else begin
+            if (vout_den) begin
+                den_watchdog <= 24'd0;
+                den_active   <= 1'b1;
+            end else if (den_watchdog >= 24'd1_000_000) begin
+                den_watchdog <= den_watchdog;
+                den_active   <= 1'b0;
+            end else begin
+                den_watchdog <= den_watchdog + 24'd1;
+            end
+        end
+    end
+
+    // LED 割当:
+    //   [5] den_active            (読出し活動中)
+    //   [4:2] SD初期化フェーズ debug_stage[2:0]
+    //         0=電源/ダミー  1=CMD0  2=CMD8  3=ACMD41ループ  4=完了
+    //   [1] init_calib_complete  (DDR3 初期化)
+    //   [0] memory_pll_lock
+    //   ※ 負論理: 点灯=Low(0), 消灯=High(1)
+    assign state_led[5] = den_active;
+    assign state_led[4] = sd_debug_stage[2];
+    assign state_led[3] = sd_debug_stage[1];
+    assign state_led[2] = sd_debug_stage[0];
+    assign state_led[1] = init_calib_complete;
+    assign state_led[0] = memory_pll_lock;
 
 endmodule

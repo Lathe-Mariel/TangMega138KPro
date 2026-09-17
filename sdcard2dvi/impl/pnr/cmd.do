@@ -4,6 +4,7 @@
 -cst C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst
 -cfg C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\device.cfg
 -sdc C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.sdc
+-gao_crc 0110001011010010
 -bit
 -tr
 -ph
@@ -20,3 +21,4 @@
 -route_maxfan 23
 -global_freq 100.000
 -enable_dsrm 0
+-rtl_gao

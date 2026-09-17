@@ -28,6 +28,11 @@ IO_PORT "rst_n"  IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
 //   Note: GOWIN DVI TX IP uses combined P,N pin notation for differential pairs
 //------------------------------------------------------------------------------
 
+IO_LOC  "DET_A"    J15;
+IO_PORT "DET_A"    IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
+IO_LOC  "led_color"    H16;
+IO_PORT "led_color"    IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
+
 // TMDS Clock Output
 IO_LOC  "tmds_tx_clk_p"       Y22,Y23;
 IO_PORT "tmds_tx_clk_p"       IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
@@ -233,6 +238,30 @@ IO_PORT "sd_dat"   IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 
 IO_LOC  "sd_cs_n"  B25;
 IO_PORT "sd_cs_n"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+
+// SPI モードでは未使用の DAT1/DAT2 を High に固定 (フローティング防止)
+IO_LOC  "sd_dat1"  J23;
+IO_PORT "sd_dat1"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+
+IO_LOC  "sd_dat2"  A25;
+IO_PORT "sd_dat2"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+
+//------------------------------------------------------------------------------
+// Status LEDs (LVCMOS33)
+//------------------------------------------------------------------------------
+
+IO_LOC  "state_led[0]"  J14;
+IO_PORT "state_led[0]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "state_led[1]"  R26;
+IO_PORT "state_led[1]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "state_led[2]"  L20;
+IO_PORT "state_led[2]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "state_led[3]"  M25;
+IO_PORT "state_led[3]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "state_led[4]"  N21;
+IO_PORT "state_led[4]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "state_led[5]"  N23;
+IO_PORT "state_led[5]"  IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
 
 //==============================================================================
 // END OF CONSTRAINT FILE

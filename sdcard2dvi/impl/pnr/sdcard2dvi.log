@@ -7,6 +7,7 @@ Running placement......
 [10%] Placement Phase 0 completed
 [20%] Placement Phase 1 completed
 [30%] Placement Phase 2 completed
+WARN  (TA1132) :  'tck_pad_i' was determined to be a clock but was not created.
 WARN  (TA1132) :  'clkdiv_dvi/clkdiv_inst/CLKOUT.default_gen_clk' was determined to be a clock but was not created.
 WARN  (TA1132) :  'u_ddr3/gw3_top/u_ddr_phy_top/fclkdiv/CLKOUT.default_gen_clk' was determined to be a clock but was not created.
 [50%] Placement Phase 3 completed
@@ -28,5 +29,5 @@ Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.pin.html" c
 Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.html" completed
 Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.txt" completed
 Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.tr.html" completed
-Wed Sep 16 19:54:19 2026
+Thu Sep 17 21:49:36 2026
 
