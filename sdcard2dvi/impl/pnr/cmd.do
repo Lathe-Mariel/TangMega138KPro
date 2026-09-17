@@ -4,7 +4,7 @@
 -cst H:\git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst
 -cfg H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\device.cfg
 -sdc H:\git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.sdc
--gao_crc 0001001001111010
+-gao_crc 1101011100100111
 -bit
 -tr
 -ph

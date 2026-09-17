@@ -59,7 +59,7 @@
  ],
  "LoopLimit" : 2000,
  "ResultFile" : "H:/git/TangMega138KPro/sdcard2dvi/impl/temp/rtl_parser.result",
- "Top" : "",
+ "Top" : "top",
  "VerilogStd" : "sysv",
  "VhdlStd" : "vhdl_93"
 }

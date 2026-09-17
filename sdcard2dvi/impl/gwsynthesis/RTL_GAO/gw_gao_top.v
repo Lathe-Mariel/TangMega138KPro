@@ -6,12 +6,15 @@ module gw_gao(
     sd_dat2,
     sd_cs_n,
     DET_A,
-    \u_ddr3/init_calib_complete ,
     \u_sd_reader/state[4] ,
     \u_sd_reader/state[3] ,
     \u_sd_reader/state[2] ,
     \u_sd_reader/state[1] ,
     \u_sd_reader/state[0] ,
+    \u_sd_reader/rx_byte_ready ,
+    \u_sd_reader/byte_run ,
+    \u_sd_reader/byte_start ,
+    \u_ddr3/init_calib_complete ,
     clk,
     tms_pad_i,
     tck_pad_i,
@@ -26,12 +29,15 @@ input sd_dat1;
 input sd_dat2;
 input sd_cs_n;
 input DET_A;
-input \u_ddr3/init_calib_complete ;
 input \u_sd_reader/state[4] ;
 input \u_sd_reader/state[3] ;
 input \u_sd_reader/state[2] ;
 input \u_sd_reader/state[1] ;
 input \u_sd_reader/state[0] ;
+input \u_sd_reader/rx_byte_ready ;
+input \u_sd_reader/byte_run ;
+input \u_sd_reader/byte_start ;
+input \u_ddr3/init_calib_complete ;
 input clk;
 input tms_pad_i;
 input tck_pad_i;
@@ -45,12 +51,15 @@ wire sd_dat1;
 wire sd_dat2;
 wire sd_cs_n;
 wire DET_A;
-wire \u_ddr3/init_calib_complete ;
 wire \u_sd_reader/state[4] ;
 wire \u_sd_reader/state[3] ;
 wire \u_sd_reader/state[2] ;
 wire \u_sd_reader/state[1] ;
 wire \u_sd_reader/state[0] ;
+wire \u_sd_reader/rx_byte_ready ;
+wire \u_sd_reader/byte_run ;
+wire \u_sd_reader/byte_start ;
+wire \u_ddr3/init_calib_complete ;
 wire clk;
 wire tms_pad_i;
 wire tck_pad_i;
@@ -127,7 +136,8 @@ ao_top_0  u_la0_top(
     .control(control0[9:0]),
     .trig0_i(\u_ddr3/init_calib_complete ),
     .trig1_i({\u_sd_reader/state[4] ,\u_sd_reader/state[3] ,\u_sd_reader/state[2] ,\u_sd_reader/state[1] ,\u_sd_reader/state[0] }),
-    .data_i({sd_clk,sd_cmd,sd_dat,sd_dat1,sd_dat2,sd_cs_n,DET_A}),
+    .trig2_i({\u_sd_reader/state[4] ,\u_sd_reader/state[3] ,\u_sd_reader/state[2] ,\u_sd_reader/state[1] ,\u_sd_reader/state[0] }),
+    .data_i({sd_clk,sd_cmd,sd_dat,sd_dat1,sd_dat2,sd_cs_n,DET_A,\u_sd_reader/state[4] ,\u_sd_reader/state[3] ,\u_sd_reader/state[2] ,\u_sd_reader/state[1] ,\u_sd_reader/state[0] ,\u_sd_reader/rx_byte_ready ,\u_sd_reader/byte_run ,\u_sd_reader/byte_start }),
     .clk_i(clk)
 );
 
