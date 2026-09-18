@@ -12,27 +12,27 @@
   <Part Number>: GW5AST-LV138FPG676AC1/I0
   <Device>: GW5AST-138
   <Device Version>: B
-  <Created Time>:Fri Sep 18 19:57:25 2026
+  <Created Time>:Fri Sep 18 20:56:44 2026
 
 
 2. PnR Details
 
   Running placement:
-    Placement Phase 0: CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s
-    Placement Phase 1: CPU time = 0h 0m 0.523s, Elapsed time = 0h 0m 0.523s
-    Placement Phase 2: CPU time = 0h 0m 5s, Elapsed time = 0h 0m 5s
-    Placement Phase 3: CPU time = 0h 0m 15s, Elapsed time = 0h 0m 15s
-    Total Placement: CPU time = 0h 0m 24s, Elapsed time = 0h 0m 24s
+    Placement Phase 0: CPU time = 0h 0m 4s, Elapsed time = 0h 0m 4s
+    Placement Phase 1: CPU time = 0h 0m 0.607s, Elapsed time = 0h 0m 0.608s
+    Placement Phase 2: CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s
+    Placement Phase 3: CPU time = 0h 0m 17s, Elapsed time = 0h 0m 17s
+    Total Placement: CPU time = 0h 0m 27s, Elapsed time = 0h 0m 27s
  Running routing:
-    Routing Phase 0: CPU time = 0h 0m 0.547s, Elapsed time = 0h 0m 0.547s
-    Routing Phase 1: CPU time = 0h 0m 39s, Elapsed time = 0h 0m 39s
-    Routing Phase 2: CPU time = 0h 0m 0.225s, Elapsed time = 0h 0m 0.225s
+    Routing Phase 0: CPU time = 0h 0m 0.583s, Elapsed time = 0h 0m 0.584s
+    Routing Phase 1: CPU time = 0h 0m 33s, Elapsed time = 0h 0m 33s
+    Routing Phase 2: CPU time = 0h 0m 0.311s, Elapsed time = 0h 0m 0.311s
     Routing Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s
-    Total Routing: CPU time = 0h 0m 40s, Elapsed time = 0h 0m 40s
+    Total Routing: CPU time = 0h 0m 34s, Elapsed time = 0h 0m 34s
  Generate output files:
     CPU time = 0h 0m 11s, Elapsed time = 0h 0m 11s
 
- Total Time and Memory Usage: CPU time = 0h 1m 14s, Elapsed time = 0h 1m 14s, Peak memory usage = 1447MB
+ Total Time and Memory Usage: CPU time = 0h 1m 12s, Elapsed time = 0h 1m 12s, Peak memory usage = 1376MB
 
 
 3. Resource Usage Summary
@@ -40,15 +40,15 @@
   --------------------------------------------------------------------------------
   Resources                   | Usage                               | Utilization
   --------------------------------------------------------------------------------
-  Logic                       | 6330/138240                         |  5%
-    --LUT,ALU,ROM16           | 6330(5817 LUT, 513 ALU, 0 ROM16)    | -
+  Logic                       | 6115/138240                         |  5%
+    --LUT,ALU,ROM16           | 6115(5609 LUT, 506 ALU, 0 ROM16)    | -
     --SSRAM(RAM16)            | 0                                   | -
-  Register                    | 6741/139140                         |  5%
+  Register                    | 6692/139140                         |  5%
     --Logic Register as Latch | 0/138240                            |  0%
-    --Logic Register as FF    | 6741/138240                         |  5%
+    --Logic Register as FF    | 6692/138240                         |  5%
     --I/O Register as Latch   | 0/900                               |  0%
     --I/O Register as FF      | 0/900                               |  0%
-  CLS                         | 6080/69120                          |  9%
+  CLS                         | 5955/69120                          |  9%
   I/O Port                    | 103/312                             |  34%
   I/O Buf                     | 92                                  | -
     --Input Buf               | 7                                   | -
@@ -72,8 +72,8 @@
   --------------------------------------
   I/O Bank  | Usage       | Utilization 
   --------------------------------------
-  bank 2   | 8/50        | 16%         
-  bank 3   | 7/50        | 14%         
+  bank 2   | 10/50       | 20%         
+  bank 3   | 6/50        | 12%         
   bank 4   | 5/50        | 10%         
   bank 5   | 5/50        | 10%         
   bank 6   | 44/50       | 88%         
@@ -102,7 +102,7 @@
   -------------------------------------------
   Signal         | Global Clock   | Location
   -------------------------------------------
-  clk_d          | PRIMARY        |  PTR1 PTR2 PTR3 PBR1 PBR2 PBR3
+  clk_d          | PRIMARY        |  PTR2 PTR3 PBR1 PBR2 PBR3
   clk_5x         | PRIMARY        |  PTR3
   clk_pixel      | PRIMARY        |  PTR2 PTR3 PBR2
   memory_clk     | PRIMARY        |  PTR0 PBR0
@@ -180,7 +180,6 @@ state_led[2]       | -         | L20/3         | Y          | out   | IOR92[B] |
 state_led[3]       | -         | M25/3         | Y          | out   | IOR87[B] | D15             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 state_led[4]       | -         | N21/3         | Y          | out   | IOR80[A] | MGCLKT_3/RPLL2_T_FB1/RPLL3_T_FB1 | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 state_led[5]       | -         | N23/3         | Y          | out   | IOR76[A] | RDWR            | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
-fan                | -         | T22/3         | N          | out   | IOR56[A] | D19             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 WS2812             | -         | H16/5         | Y          | out   | IOB85[A] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 tdo_pad_o          | -         | J10/10        | N          | out   | IOB169[A] | TDO             | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 ddr_dq[0]          | -         | G4/6          | Y          | io    | IOL78[A] | SGCLKT_8/LPLL2_T_IN0/LPLL3_T_IN0 | SSTL15     | 12    | NONE      | OFF       | NONE       | OFF        | INTERNAL   | OFF             | OFF           | 1.5        | MEDIUM        | OFF          
@@ -455,8 +454,8 @@ V18/2    | -                  | in    | IOR4[A]  | -               | LVCMOS25 | 
 W18/2    | -                  | in    | IOR4[B]  | VREF            | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U15/2    | -                  | in    | IOR6[A]  | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U16/2    | -                  | in    | IOR6[B]  | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
-T17/2    | -                  | in    | IOR8[A]  | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
-T18/2    | -                  | in    | IOR8[B]  | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
+T17/2    | fan(p)             | out   | IOR8[A]  | -               | LVDS25   | 3.5   | NONE      | OFF       | OFF        | NONE       | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
+T18/2    | fan(n)             | out   | IOR8[B]  | -               | LVDS25   | 3.5   | NONE      | OFF       | OFF        | NONE       | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U14/2    | -                  | in    | IOR11[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 V14/2    | -                  | in    | IOR11[B] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 T14/2    | -                  | in    | IOR13[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
@@ -498,7 +497,7 @@ W26/2    | -                  | in    | IOR51[B] | -               | LVCMOS25 | 
 U25/2    | -                  | in    | IOR53[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U26/2    | -                  | in    | IOR53[B] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
 U24/2    | -                  | in    | IOR55[A] | -               | LVCMOS25 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 2.5   | MEDIUM        | NONE         
-T22/3    | fan                | out   | IOR56[A] | D19             | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+T22/3    | -                  | in    | IOR56[A] | D19             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 R22/3    | -                  | in    | IOR56[B] | D18             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 T24/3    | -                  | in    | IOR58[A] | CLKHOLD_N       | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 T25/3    | -                  | in    | IOR58[B] | D22             | LVCMOS33 | 8     | NONE      | OFF       | ON         | OFF        | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
