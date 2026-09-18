@@ -1,26 +1,20 @@
 // ============================================================================
 //  sd_reader.sv
-//  SDカード SPIモード ブロックリーダ (正しい初期化シーケンス版)
+//  SDカード SPIモード ブロックリーダ
+//  Sipeed TangMega-138KPro-example (audio_music) の sd_init / sd_read の
+//  動作実績あるロジックを参考に、1相クロック (50MHz) だけで実装した版。
 //
-//  【機能】
-//   ・SDカードを SPI モードに切替 (CMD0)
-//   ・初期化 (CMD8 → CMD55/ACMD41 ループ)
-//   ・CMD17 (READ_SINGLE_BLOCK) で 512バイトのブロックを読み出す
-//   ・読み出したバイトを data / data_valid で出力
+//  【タイミング】 SPIモード0 (CPOL=0, CPHA=0)
+//    MOSI 出力 : SPIクロックの立ち下がり (sp_fall) で更新
+//    MISO 受信 : SPIクロックの立ち上がり (sp_rise) でサンプル
 //
-//  【SPI シーケンス (SD規格準拠)】
-//    1. 電源投入後、CS=High で 74 クロック以上のダミー送出
-//    2. CS=Low
-//    3. CMD0 (CRC=0x95) → R1 = 0x01 を確認
-//    4. CMD8 (CRC=0x87) → R1 を確認
-//    5. CMD55 + ACMD41 を R1=0x00 (ready) になるまで繰り返す
-//    6. CMD17 → R1=0x00 → データトークン 0xFE → 512バイト + CRC2バイト
-//
-//  ※ SPIモード0 (CPOL=0, CPHA=0)
+//  【Sipeed版との対応】
+//    clk_ref の立ち上がり = sd_clk(180deg) の立ち下がり = 本実装の sp_fall
+//    clk_ref_180deg の立ち上がり = sd_clk の立ち上がり = 本実装の sp_rise
 // ============================================================================
 module sd_reader #(
     parameter int SYS_CLK_HZ  = 50_000_000,
-    parameter int INIT_SPI_HZ = 400_000,      // 初期化時 SPI クロック (<400kHz)
+    parameter int INIT_SPI_HZ = 400_000,      // 初期化時 SPI クロック
     parameter int DATA_SPI_HZ = 10_000_000    // データ転送時 SPI クロック
 ) (
     input  logic        clk,
@@ -40,42 +34,15 @@ module sd_reader #(
     output logic [7:0]  data,
     output logic        data_valid,
     output logic        busy,
-    output logic        init_done,  // 初期化完了フラグ (デバッグ用)
-    output logic [2:0]  debug_stage // 現在の初期化フェーズ (デバッグ用)
+    output logic        init_done,  // 初期化完了フラグ
+    output logic [2:0]  debug_stage // 初期化フェーズ
 );
 
     // ========================================================================
-    // 状態定義
+    // SPI クロック生成 (フリーラン分周)
     // ========================================================================
-    typedef enum logic [4:0] {
-        ST_POWER_DELAY,   // 電源投入ディレイ
-        ST_DUMMY_CLK,     // 74+ ダミークロック (CS=High)
-        ST_CMD0_SEND,     // CMD0 送信
-        ST_CMD0_RESP,     // CMD0 R1 受信
-        ST_CMD8_SEND,     // CMD8 送信
-        ST_CMD8_RESP,     // CMD8 R1 受信
-        ST_CMD8_ARG,      // CMD8 R7 の残り4バイト読捨て
-        ST_ACMD55_SEND,   // CMD55 送信
-        ST_ACMD55_RESP,   // CMD55 R1 受信
-        ST_ACMD41_SEND,   // ACMD41 送信
-        ST_ACMD41_RESP,   // ACMD41 R1 受信
-        ST_INIT_DONE,     // 初期化完了
-        ST_IDLE,          // 待機
-        ST_CMD17_SEND,    // CMD17 送信
-        ST_CMD17_RESP,    // CMD17 R1 受信
-        ST_WAIT_TOKEN,    // データトークン 0xFE 待ち
-        ST_READ_DATA,     // 512バイト読み出し
-        ST_READ_CRC       // CRC2バイト読捨て
-    } state_t;
-
-    state_t state;
-    state_t ret_state;
-
-    // ========================================================================
-    // SPI クロック生成 (分周)
-    // ========================================================================
-    localparam int INIT_DIV = SYS_CLK_HZ / INIT_SPI_HZ / 2;
-    localparam int DATA_DIV = SYS_CLK_HZ / DATA_SPI_HZ / 2;
+    localparam int INIT_DIV = SYS_CLK_HZ / INIT_SPI_HZ / 2;   // 62
+    localparam int DATA_DIV = SYS_CLK_HZ / DATA_SPI_HZ / 2;   // 2
 
     logic [15:0] div_cnt;
     logic        fast_clk;
@@ -93,17 +60,11 @@ module sd_reader #(
             sp_clk_prev <= 1'b0;
         end else begin
             sp_clk_prev <= sp_clk;
-            // SPIクロックはバイト転送中のみトグル (正しいSPIマスタ動作)
-            if (byte_run) begin
-                if (div_cnt >= div_target - 1) begin
-                    div_cnt <= 16'd0;
-                    sp_clk  <= ~sp_clk;
-                end else begin
-                    div_cnt <= div_cnt + 16'd1;
-                end
-            end else begin
+            if (div_cnt >= div_target - 1) begin
                 div_cnt <= 16'd0;
-                sp_clk  <= 1'b0;
+                sp_clk  <= ~sp_clk;
+            end else begin
+                div_cnt <= div_cnt + 16'd1;
             end
         end
     end
@@ -113,343 +74,371 @@ module sd_reader #(
     assign sd_clk  = sp_clk;
 
     // ========================================================================
-    // SPI バイト転送
+    // 状態定義
     // ========================================================================
-    logic        byte_run;
-    logic [7:0]  tx_sr;
-    logic [7:0]  rx_sr;
-    logic [2:0]  bit_cnt;
-    logic [7:0]  rx_byte;
-    logic        rx_byte_ready;
+    typedef enum logic [3:0] {
+        ST_IDLE,           // 上電安定待ち
+        ST_SEND_CMD0,      // CMD0 送信
+        ST_WAIT_CMD0,      // CMD0 応答待ち
+        ST_SEND_CMD8,      // CMD8 送信
+        ST_WAIT_CMD8,      // CMD8 応答待ち
+        ST_SEND_CMD55,     // CMD55 送信
+        ST_WAIT_CMD55,     // CMD55 応答待ち
+        ST_SEND_ACMD41,    // ACMD41 送信
+        ST_WAIT_ACMD41,    // ACMD41 応答待ち
+        ST_INIT_DONE,      // 初期化完了
+        ST_RD_IDLE,        // 読み出し待機
+        ST_RD_SEND_CMD17,  // CMD17 送信
+        ST_RD_WAIT_CMD17,  // CMD17 応答待ち
+        ST_RD_WAIT_TOKEN,  // データトークン待ち
+        ST_RD_DATA,        // データ読み出し
+        ST_RD_CRC          // CRC 読捨て
+    } state_t;
 
-    logic        byte_start;
-    logic [7:0]  byte_tx;
+    state_t state;
+
+    // コマンド定義 (48bit)
+    localparam logic [47:0] CMD0   = {8'h40, 8'h00, 8'h00, 8'h00, 8'h00, 8'h95};
+    localparam logic [47:0] CMD8   = {8'h48, 8'h00, 8'h00, 8'h01, 8'hAA, 8'h87};
+    localparam logic [47:0] CMD55  = {8'h77, 8'h00, 8'h00, 8'h00, 8'h00, 8'hFF};
+    localparam logic [47:0] ACMD41 = {8'h69, 8'h40, 8'h00, 8'h00, 8'h00, 8'hFF};
+
+    logic [47:0] cmd_rd;   // CMD17 用 (アドレス可変)
+    logic [47:0] cur_cmd;  // 現在送信中のコマンド
+
+    always_comb begin
+        case (state)
+            ST_SEND_CMD0:    cur_cmd = CMD0;
+            ST_SEND_CMD8:    cur_cmd = CMD8;
+            ST_SEND_CMD55:   cur_cmd = CMD55;
+            ST_SEND_ACMD41:  cur_cmd = ACMD41;
+            ST_RD_SEND_CMD17: cur_cmd = cmd_rd;
+            default:         cur_cmd = 48'hFFFFFFFFFFFF;
+        endcase
+    end
+
+    // ========================================================================
+    // コマンド送信: sp_fall (SPIクロック立ち下がり) で 1ビットずつ MSB から送信
+    // ========================================================================
+    logic        send_active;
+    logic [5:0]  cmd_bit_cnt;
+    logic        cmd_sent;      // 48ビット送信完了パルス
+    logic        sd_mosi;
+
+    always_comb begin
+        send_active = (state == ST_SEND_CMD0)  || (state == ST_SEND_CMD8) ||
+                      (state == ST_SEND_CMD55) || (state == ST_SEND_ACMD41) ||
+                      (state == ST_RD_SEND_CMD17);
+    end
+
+    assign sd_cmd = sd_mosi;
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            byte_run      <= 1'b0;
-            tx_sr         <= 8'hFF;
-            rx_sr         <= 8'h00;
-            bit_cnt       <= 3'd0;
-            rx_byte       <= 8'h00;
+            cmd_bit_cnt <= 6'd0;
+            sd_mosi     <= 1'b1;
+            cmd_sent    <= 1'b0;
+        end else begin
+            cmd_sent <= 1'b0;
+            if (send_active) begin
+                if (sp_fall) begin
+                    sd_mosi <= cur_cmd[47 - cmd_bit_cnt];
+                    if (cmd_bit_cnt == 6'd47) begin
+                        cmd_bit_cnt <= 6'd0;
+                        cmd_sent    <= 1'b1;
+                    end else begin
+                        cmd_bit_cnt <= cmd_bit_cnt + 6'd1;
+                    end
+                end
+            end else begin
+                sd_mosi     <= 1'b1;
+                cmd_bit_cnt <= 6'd0;
+            end
+        end
+    end
+
+    // ========================================================================
+    // MISO 受信: sp_rise でサンプル。スタートビット(0)検出でバイト境界を合わせる
+    // ========================================================================
+    logic        rx_flag;
+    logic [2:0]  rx_bit_cnt;
+    logic [7:0]  rx_sr;
+    logic [7:0]  rx_byte;
+    logic        rx_byte_ready;
+    logic        r1_mode;    // 1=R1応答(スタートビット検出), 0=データ(連続8bit)
+
+    always_comb begin
+        r1_mode = (state == ST_WAIT_CMD0)  || (state == ST_WAIT_CMD8) ||
+                  (state == ST_WAIT_CMD55) || (state == ST_WAIT_ACMD41) ||
+                  (state == ST_RD_WAIT_CMD17);
+    end
+
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            rx_flag       <= 1'b0;
+            rx_bit_cnt    <= 3'd0;
+            rx_sr         <= 8'd0;
+            rx_byte       <= 8'd0;
             rx_byte_ready <= 1'b0;
         end else begin
             rx_byte_ready <= 1'b0;
-
-            if (!byte_run && byte_start) begin
-                // バイト転送開始: 送信バイトをロード
-                byte_run <= 1'b1;
-                tx_sr    <= tx_actual;
-                rx_sr    <= 8'h00;
-                bit_cnt  <= 3'd0;
-            end else if (byte_run) begin
-                if (sp_fall) begin
-                    // 立ち下がり: シフト (次のビットが MSB に出る)
-                    tx_sr <= {tx_sr[6:0], 1'b1};
-                end
-                if (sp_rise) begin
-                    // 立ち上がり: MISO サンプル
-                    if (bit_cnt == 3'd7) begin
-                        byte_run      <= 1'b0;
+            if (sp_rise) begin
+                if (!rx_flag) begin
+                    if (r1_mode) begin
+                        // スタートビット (MISO=0) を待つ (カウントしない)
+                        if (sd_dat == 1'b0) begin
+                            rx_flag    <= 1'b1;
+                            rx_sr      <= 8'd0;
+                            rx_bit_cnt <= 3'd0;
+                        end
+                    end else begin
+                        // データモード: 連続 8bit (スタートビットなし)
+                        rx_flag    <= 1'b1;
+                        rx_sr      <= {7'b0, sd_dat};
+                        rx_bit_cnt <= 3'd1;
+                    end
+                end else begin
+                    // 8データビット受信
+                    rx_sr <= {rx_sr[6:0], sd_dat};
+                    if (rx_bit_cnt == 3'd7) begin
                         rx_byte       <= {rx_sr[6:0], sd_dat};
                         rx_byte_ready <= 1'b1;
+                        rx_flag       <= 1'b0;
+                        rx_bit_cnt    <= 3'd0;
                     end else begin
-                        rx_sr   <= {rx_sr[6:0], sd_dat};
-                        bit_cnt <= bit_cnt + 3'd1;
+                        rx_bit_cnt <= rx_bit_cnt + 3'd1;
                     end
                 end
             end
         end
     end
 
-    // MOSI はシフトレジスタの MSB を組み合わせ出力 (アイドル時は High)
-    assign sd_cmd = tx_sr[7];
-
     // ========================================================================
-    // コマンド生成
+    // メイン状態機械 (50MHz クロックドメイン)
     // ========================================================================
-    logic [2:0]  byte_idx;
-    logic [7:0]  cmd_byte0;
-    logic [7:0]  cmd_crc;
-    logic [31:0] cmd_arg;
-    logic [5:0]  cmd_index;
-
-    // 送信バイト決定
-    always_comb begin
-        case (byte_idx)
-            3'd0: byte_tx = cmd_byte0;
-            3'd1: byte_tx = cmd_arg[31:24];
-            3'd2: byte_tx = cmd_arg[23:16];
-            3'd3: byte_tx = cmd_arg[15:8];
-            3'd4: byte_tx = cmd_arg[7:0];
-            default: byte_tx = cmd_crc;
-        endcase
-    end
-
-    // 応答受信時 / ダミークロック時は 0xFF を送る
-    logic resp_phase;
-    always_comb begin
-        resp_phase = 1'b0;
-        case (state)
-            ST_DUMMY_CLK,
-            ST_CMD0_RESP, ST_CMD8_RESP, ST_ACMD55_RESP, ST_ACMD41_RESP,
-            ST_CMD17_RESP, ST_WAIT_TOKEN, ST_READ_DATA, ST_READ_CRC:
-                resp_phase = 1'b1;
-            default: resp_phase = 1'b0;
-        endcase
-    end
-
-    // 実際の送信バイト: 応答受信中は 0xFF
-    logic [7:0] tx_actual;
-    assign tx_actual = resp_phase ? 8'hFF : byte_tx;
-
-    // 各状態のコマンド
-    always_comb begin
-        cmd_index = 6'd0;
-        cmd_arg   = 32'h0;
-        cmd_crc   = 8'hFF;
-        case (state)
-            ST_CMD0_SEND:   begin cmd_index = 6'd0;  cmd_arg = 32'h00000000; cmd_crc = 8'h95; end
-            ST_CMD8_SEND:   begin cmd_index = 6'd8;  cmd_arg = 32'h000001AA; cmd_crc = 8'h87; end
-            ST_ACMD55_SEND: begin cmd_index = 6'd55; cmd_arg = 32'h00000000; cmd_crc = 8'h65; end
-            ST_ACMD41_SEND: begin cmd_index = 6'd41; cmd_arg = 32'h40000000; cmd_crc = 8'h77; end
-            ST_CMD17_SEND:  begin cmd_index = 6'd17; cmd_arg = block_addr;   cmd_crc = 8'hFF; end
-            default:        begin cmd_index = 6'd0;  cmd_arg = 32'h0;        cmd_crc = 8'hFF; end
-        endcase
-        cmd_byte0 = {2'b01, cmd_index};
-    end
-
-    // ========================================================================
-    // メイン状態機械
-    // ========================================================================
-    logic [23:0] timer;
-    logic [9:0]  data_cnt;
+    logic [7:0]  poweron_cnt;
+    logic [23:0] over_time_cnt;
     logic [7:0]  acmd41_tries;
+    logic [9:0]  data_cnt;
+    logic [9:0]  crc_cnt;
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            state       <= ST_POWER_DELAY;
-            timer       <= 24'd0;
-            byte_idx    <= 3'd0;
-            byte_start  <= 1'b0;
-            data_cnt    <= 10'd0;
-            acmd41_tries<= 8'd0;
-            data        <= 8'h00;
-            data_valid  <= 1'b0;
-            busy        <= 1'b1;
-            fast_clk    <= 1'b0;
-            init_done   <= 1'b0;
+            state         <= ST_IDLE;
+            poweron_cnt   <= 8'd0;
+            over_time_cnt <= 24'd0;
+            acmd41_tries  <= 8'd0;
+            data_cnt      <= 10'd0;
+            crc_cnt       <= 10'd0;
+            sd_cs_n       <= 1'b1;
+            cmd_rd        <= 48'd0;
+            data          <= 8'h00;
+            data_valid    <= 1'b0;
+            busy          <= 1'b1;
+            fast_clk      <= 1'b0;
+            init_done     <= 1'b0;
         end else begin
-            byte_start <= 1'b0;
             data_valid <= 1'b0;
 
+            if (poweron_cnt < 8'd80)
+                poweron_cnt <= poweron_cnt + 8'd1;
+
             case (state)
-
-                ST_POWER_DELAY: begin
-                    if (timer >= 24'd1_000_000) begin
-                        state <= ST_DUMMY_CLK;
-                        timer <= 24'd0;
-                    end else
-                        timer <= timer + 24'd1;
+                // ---- 上電安定待ち ----
+                ST_IDLE: begin
+                    sd_cs_n <= 1'b1;
+                    if (poweron_cnt >= 8'd80)
+                        state <= ST_SEND_CMD0;
                 end
 
-                // 74+ ダミークロック (CS=High のまま 0xFF を10バイト = 80クロック)
-                ST_DUMMY_CLK: begin
-                    if (rx_byte_ready)
-                        byte_idx <= byte_idx + 3'd1;
-                    else if (byte_idx < 3'd6) begin
-                        if (!byte_run && !byte_start)
-                            byte_start <= 1'b1;
-                    end else begin
-                        byte_idx <= 3'd0;
-                        state    <= ST_CMD0_SEND;
+                // ---- CMD0 送信 / 応答待ち ----
+                ST_SEND_CMD0: begin
+                    sd_cs_n <= 1'b0;
+                    if (cmd_sent) begin
+                        state         <= ST_WAIT_CMD0;
+                        over_time_cnt <= 24'd0;
                     end
                 end
 
-                // --- コマンド6バイト送信 (共通) ---
-                ST_CMD0_SEND, ST_CMD8_SEND, ST_ACMD55_SEND, ST_ACMD41_SEND, ST_CMD17_SEND: begin
-                    if (rx_byte_ready)
-                        byte_idx <= byte_idx + 3'd1;
-                    else if (byte_idx < 3'd6) begin
-                        if (!byte_run && !byte_start)
-                            byte_start <= 1'b1;
-                    end else begin
-                        byte_idx <= 3'd0;
-                        state    <= ret_state;
-                    end
-                end
-
-                // --- R1 レスポンス受信 (0xFF を送って R1 を読む) ---
-                //   0xFF は busy インジケータなので無視して待ち続ける
-                ST_CMD0_RESP: begin
+                ST_WAIT_CMD0: begin
                     if (rx_byte_ready) begin
-                        if (rx_byte == 8'hFF) begin
-                            // busy: 待ち続ける
-                        end else if (rx_byte == 8'h01)
-                            state <= ST_CMD8_SEND;
+                        sd_cs_n <= 1'b1;
+                        if (rx_byte == 8'h01)
+                            state <= ST_SEND_CMD8;
                         else
-                            state <= ST_CMD0_SEND;
-                    end else if (!byte_run && !byte_start)
-                        byte_start <= 1'b1;
+                            state <= ST_SEND_CMD0;
+                    end else if (over_time_cnt >= 24'd5_000_000) begin
+                        state <= ST_SEND_CMD0;
+                    end else
+                        over_time_cnt <= over_time_cnt + 24'd1;
                 end
 
-                ST_CMD8_RESP: begin
-                    if (rx_byte_ready) begin
-                        if (rx_byte == 8'hFF) begin
-                            // busy: 待ち続ける
-                        end else begin
-                            byte_idx <= 3'd0;
-                            state    <= ST_CMD8_ARG;
-                        end
-                    end else if (!byte_run && !byte_start)
-                        byte_start <= 1'b1;
-                end
-
-                ST_CMD8_ARG: begin
-                    if (rx_byte_ready)
-                        byte_idx <= byte_idx + 3'd1;
-                    else if (byte_idx < 3'd4) begin
-                        if (!byte_run && !byte_start)
-                            byte_start <= 1'b1;
-                    end else begin
-                        byte_idx <= 3'd0;
-                        state    <= ST_ACMD55_SEND;
+                // ---- CMD8 送信 / 応答待ち ----
+                ST_SEND_CMD8: begin
+                    sd_cs_n <= 1'b0;
+                    if (cmd_sent) begin
+                        state         <= ST_WAIT_CMD8;
+                        over_time_cnt <= 24'd0;
                     end
                 end
 
-                ST_ACMD55_RESP: begin
+                ST_WAIT_CMD8: begin
                     if (rx_byte_ready) begin
-                        if (rx_byte != 8'hFF)   // busy を無視
-                            state <= ST_ACMD41_SEND;
-                    end else if (!byte_run && !byte_start)
-                        byte_start <= 1'b1;
+                        sd_cs_n <= 1'b1;
+                        state    <= ST_SEND_CMD55;
+                    end else if (over_time_cnt >= 24'd5_000_000) begin
+                        state <= ST_SEND_CMD8;
+                    end else
+                        over_time_cnt <= over_time_cnt + 24'd1;
                 end
 
-                ST_ACMD41_RESP: begin
+                // ---- CMD55 送信 / 応答待ち ----
+                ST_SEND_CMD55: begin
+                    sd_cs_n <= 1'b0;
+                    if (cmd_sent) begin
+                        state         <= ST_WAIT_CMD55;
+                        over_time_cnt <= 24'd0;
+                    end
+                end
+
+                ST_WAIT_CMD55: begin
                     if (rx_byte_ready) begin
-                        // どんな応答でもリトライ (0x00=ready, 0x01=in idle, 0xFF=busy)
+                        sd_cs_n <= 1'b1;
+                        state    <= ST_SEND_ACMD41;
+                    end else if (over_time_cnt >= 24'd5_000_000) begin
+                        state <= ST_SEND_CMD55;
+                    end else
+                        over_time_cnt <= over_time_cnt + 24'd1;
+                end
+
+                // ---- ACMD41 送信 / 応答待ち ----
+                ST_SEND_ACMD41: begin
+                    sd_cs_n <= 1'b0;
+                    if (cmd_sent) begin
+                        state         <= ST_WAIT_ACMD41;
+                        over_time_cnt <= 24'd0;
+                    end
+                end
+
+                ST_WAIT_ACMD41: begin
+                    if (rx_byte_ready) begin
+                        sd_cs_n <= 1'b1;
                         if (rx_byte == 8'h00) begin
                             state <= ST_INIT_DONE;
                         end else begin
                             if (acmd41_tries >= 8'd255) begin
-                                // 諦めて進む (カード不応答でも読み出しを試す)
                                 state <= ST_INIT_DONE;
                             end else begin
                                 acmd41_tries <= acmd41_tries + 8'd1;
-                                state        <= ST_ACMD55_SEND;   // 再試行
+                                state        <= ST_SEND_CMD55;
                             end
                         end
-                    end else if (!byte_run && !byte_start)
-                        byte_start <= 1'b1;
+                    end else if (over_time_cnt >= 24'd5_000_000) begin
+                        state <= ST_SEND_CMD55;
+                    end else
+                        over_time_cnt <= over_time_cnt + 24'd1;
                 end
 
+                // ---- 初期化完了 → 読み出し待機 ----
                 ST_INIT_DONE: begin
                     fast_clk  <= 1'b1;
                     busy      <= 1'b0;
                     init_done <= 1'b1;
-                    state     <= ST_IDLE;
+                    sd_cs_n   <= 1'b1;
+                    state     <= ST_RD_IDLE;
                 end
 
-                ST_IDLE: begin
+                ST_RD_IDLE: begin
+                    sd_cs_n <= 1'b1;
                     if (read_req) begin
-                        busy     <= 1'b1;
-                        byte_idx <= 3'd0;
-                        state    <= ST_CMD17_SEND;
+                        cmd_rd <= {8'h51, block_addr, 8'hFF};
+                        busy   <= 1'b1;
+                        state  <= ST_RD_SEND_CMD17;
                     end
                 end
 
-                ST_CMD17_RESP: begin
+                // ---- CMD17 送信 / 応答待ち ----
+                ST_RD_SEND_CMD17: begin
+                    sd_cs_n <= 1'b0;
+                    if (cmd_sent) begin
+                        state         <= ST_RD_WAIT_CMD17;
+                        over_time_cnt <= 24'd0;
+                    end
+                end
+
+                ST_RD_WAIT_CMD17: begin
                     if (rx_byte_ready) begin
-                        if (rx_byte == 8'hFF) begin
-                            // busy: 待ち続ける
-                        end else if (rx_byte == 8'h00)
-                            state <= ST_WAIT_TOKEN;
-                        else
-                            state <= ST_IDLE;
-                    end else if (!byte_run && !byte_start)
-                        byte_start <= 1'b1;
-                end
-
-                ST_WAIT_TOKEN: begin
-                    if (rx_byte_ready && rx_byte == 8'hFE) begin
-                        data_cnt <= 10'd0;
-                        state    <= ST_READ_DATA;
-                    end else begin
-                        if (!byte_run && !byte_start)
-                            byte_start <= 1'b1;
-                        if (timer >= 24'd100_000) begin
-                            state <= ST_IDLE;
+                        sd_cs_n <= 1'b1;
+                        if (rx_byte == 8'h00) begin
+                            state         <= ST_RD_WAIT_TOKEN;
+                            over_time_cnt <= 24'd0;
+                        end else begin
+                            state <= ST_RD_IDLE;
                             busy  <= 1'b0;
-                        end else if (rx_byte_ready)
-                            timer <= timer + 24'd1;
-                    end
+                        end
+                    end else if (over_time_cnt >= 24'd5_000_000) begin
+                        state <= ST_RD_IDLE;
+                        busy  <= 1'b0;
+                    end else
+                        over_time_cnt <= over_time_cnt + 24'd1;
                 end
 
-                ST_READ_DATA: begin
+                // ---- データトークン 0xFE 待ち ----
+                ST_RD_WAIT_TOKEN: begin
+                    if (rx_byte_ready) begin
+                        if (rx_byte == 8'hFE) begin
+                            data_cnt <= 10'd0;
+                            state    <= ST_RD_DATA;
+                        end
+                    end else if (over_time_cnt >= 24'd5_000_000) begin
+                        state <= ST_RD_IDLE;
+                        busy  <= 1'b0;
+                    end else
+                        over_time_cnt <= over_time_cnt + 24'd1;
+                end
+
+                // ---- データ読み出し (512バイト) ----
+                ST_RD_DATA: begin
                     if (rx_byte_ready) begin
                         data       <= rx_byte;
                         data_valid <= 1'b1;
                         if (data_cnt == 10'd511) begin
                             data_cnt <= 10'd0;
-                            state    <= ST_READ_CRC;
+                            crc_cnt  <= 10'd0;
+                            state    <= ST_RD_CRC;
                         end else
                             data_cnt <= data_cnt + 10'd1;
-                    end else if (!byte_run && !byte_start)
-                        byte_start <= 1'b1;
+                    end
                 end
 
-                ST_READ_CRC: begin
+                // ---- CRC 2バイト読捨て ----
+                ST_RD_CRC: begin
                     if (rx_byte_ready) begin
-                        if (data_cnt == 10'd1) begin
-                            state <= ST_IDLE;
-                            busy  <= 1'b0;
+                        if (crc_cnt == 10'd1) begin
+                            sd_cs_n <= 1'b1;
+                            busy    <= 1'b0;
+                            state   <= ST_RD_IDLE;
                         end else
-                            data_cnt <= data_cnt + 10'd1;
-                    end else if (!byte_run && !byte_start)
-                        byte_start <= 1'b1;
+                            crc_cnt <= crc_cnt + 10'd1;
+                    end
                 end
 
-                default: state <= ST_POWER_DELAY;
+                default: state <= ST_IDLE;
             endcase
         end
     end
 
     // ========================================================================
-    // 戻り先状態の決定
-    // ========================================================================
-    always_comb begin
-        ret_state = ST_IDLE;
-        case (state)
-            ST_CMD0_SEND:   ret_state = ST_CMD0_RESP;
-            ST_CMD8_SEND:   ret_state = ST_CMD8_RESP;
-            ST_ACMD55_SEND: ret_state = ST_ACMD55_RESP;
-            ST_ACMD41_SEND: ret_state = ST_ACMD41_RESP;
-            ST_CMD17_SEND:  ret_state = ST_CMD17_RESP;
-            default:        ret_state = ST_IDLE;
-        endcase
-    end
-
-    // ========================================================================
-    // チップセレクト: 初期化開始後は Low を維持
-    // ========================================================================
-    assign sd_cs_n = (state == ST_POWER_DELAY || state == ST_DUMMY_CLK) ? 1'b1 : 1'b0;
-
-    // ========================================================================
-    // デバッグ: 現在の初期化フェーズを 3bit で出力
-    //   0: POWER_DELAY / DUMMY_CLK
-    //   1: CMD0
-    //   2: CMD8
-    //   3: ACMD55/ACMD41 (ループ中)
-    //   4: INIT_DONE 以降
+    // デバッグフェーズ出力
     // ========================================================================
     always_comb begin
         case (state)
-            ST_POWER_DELAY, ST_DUMMY_CLK: debug_stage = 3'd0;
-            ST_CMD0_SEND, ST_CMD0_RESP:   debug_stage = 3'd1;
-            ST_CMD8_SEND, ST_CMD8_RESP, ST_CMD8_ARG: debug_stage = 3'd2;
-            ST_ACMD55_SEND, ST_ACMD55_RESP, ST_ACMD41_SEND, ST_ACMD41_RESP:
-                                           debug_stage = 3'd3;
-            default:                       debug_stage = 3'd4;
+            ST_IDLE:                              debug_stage = 3'd0;
+            ST_SEND_CMD0, ST_WAIT_CMD0:           debug_stage = 3'd1;
+            ST_SEND_CMD8, ST_WAIT_CMD8:           debug_stage = 3'd2;
+            ST_SEND_CMD55, ST_WAIT_CMD55,
+            ST_SEND_ACMD41, ST_WAIT_ACMD41:       debug_stage = 3'd3;
+            default:                              debug_stage = 3'd4;
         endcase
     end
 

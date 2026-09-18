@@ -67,12 +67,12 @@ module top (
     input wire sw0,
     input wire sw1,
     output wire fan,
-    output wire led_color,
-    input wire DET_A
+    input wire DET_A,
+    output wire WS2812
 );
 
-assign fan = 0;
-assign led_color = 0;
+assign fan = block_cnt[11];
+assign WS2812 = 1;
 
 // SDカード SPIモードでは DAT1/DAT2 は未使用のため High に固定する
 assign sd_dat1 = 1'b1;
