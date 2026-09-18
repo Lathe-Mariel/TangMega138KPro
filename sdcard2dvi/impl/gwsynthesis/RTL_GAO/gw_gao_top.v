@@ -1,11 +1,7 @@
 module gw_gao(
-    sd_clk,
     sd_cmd,
     sd_dat,
-    sd_dat1,
-    sd_dat2,
     sd_cs_n,
-    DET_A,
     \u_sd_reader/rx_byte_ready ,
     \u_sd_reader/state[3] ,
     \u_sd_reader/state[2] ,
@@ -21,6 +17,27 @@ module gw_gao(
     \u_sd_reader/rx_byte[2] ,
     \u_sd_reader/rx_byte[1] ,
     \u_sd_reader/rx_byte[0] ,
+    \u_sd_reader/data_mode ,
+    \u_sd_reader/r1_mode ,
+    \u_sd_reader/rx_sr[7] ,
+    \u_sd_reader/rx_sr[6] ,
+    \u_sd_reader/rx_sr[5] ,
+    \u_sd_reader/rx_sr[4] ,
+    \u_sd_reader/rx_sr[3] ,
+    \u_sd_reader/rx_sr[2] ,
+    \u_sd_reader/rx_sr[1] ,
+    \u_sd_reader/rx_sr[0] ,
+    \u_sd_reader/rx_flag ,
+    \u_sd_reader/rx_bit_cnt[2] ,
+    \u_sd_reader/rx_bit_cnt[1] ,
+    \u_sd_reader/rx_bit_cnt[0] ,
+    \u_sd_reader/cmd_bit_cnt[5] ,
+    \u_sd_reader/cmd_bit_cnt[4] ,
+    \u_sd_reader/cmd_bit_cnt[3] ,
+    \u_sd_reader/cmd_bit_cnt[2] ,
+    \u_sd_reader/cmd_bit_cnt[1] ,
+    \u_sd_reader/cmd_bit_cnt[0] ,
+    \u_sd_reader/send_active ,
     \u_ddr3/init_calib_complete ,
     clk,
     tms_pad_i,
@@ -29,13 +46,9 @@ module gw_gao(
     tdo_pad_o
 );
 
-input sd_clk;
 input sd_cmd;
 input sd_dat;
-input sd_dat1;
-input sd_dat2;
 input sd_cs_n;
-input DET_A;
 input \u_sd_reader/rx_byte_ready ;
 input \u_sd_reader/state[3] ;
 input \u_sd_reader/state[2] ;
@@ -51,6 +64,27 @@ input \u_sd_reader/rx_byte[3] ;
 input \u_sd_reader/rx_byte[2] ;
 input \u_sd_reader/rx_byte[1] ;
 input \u_sd_reader/rx_byte[0] ;
+input \u_sd_reader/data_mode ;
+input \u_sd_reader/r1_mode ;
+input \u_sd_reader/rx_sr[7] ;
+input \u_sd_reader/rx_sr[6] ;
+input \u_sd_reader/rx_sr[5] ;
+input \u_sd_reader/rx_sr[4] ;
+input \u_sd_reader/rx_sr[3] ;
+input \u_sd_reader/rx_sr[2] ;
+input \u_sd_reader/rx_sr[1] ;
+input \u_sd_reader/rx_sr[0] ;
+input \u_sd_reader/rx_flag ;
+input \u_sd_reader/rx_bit_cnt[2] ;
+input \u_sd_reader/rx_bit_cnt[1] ;
+input \u_sd_reader/rx_bit_cnt[0] ;
+input \u_sd_reader/cmd_bit_cnt[5] ;
+input \u_sd_reader/cmd_bit_cnt[4] ;
+input \u_sd_reader/cmd_bit_cnt[3] ;
+input \u_sd_reader/cmd_bit_cnt[2] ;
+input \u_sd_reader/cmd_bit_cnt[1] ;
+input \u_sd_reader/cmd_bit_cnt[0] ;
+input \u_sd_reader/send_active ;
 input \u_ddr3/init_calib_complete ;
 input clk;
 input tms_pad_i;
@@ -58,13 +92,9 @@ input tck_pad_i;
 input tdi_pad_i;
 output tdo_pad_o;
 
-wire sd_clk;
 wire sd_cmd;
 wire sd_dat;
-wire sd_dat1;
-wire sd_dat2;
 wire sd_cs_n;
-wire DET_A;
 wire \u_sd_reader/rx_byte_ready ;
 wire \u_sd_reader/state[3] ;
 wire \u_sd_reader/state[2] ;
@@ -80,6 +110,27 @@ wire \u_sd_reader/rx_byte[3] ;
 wire \u_sd_reader/rx_byte[2] ;
 wire \u_sd_reader/rx_byte[1] ;
 wire \u_sd_reader/rx_byte[0] ;
+wire \u_sd_reader/data_mode ;
+wire \u_sd_reader/r1_mode ;
+wire \u_sd_reader/rx_sr[7] ;
+wire \u_sd_reader/rx_sr[6] ;
+wire \u_sd_reader/rx_sr[5] ;
+wire \u_sd_reader/rx_sr[4] ;
+wire \u_sd_reader/rx_sr[3] ;
+wire \u_sd_reader/rx_sr[2] ;
+wire \u_sd_reader/rx_sr[1] ;
+wire \u_sd_reader/rx_sr[0] ;
+wire \u_sd_reader/rx_flag ;
+wire \u_sd_reader/rx_bit_cnt[2] ;
+wire \u_sd_reader/rx_bit_cnt[1] ;
+wire \u_sd_reader/rx_bit_cnt[0] ;
+wire \u_sd_reader/cmd_bit_cnt[5] ;
+wire \u_sd_reader/cmd_bit_cnt[4] ;
+wire \u_sd_reader/cmd_bit_cnt[3] ;
+wire \u_sd_reader/cmd_bit_cnt[2] ;
+wire \u_sd_reader/cmd_bit_cnt[1] ;
+wire \u_sd_reader/cmd_bit_cnt[0] ;
+wire \u_sd_reader/send_active ;
 wire \u_ddr3/init_calib_complete ;
 wire clk;
 wire tms_pad_i;
@@ -157,7 +208,7 @@ ao_top_0  u_la0_top(
     .control(control0[9:0]),
     .trig0_i(\u_ddr3/init_calib_complete ),
     .trig2_i({\u_sd_reader/state[3] ,\u_sd_reader/state[2] ,\u_sd_reader/state[1] ,\u_sd_reader/state[0] }),
-    .data_i({sd_clk,sd_cmd,sd_dat,sd_dat1,sd_dat2,sd_cs_n,DET_A,\u_sd_reader/rx_byte_ready ,\u_sd_reader/state[3] ,\u_sd_reader/state[2] ,\u_sd_reader/state[1] ,\u_sd_reader/state[0] ,\u_sd_reader/cmd_sent ,\u_sd_reader/read_req ,\u_sd_reader/rx_byte[7] ,\u_sd_reader/rx_byte[6] ,\u_sd_reader/rx_byte[5] ,\u_sd_reader/rx_byte[4] ,\u_sd_reader/rx_byte[3] ,\u_sd_reader/rx_byte[2] ,\u_sd_reader/rx_byte[1] ,\u_sd_reader/rx_byte[0] }),
+    .data_i({sd_cmd,sd_dat,sd_cs_n,\u_sd_reader/rx_byte_ready ,\u_sd_reader/state[3] ,\u_sd_reader/state[2] ,\u_sd_reader/state[1] ,\u_sd_reader/state[0] ,\u_sd_reader/cmd_sent ,\u_sd_reader/read_req ,\u_sd_reader/rx_byte[7] ,\u_sd_reader/rx_byte[6] ,\u_sd_reader/rx_byte[5] ,\u_sd_reader/rx_byte[4] ,\u_sd_reader/rx_byte[3] ,\u_sd_reader/rx_byte[2] ,\u_sd_reader/rx_byte[1] ,\u_sd_reader/rx_byte[0] ,\u_sd_reader/data_mode ,\u_sd_reader/r1_mode ,\u_sd_reader/rx_sr[7] ,\u_sd_reader/rx_sr[6] ,\u_sd_reader/rx_sr[5] ,\u_sd_reader/rx_sr[4] ,\u_sd_reader/rx_sr[3] ,\u_sd_reader/rx_sr[2] ,\u_sd_reader/rx_sr[1] ,\u_sd_reader/rx_sr[0] ,\u_sd_reader/rx_flag ,\u_sd_reader/rx_bit_cnt[2] ,\u_sd_reader/rx_bit_cnt[1] ,\u_sd_reader/rx_bit_cnt[0] ,\u_sd_reader/cmd_bit_cnt[5] ,\u_sd_reader/cmd_bit_cnt[4] ,\u_sd_reader/cmd_bit_cnt[3] ,\u_sd_reader/cmd_bit_cnt[2] ,\u_sd_reader/cmd_bit_cnt[1] ,\u_sd_reader/cmd_bit_cnt[0] ,\u_sd_reader/send_active }),
     .clk_i(clk)
 );
 

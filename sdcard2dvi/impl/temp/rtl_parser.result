@@ -1,133 +1,133 @@
 [
  {
-  "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
+  "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
   "InstLine" : 10,
   "InstName" : "Gowin_PLL_DVI_MOD",
-  "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
+  "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
   "ModuleLine" : 10,
   "ModuleName" : "Gowin_PLL_DVI_MOD"
  },
  {
-  "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/pll_init.v",
+  "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/pll_init.v",
   "InstLine" : 3,
   "InstName" : "PLL_INIT",
-  "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/pll_init.v",
+  "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/pll_init.v",
   "ModuleLine" : 3,
   "ModuleName" : "PLL_INIT"
  },
  {
-  "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+  "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
   "InstLine" : 22,
   "InstName" : "top",
-  "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+  "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
   "ModuleLine" : 22,
   "ModuleName" : "top",
   "SubInsts" : [
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 105,
     "InstName" : "pll_dvi",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi.v",
     "ModuleLine" : 10,
     "ModuleName" : "Gowin_PLL_DVI"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 113,
     "InstName" : "clkdiv_dvi",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/gowin_clkdiv/gowin_clkdiv.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/gowin_clkdiv/gowin_clkdiv.v",
     "ModuleLine" : 10,
     "ModuleName" : "Gowin_CLKDIV"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 122,
     "InstName" : "pll_memory",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/gowin_pll/gowin_pll.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/gowin_pll/gowin_pll.v",
     "ModuleLine" : 10,
     "ModuleName" : "Gowin_PLL"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 167,
     "InstName" : "u_sd_reader",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/sd_reader.sv",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/sd_reader.sv",
     "ModuleLine" : 15,
     "ModuleName" : "sd_reader"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 191,
     "InstName" : "u_bmp_parser",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/bmp_parser.sv",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/bmp_parser.sv",
     "ModuleLine" : 24,
     "ModuleName" : "bmp_parser"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 216,
     "InstName" : "u_frame_writer",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/frame_writer.sv",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/frame_writer.sv",
     "ModuleLine" : 18,
     "ModuleName" : "frame_writer"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 253,
     "InstName" : "vfb_instance",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/video_frame_buffer/video_frame_buffer.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/video_frame_buffer/video_frame_buffer.v",
     "ModuleLine" : 5744,
     "ModuleName" : "Video_Frame_Buffer_Top",
     "SubInsts" : [
      {
-      "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/video_frame_buffer/video_frame_buffer.v",
+      "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/video_frame_buffer/video_frame_buffer.v",
       "InstLine" : 5805,
       "InstName" : "vfb_ddr3_wrapper_inst",
-      "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/video_frame_buffer/video_frame_buffer.v",
+      "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/video_frame_buffer/video_frame_buffer.v",
       "ModuleLine" : 10,
       "ModuleName" : "~vfb_ddr3_wrapper.Video_Frame_Buffer_Top"
      }
     ]
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 291,
     "InstName" : "u_ddr3",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/ddr3_memory_interface/ddr3_memory_interface.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/ddr3_memory_interface/ddr3_memory_interface.v",
     "ModuleLine" : 28349,
     "ModuleName" : "DDR3_Memory_Interface_Top",
     "SubInsts" : [
      {
-      "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/ddr3_memory_interface/ddr3_memory_interface.v",
+      "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/ddr3_memory_interface/ddr3_memory_interface.v",
       "InstLine" : 28434,
       "InstName" : "gw3_top",
-      "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/ddr3_memory_interface/ddr3_memory_interface.v",
+      "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/ddr3_memory_interface/ddr3_memory_interface.v",
       "ModuleLine" : 10,
       "ModuleName" : "~GW_DDR3_PHY_MC.DDR3_Memory_Interface_Top"
      }
     ]
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 347,
     "InstName" : "u_vga_timing",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/vga_timing.sv",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/vga_timing.sv",
     "ModuleLine" : 2,
     "ModuleName" : "vga_timing"
    },
    {
-    "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
+    "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
     "InstLine" : 364,
     "InstName" : "u_dvi_tx",
-    "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/dvi_tx/dvi_tx.v",
+    "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/dvi_tx/dvi_tx.v",
     "ModuleLine" : 1091,
     "ModuleName" : "DVI_TX_Top",
     "SubInsts" : [
      {
-      "InstFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/dvi_tx/dvi_tx.v",
+      "InstFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/dvi_tx/dvi_tx.v",
       "InstLine" : 1122,
       "InstName" : "rgb2dvi_inst",
-      "ModuleFile" : "C:/Git/TangMega138KPro/sdcard2dvi/src/dvi_tx/dvi_tx.v",
+      "ModuleFile" : "H:/git/TangMega138KPro/sdcard2dvi/src/dvi_tx/dvi_tx.v",
       "ModuleLine" : 10,
       "ModuleName" : "~rgb2dvi.DVI_TX_Top"
      }

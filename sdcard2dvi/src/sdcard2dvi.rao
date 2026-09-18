@@ -4,13 +4,9 @@
     <Mode>Standard</Mode>
     <AoCore index="0" sample_clock="clk" trig_type="0" storage_depth="65536" window_num="1" capture_amount="65536" implementation="0" trigger_pos="0" module_name="top" force_trigger_by_falling_edge="false" capture_init_data_enabled="false">
         <SignalList>
-            <Signal capture_enable="true">sd_clk</Signal>
             <Signal capture_enable="true">sd_cmd</Signal>
             <Signal capture_enable="true">sd_dat</Signal>
-            <Signal capture_enable="true">sd_dat1</Signal>
-            <Signal capture_enable="true">sd_dat2</Signal>
             <Signal capture_enable="true">sd_cs_n</Signal>
-            <Signal capture_enable="true">DET_A</Signal>
             <Signal capture_enable="true">u_sd_reader/rx_byte_ready</Signal>
             <Bus capture_enable="true" name="u_sd_reader/state[3:0]">
                 <Signal>u_sd_reader/state[3]</Signal>
@@ -30,6 +26,33 @@
                 <Signal>u_sd_reader/rx_byte[1]</Signal>
                 <Signal>u_sd_reader/rx_byte[0]</Signal>
             </Bus>
+            <Signal capture_enable="true">u_sd_reader/data_mode</Signal>
+            <Signal capture_enable="true">u_sd_reader/r1_mode</Signal>
+            <Bus capture_enable="true" name="u_sd_reader/rx_sr[7:0]">
+                <Signal>u_sd_reader/rx_sr[7]</Signal>
+                <Signal>u_sd_reader/rx_sr[6]</Signal>
+                <Signal>u_sd_reader/rx_sr[5]</Signal>
+                <Signal>u_sd_reader/rx_sr[4]</Signal>
+                <Signal>u_sd_reader/rx_sr[3]</Signal>
+                <Signal>u_sd_reader/rx_sr[2]</Signal>
+                <Signal>u_sd_reader/rx_sr[1]</Signal>
+                <Signal>u_sd_reader/rx_sr[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">u_sd_reader/rx_flag</Signal>
+            <Bus capture_enable="true" name="u_sd_reader/rx_bit_cnt[2:0]">
+                <Signal>u_sd_reader/rx_bit_cnt[2]</Signal>
+                <Signal>u_sd_reader/rx_bit_cnt[1]</Signal>
+                <Signal>u_sd_reader/rx_bit_cnt[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_sd_reader/cmd_bit_cnt[5:0]">
+                <Signal>u_sd_reader/cmd_bit_cnt[5]</Signal>
+                <Signal>u_sd_reader/cmd_bit_cnt[4]</Signal>
+                <Signal>u_sd_reader/cmd_bit_cnt[3]</Signal>
+                <Signal>u_sd_reader/cmd_bit_cnt[2]</Signal>
+                <Signal>u_sd_reader/cmd_bit_cnt[1]</Signal>
+                <Signal>u_sd_reader/cmd_bit_cnt[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">u_sd_reader/send_active</Signal>
         </SignalList>
         <Triggers>
             <Trigger index="0">
@@ -84,5 +107,5 @@
             <Expression>M2</Expression>
         </Expressions>
     </AoCore>
-    <GAO_ID>0101101001101101</GAO_ID>
+    <GAO_ID>1000010011101001</GAO_ID>
 </GAO_CONFIG>

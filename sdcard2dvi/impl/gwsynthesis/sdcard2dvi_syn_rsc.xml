@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="top" Register="61" Alu="31" Lut="84" T_Register="6692(61)" T_Alu="471(31)" T_Lut="5620(84)" T_Bsram="124(0)">
+<Module name="top" Register="61" Alu="31" Lut="85" T_Register="6762(61)" T_Alu="471(31)" T_Lut="5666(85)" T_Bsram="192(0)">
  <SubModule name="pll_dvi"/>
  <SubModule name="clkdiv_dvi"/>
  <SubModule name="pll_memory"/>
- <SubModule name="u_sd_reader" Register="96" Alu="7" Lut="215" T_Register="96(96)" T_Alu="7(7)" T_Lut="215(215)"/>
+ <SubModule name="u_sd_reader" Register="97" Alu="7" Lut="221" T_Register="97(97)" T_Alu="7(7)" T_Lut="221(221)"/>
  <SubModule name="u_bmp_parser" Register="115" Alu="63" Lut="36" T_Register="115(115)" T_Alu="63(63)" T_Lut="36(36)"/>
- <SubModule name="u_frame_writer" Register="44" Alu="31" Lut="41" T_Register="44(44)" T_Alu="31(31)" T_Lut="41(41)"/>
+ <SubModule name="u_frame_writer" Register="44" Alu="31" Lut="40" T_Register="44(44)" T_Alu="31(31)" T_Lut="40(40)"/>
  <SubModule name="vfb_instance" Register="462" Alu="34" Lut="1206" Bsram="16" T_Register="462(462)" T_Alu="34(34)" T_Lut="1206(1206)" T_Bsram="16(16)"/>
  <SubModule name="u_ddr3" Register="5444" Alu="190" Lut="3151" Bsram="16" T_Register="5444(5444)" T_Alu="190(190)" T_Lut="3151(3151)" T_Bsram="16(16)"/>
  <SubModule name="u_vga_timing" Register="24" Alu="11" Lut="39" T_Register="24(24)" T_Alu="11(11)" T_Lut="39(39)"/>
  <SubModule name="u_dvi_tx" Register="73" Alu="69" Lut="229" T_Register="73(73)" T_Alu="69(69)" T_Lut="229(229)"/>
- <SubModule name="gw_gao_inst_0" Register="373" Alu="35" Lut="619" Bsram="92" T_Register="373(373)" T_Alu="35(35)" T_Lut="619(619)" T_Bsram="92(92)"/>
+ <SubModule name="gw_gao_inst_0" Register="442" Alu="35" Lut="659" Bsram="160" T_Register="442(442)" T_Alu="35(35)" T_Lut="659(659)" T_Bsram="160(160)"/>
 </Module>

@@ -71,7 +71,7 @@ module top (
     output wire WS2812
 );
 
-assign fan = block_cnt[11];
+assign fan = block_cnt[10];
 assign WS2812 = 1;
 
 // SDカード SPIモードでは DAT1/DAT2 は未使用のため High に固定する
