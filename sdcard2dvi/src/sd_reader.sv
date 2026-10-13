@@ -163,11 +163,14 @@ module sd_reader (
             if (r1_mode || data_mode) begin
                 if (!rx_flag) begin
                     if (r1_mode) begin
-                        // スタートビット (MISO=0) を待つ (カウントしない)
+                        // スタートビット (MISO=0) は R1 応答の bit7 (MSB) そのもの。
+                        // これを破棄せず rx_sr[0] に取り込み、残り 7bit をシフトして
+                        // 8bit の R1 を正しく組み立てる (破棄すると R1 が 1bit 左シフトし、
+                        // 例えば CMD0 の応答 0x01 が 0x03 として受信されて初期化が完了しない)。
                         if (sd_dat == 1'b0) begin
                             rx_flag    <= 1'b1;
-                            rx_sr      <= 8'd0;
-                            rx_bit_cnt <= 3'd0;
+                            rx_sr      <= {7'b0, sd_dat};
+                            rx_bit_cnt <= 3'd1;
                         end
                     end else begin
                         // データモード: 連続 8bit
@@ -361,8 +364,15 @@ module sd_reader (
                     crc_cnt <= crc_cnt + 1'b1;
             end
 
-            if (state == ST_RD_IDLE && read_req)
+            // busy: ブロック読出し中は High、待機(ST_RD_IDLE)では Low。
+            // 従来は read_req で High にするだけで読出し完了時に Low に戻さない
+            // ため、先頭ブロック(ヘッダ)しか読めず画像データが入らなかった。
+            if (state == ST_RD_SEND || state == ST_RD_WAIT_R1 ||
+                state == ST_RD_WAIT_TOKEN || state == ST_RD_DATA ||
+                state == ST_RD_CRC)
                 busy <= 1'b1;
+            else if (state == ST_RD_IDLE)
+                busy <= 1'b0;
         end
     end
 

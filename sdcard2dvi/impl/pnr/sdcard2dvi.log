@@ -1,7 +1,8 @@
-Reading netlist file: "H:\git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg"
-Parsing netlist file "H:\git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg" completed
+Reading netlist file: "C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg"
+Parsing netlist file "C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg" completed
+WARN  (PA1019) : Invalid VCO frequency 'FCLKIN*FBDIV_SEL*(MDIV_SEL+MDIV_FRAC_SEL/8)/IDIV_SEL' to 'PLL_inst'(PLL) set by 'Gowin_PLL_DVI' of module, suitable range is from 650MHz to 1300MHz.
 Processing netlist completed
-Reading constraint file: "H:\git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst"
+Reading constraint file: "C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst"
 Physical Constraint parsed completed
 Running placement......
 [10%] Placement Phase 0 completed
@@ -23,10 +24,10 @@ Bitstream generation in progress......
 Bitstream generation completed
 Running power analysis......
 [100%] Power analysis completed
-Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.power.html" completed
-Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.pin.html" completed
-Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.html" completed
-Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.txt" completed
-Generate file "H:\git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.tr.html" completed
-Sat Sep 19 01:48:45 2026
+Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.power.html" completed
+Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.pin.html" completed
+Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.html" completed
+Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.rpt.txt" completed
+Generate file "C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\sdcard2dvi.tr.html" completed
+Tue Oct 13 16:59:09 2026
 

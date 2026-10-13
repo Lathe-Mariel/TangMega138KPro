@@ -2,55 +2,55 @@
  "Device" : "GW5AST-138B",
  "Files" : [
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/bmp_parser.sv",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/bmp_parser.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/ddr3_memory_interface/ddr3_memory_interface.v",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/ddr3_memory_interface/ddr3_memory_interface.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/dvi_tx/dvi_tx.v",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/dvi_tx/dvi_tx.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/frame_writer.sv",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/frame_writer.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/gowin_clkdiv/gowin_clkdiv.v",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/gowin_clkdiv/gowin_clkdiv.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/gowin_pll/gowin_pll.v",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/gowin_pll/gowin_pll.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi.v",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/pll_init.v",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/pll_init.v",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/sd_reader.sv",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/sd_reader.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/top.sv",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/top.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/vga_timing.sv",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/vga_timing.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "H:/git/TangMega138KPro/sdcard2dvi/src/video_frame_buffer/video_frame_buffer.v",
+   "Path" : "C:/Git/TangMega138KPro/sdcard2dvi/src/video_frame_buffer/video_frame_buffer.v",
    "Type" : "verilog"
   }
  ],
@@ -58,7 +58,7 @@
 
  ],
  "LoopLimit" : 2000,
- "ResultFile" : "H:/git/TangMega138KPro/sdcard2dvi/impl/temp/rtl_parser.result",
+ "ResultFile" : "C:/Git/TangMega138KPro/sdcard2dvi/impl/temp/rtl_parser.result",
  "Top" : "top",
  "VerilogStd" : "sysv",
  "VhdlStd" : "vhdl_93"

@@ -42,60 +42,109 @@ module frame_writer #(
     // ピクセルカウンタ (書込んだピクセル数)
     // ------------------------------------------------------------------------
     localparam int TOTAL_PX = WIDTH * HEIGHT;
-
-    logic [31:0] px_cnt;
+    localparam int AW = 11;   // ceil(log2(WIDTH)) = 11 (1280 -> 0..1279)
 
     // ------------------------------------------------------------------------
-    // vs_n 生成: フレーム先頭で数クロック Low にする (VFB はフレーム境界を検出)
+    // 水平反転 (左右ミラー) 用ラインバッファ (ピンポン方式)
+    //  BMP は各行「左→右」のラスタ順で、bmp_parser/frame_writer は到着順のまま
+    //  書き込むため、表示が左右反転してしまう。1 行分 (WIDTH ピクセル) を一旦
+    //  バッファし、逆順 (右→左) に吐き出すことで補正する。
+    //  入力は px_valid (約 3 クロックに 1 ピクセル) のバースト、出力は 1 クロック
+    //  に 1 ピクセルのため、2 本のラインバッファを交互に使い読出しと書込みを分離する。
     // ------------------------------------------------------------------------
-    logic [7:0] vs_pulse_cnt;
-    logic       in_vsync;
+    reg [23:0] lb0 [0:WIDTH-1];
+    reg [23:0] lb1 [0:WIDTH-1];
+
+    reg          wbuf;          // 書込み中のバッファ (0/1)
+    reg          rbuf;          // 読出し中のバッファ (0/1)
+    reg [AW-1:0] wcnt;          // 書込みポインタ (0..WIDTH-1)
+    reg [AW-1:0] rcnt;          // 読出しポインタ (0..WIDTH-1)
+    reg          rd_active;     // 1行分を逆順に吐き出し中
+
+    reg [31:0]   in_px;         // 受信した入力ピクセル数 (0..TOTAL_PX-1)
+    reg [31:0]   out_px;        // 出力したピクセル数
+
+    reg          frame_started; // 最初の行の出力開始済み (vs_n を打った)
+    reg [3:0]    vs_cnt;        // vs_n パルス幅カウンタ
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            px_cnt       <= 32'd0;
-            vs_pulse_cnt <= 8'd0;
-            in_vsync     <= 1'b0;
-            vin_vs_n     <= 1'b1;
-            vin_de       <= 1'b0;
-            wr_halt      <= 1'b0;
-            frame_done   <= 1'b0;
+            wbuf          <= 1'b0;
+            rbuf          <= 1'b0;
+            wcnt          <= '0;
+            rcnt          <= '0;
+            rd_active     <= 1'b0;
+            in_px         <= 32'd0;
+            out_px        <= 32'd0;
+            vin_vs_n      <= 1'b1;
+            vin_de        <= 1'b0;
+            vin_data      <= 24'd0;
+            wr_halt       <= 1'b0;
+            frame_done    <= 1'b0;
+            frame_started <= 1'b0;
+            vs_cnt        <= 4'd0;
         end else begin
             frame_done <= 1'b0;   // デフォルト: パルスは1クロック
+            vin_de     <= 1'b0;
 
-            if (px_cnt == 0 && !in_vsync) begin
-                // フレーム開始: vs_n を Low にして同期パルスを出す
-                in_vsync     <= 1'b1;
-                vs_pulse_cnt <= 8'd0;
-                vin_vs_n     <= 1'b0;
-            end else if (in_vsync) begin
-                // vsync パルスを一定時間維持
-                if (vs_pulse_cnt < 8'd10) begin
-                    vs_pulse_cnt <= vs_pulse_cnt + 8'd1;
+            // ================= 入力: ピクセルをラインバッファへ書込み =================
+            if (px_valid && in_px < TOTAL_PX) begin
+                if (wbuf == 1'b0)
+                    lb0[wcnt] <= {px_r, px_g, px_b};
+                else
+                    lb1[wcnt] <= {px_r, px_g, px_b};
+
+                in_px <= in_px + 32'd1;
+
+                if (wcnt == WIDTH-1) begin
+                    // 1行分完了: 書込みバッファを切替え、今埋めた行を逆順読出し開始
+                    wcnt      <= '0;
+                    wbuf      <= ~wbuf;
+                    rbuf      <= wbuf;      // 今埋めたバッファ
+                    rd_active <= 1'b1;
+                    rcnt      <= '0;
                 end else begin
-                    in_vsync <= 1'b0;
+                    wcnt <= wcnt + 1'b1;
+                end
+            end
+
+            // ================= 出力: 1行分を逆順 (右→左) に吐き出し =================
+            if (rd_active) begin
+                vin_de <= 1'b1;
+                if (rbuf == 1'b0)
+                    vin_data <= lb0[WIDTH-1-rcnt];
+                else
+                    vin_data <= lb1[WIDTH-1-rcnt];
+
+                if (rcnt == WIDTH-1) begin
+                    rd_active <= 1'b0;
+                    rcnt      <= '0;
+                end else begin
+                    rcnt <= rcnt + 1'b1;
+                end
+
+                out_px <= out_px + 32'd1;
+                if (out_px == TOTAL_PX-1) begin
+                    // 最後の出力ピクセル: フレーム完了
+                    wr_halt    <= 1'b1;
+                    frame_done <= 1'b1;
+                end
+            end
+
+            // ================= vs_n: 最初の出力ピクセルに合わせてパルス =================
+            if (!frame_started && rd_active) begin
+                frame_started <= 1'b1;
+                vs_cnt        <= 4'd1;
+                vin_vs_n      <= 1'b0;
+            end else if (vs_cnt != 4'd0) begin
+                if (vs_cnt < 4'd10)
+                    vs_cnt   <= vs_cnt + 1'b1;
+                else begin
+                    vs_cnt   <= 4'd0;
                     vin_vs_n <= 1'b1;
                 end
             end
-
-            // ピクセル書き込み
-            if (px_valid && px_cnt < TOTAL_PX) begin
-                vin_de <= 1'b1;
-                px_cnt <= px_cnt + 32'd1;
-
-                if (px_cnt == TOTAL_PX - 1) begin
-                    // 最後のピクセル: フレーム完了
-                    vin_de     <= 1'b0;
-                    wr_halt    <= 1'b1;   // 以降の書込を停止
-                    frame_done <= 1'b1;
-                end
-            end else if (px_cnt == TOTAL_PX) begin
-                vin_de <= 1'b0;
-            end
         end
     end
-
-    // データ出力
-    assign vin_data = {px_r, px_g, px_b};
 
 endmodule

@@ -140,23 +140,35 @@ assign sd_dat2 = 1'b1;
     wire [7:0]  sd_byte;
     wire        sd_byte_valid;
 
-    reg  [31:0] block_cnt;
+    reg  [31:0] block_cnt;    // 次に読むブロック番号
+    reg  [31:0] block_addr;   // 実際に読むブロック番号 (read_req 時にラッチ)
     reg         read_req;
     reg         sd_done;      // 画像読出し完了 (frame_done ラッチ)
+    reg         rd_pending;   // read_req 発行済み (SD側が受付開始するまで)
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            block_cnt <= 32'd0;
-            read_req  <= 1'b0;
-            sd_done   <= 1'b0;
+            block_cnt  <= 32'd0;
+            block_addr <= 32'd0;
+            read_req   <= 1'b0;
+            sd_done    <= 1'b0;
+            rd_pending <= 1'b0;
         end else begin
             read_req <= 1'b0;   // デフォルト: パルスは1クロック
 
             if (!sd_done && !frame_done) begin
-                if (!sd_busy && block_cnt < MAX_BLOCKS) begin
-                    // 次のブロックを読む
-                    read_req  <= 1'b1;
-                    block_cnt <= block_cnt + 32'd1;
+                if (!rd_pending && !sd_busy && block_cnt < MAX_BLOCKS) begin
+                    // 次のブロックを読む。ブロック番号を block_addr にラッチして
+                    // から block_cnt を進める (同時に進めると SD 側が読む番号が
+                    // 1 つずれて先頭ブロックが飛ばされる)。busy は read_req より
+                    // 1 クロック遅れるため rd_pending で二重発行も防ぐ。
+                    read_req   <= 1'b1;
+                    block_addr <= block_cnt;
+                    block_cnt  <= block_cnt + 32'd1;
+                    rd_pending <= 1'b1;
+                end else if (rd_pending && sd_busy) begin
+                    // SD 側が読み出しを開始した。busy が下がるのを待って次へ。
+                    rd_pending <= 1'b0;
                 end
             end else if (frame_done) begin
                 sd_done <= 1'b1;   // 画像読出し完了
@@ -172,7 +184,7 @@ assign sd_dat2 = 1'b1;
         .sd_dat     (sd_dat),
         .sd_cs_n    (sd_cs_n),
         .read_req   (read_req),
-        .block_addr (block_cnt),
+        .block_addr (block_addr),
         .data       (sd_byte),
         .data_valid (sd_byte_valid),
         .busy       (sd_busy),
@@ -359,7 +371,10 @@ assign sd_dat2 = 1'b1;
 // ============================================================================
 
     wire [7:0] out_r, out_g, out_b;
-    assign {out_r, out_g, out_b} = vout_den ? vout_data : 24'h000000;
+    // vout_data は VFB から {R,G,B} 順 ([23:16]=R,[15:8]=G,[7:0]=B) で返るが、
+    // Gowin DVI TX IP は R と B のチャネルが入れ替わる慣習のため、ここで入れ替えて補正する。
+    // リファレンス HDMI2HDMI は RX→TX パススルーで同じ慣習が自己完結するため顕在化しなかった。
+    assign {out_r, out_g, out_b} = vout_den ? {vout_data[7:0], vout_data[15:8], vout_data[23:16]} : 24'h000000;
 
     DVI_TX_Top u_dvi_tx (
         .I_rst_n       (rst_pixel_n),
@@ -368,8 +383,8 @@ assign sd_dat2 = 1'b1;
         .I_rgb_vs      (out_vsync),
         .I_rgb_hs      (out_hsync),
         .I_rgb_de      (out_de),
-        .I_rgb_r       (out_r),
-        .I_rgb_g       (out_g),
+        .I_rgb_r       (out_g),
+        .I_rgb_g       (out_r),
         .I_rgb_b       (out_b),
         .O_tmds_clk_p  (tmds_tx_clk_p),
         .O_tmds_clk_n  (tmds_tx_clk_n),

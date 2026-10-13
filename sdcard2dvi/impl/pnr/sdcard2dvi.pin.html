@@ -50,19 +50,19 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Design File</td>
-<td>H:\git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg</td>
+<td>C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\sdcard2dvi.vg</td>
 </tr>
 <tr>
 <td class="label">Physical Constraints File</td>
-<td>H:\git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst</td>
+<td>C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst</td>
 </tr>
 <tr>
 <td class="label">Timing Constraints File</td>
-<td>H:\git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.sdc</td>
+<td>C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.sdc</td>
 </tr>
 <tr>
 <td class="label">Tool Version</td>
-<td>V1.9.11.01 (64-bit)</td>
+<td>V1.9.12 (64-bit)</td>
 </tr>
 <tr>
 <td class="label">Part Number</td>
@@ -78,7 +78,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Sat Sep 19 01:48:44 2026
+<td>Tue Oct 13 16:59:08 2026
 </td>
 </tr>
 <tr>
@@ -365,11 +365,32 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">tmds_tx_clk_p</td>
 <td>tmds_tx_clk_n</td>
-<td>Y22,Y23/2</td>
+<td>Y22/2</td>
 <td>Y</td>
 <td>out</td>
-<td>IOR29</td>
+<td>IOR29[A]</td>
 <td>SGCLKT_0/RPLL0_T_IN0/RPLL1_T_IN0</td>
+<td>LVDS25</td>
+<td>3.5</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>2.5</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">tmds_tx_clk_n</td>
+<td>tmds_tx_clk_p</td>
+<td>Y23/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOR29[B]</td>
+<td>SGCLKC_0/RPLL0_C_IN0/RPLL1_C_IN0</td>
 <td>LVDS25</td>
 <td>3.5</td>
 <td>NONE</td>
@@ -386,10 +407,10 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">tmds_tx_data_p[0]</td>
 <td>tmds_tx_data_n[0]</td>
-<td>AB24,AC24/2</td>
+<td>AB24/2</td>
 <td>Y</td>
 <td>out</td>
-<td>IOR35</td>
+<td>IOR35[A]</td>
 <td>-</td>
 <td>LVDS25</td>
 <td>3.5</td>
@@ -407,10 +428,10 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">tmds_tx_data_p[1]</td>
 <td>tmds_tx_data_n[1]</td>
-<td>V24,W24/2</td>
+<td>V24/2</td>
 <td>Y</td>
 <td>out</td>
-<td>IOR47</td>
+<td>IOR47[A]</td>
 <td>-</td>
 <td>LVDS25</td>
 <td>3.5</td>
@@ -428,11 +449,74 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">tmds_tx_data_p[2]</td>
 <td>tmds_tx_data_n[2]</td>
-<td>AA22,AA23/2</td>
+<td>AA22/2</td>
 <td>Y</td>
 <td>out</td>
-<td>IOR33</td>
+<td>IOR33[A]</td>
 <td>FBTEST_R0</td>
+<td>LVDS25</td>
+<td>3.5</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>2.5</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">tmds_tx_data_n[0]</td>
+<td>tmds_tx_data_p[0]</td>
+<td>AC24/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOR35[B]</td>
+<td>-</td>
+<td>LVDS25</td>
+<td>3.5</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>2.5</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">tmds_tx_data_n[1]</td>
+<td>tmds_tx_data_p[1]</td>
+<td>W24/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOR47[B]</td>
+<td>VREF</td>
+<td>LVDS25</td>
+<td>3.5</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>2.5</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">tmds_tx_data_n[2]</td>
+<td>tmds_tx_data_p[2]</td>
+<td>AA23/2</td>
+<td>Y</td>
+<td>out</td>
+<td>IOR33[B]</td>
+<td>CLKTEST_R0</td>
 <td>LVDS25</td>
 <td>3.5</td>
 <td>NONE</td>
@@ -995,11 +1079,32 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">ddr_ck</td>
 <td>ddr_ck_n</td>
-<td>M2,L2/7</td>
+<td>M2/7</td>
 <td>Y</td>
 <td>out</td>
-<td>IOL31</td>
+<td>IOL31[A]</td>
 <td>SGCLKT_10/LPLL0_T_FB0/LPLL1_T_FB0</td>
+<td>SSTL15D</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>1.5</td>
+<td>MEDIUM</td>
+<td>NONE</td>
+</tr>
+<tr>
+<td class="label">ddr_ck_n</td>
+<td>ddr_ck</td>
+<td>L2/7</td>
+<td>Y</td>
+<td>out</td>
+<td>IOL31[B]</td>
+<td>SGCLKC_10/LPLL0_C_FB0/LPLL1_C_FB0</td>
 <td>SSTL15D</td>
 <td>8</td>
 <td>NONE</td>
@@ -1220,27 +1325,6 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>3.3</td>
-<td>MEDIUM</td>
-<td>NONE</td>
-</tr>
-<tr>
-<td class="label">fan</td>
-<td>-</td>
-<td>T17/2</td>
-<td>Y</td>
-<td>out</td>
-<td>IOR8[A]</td>
-<td>-</td>
-<td>LVDS25</td>
-<td>3.5</td>
-<td>NONE</td>
-<td>OFF</td>
-<td>OFF</td>
-<td>NONE</td>
-<td>OFF</td>
-<td>OFF</td>
-<td>OFF</td>
-<td>2.5</td>
 <td>MEDIUM</td>
 <td>NONE</td>
 </tr>
@@ -1961,10 +2045,10 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">ddr_dqs[0]</td>
 <td>ddr_dqs_n[0]</td>
-<td>J4,H4/6</td>
+<td>J4/6</td>
 <td>Y</td>
 <td>io</td>
-<td>IOL69</td>
+<td>IOL69[A]</td>
 <td>-</td>
 <td>SSTL15D</td>
 <td>8</td>
@@ -1974,7 +2058,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -1982,10 +2066,10 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">ddr_dqs[1]</td>
 <td>ddr_dqs_n[1]</td>
-<td>H7,G7/6</td>
+<td>H7/6</td>
 <td>Y</td>
 <td>io</td>
-<td>IOL96</td>
+<td>IOL96[A]</td>
 <td>-</td>
 <td>SSTL15D</td>
 <td>8</td>
@@ -1995,7 +2079,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -2003,10 +2087,10 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">ddr_dqs[2]</td>
 <td>ddr_dqs_n[2]</td>
-<td>B5,A5/6</td>
+<td>B5/6</td>
 <td>Y</td>
 <td>io</td>
-<td>IOL94</td>
+<td>IOL94[A]</td>
 <td>-</td>
 <td>SSTL15D</td>
 <td>8</td>
@@ -2016,7 +2100,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -2024,10 +2108,10 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">ddr_dqs[3]</td>
 <td>ddr_dqs_n[3]</td>
-<td>C1,B1/6</td>
+<td>C1/6</td>
 <td>Y</td>
 <td>io</td>
-<td>IOL65</td>
+<td>IOL65[A]</td>
 <td>-</td>
 <td>SSTL15D</td>
 <td>8</td>
@@ -2037,7 +2121,91 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
+<td>1.5</td>
+<td>MEDIUM</td>
+<td>OFF</td>
+</tr>
+<tr>
+<td class="label">ddr_dqs_n[0]</td>
+<td>ddr_dqs[0]</td>
+<td>H4/6</td>
+<td>Y</td>
+<td>io</td>
+<td>IOL69[B]</td>
+<td>-</td>
+<td>SSTL15D</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>1.5</td>
+<td>MEDIUM</td>
+<td>OFF</td>
+</tr>
+<tr>
+<td class="label">ddr_dqs_n[1]</td>
+<td>ddr_dqs[1]</td>
+<td>G7/6</td>
+<td>Y</td>
+<td>io</td>
+<td>IOL96[B]</td>
+<td>-</td>
+<td>SSTL15D</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>1.5</td>
+<td>MEDIUM</td>
+<td>OFF</td>
+</tr>
+<tr>
+<td class="label">ddr_dqs_n[2]</td>
+<td>ddr_dqs[2]</td>
+<td>A5/6</td>
+<td>Y</td>
+<td>io</td>
+<td>IOL94[B]</td>
+<td>-</td>
+<td>SSTL15D</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>1.5</td>
+<td>MEDIUM</td>
+<td>OFF</td>
+</tr>
+<tr>
+<td class="label">ddr_dqs_n[3]</td>
+<td>ddr_dqs[3]</td>
+<td>B1/6</td>
+<td>Y</td>
+<td>io</td>
+<td>IOL65[B]</td>
+<td>-</td>
+<td>SSTL15D</td>
+<td>8</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>NONE</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -5309,7 +5477,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -5328,7 +5496,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -5385,7 +5553,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -5404,7 +5572,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -5822,7 +5990,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -5841,7 +6009,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -5860,7 +6028,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
@@ -5879,7 +6047,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>1.5</td>
 <td>MEDIUM</td>
 <td>OFF</td>
