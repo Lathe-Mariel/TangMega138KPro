@@ -11,45 +11,14 @@ Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll_dvi\gowi
 Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\pll_init.v'
 Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\sd_reader.sv'
 Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv'
-Undeclared symbol 'out_vsync', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":281)
-Undeclared symbol 'out_de', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":282)
-Undeclared symbol 'vout_den', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":283)
-Undeclared symbol 'vout_data', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":284)
-WARN  (EX3638) : 'out_vsync' is already implicitly declared on line 281("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":353)
-WARN  (EX3638) : 'out_de' is already implicitly declared on line 282("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":354)
-WARN  (EX3638) : 'vout_den' is already implicitly declared on line 283("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":356)
-WARN  (EX3638) : 'vout_data' is already implicitly declared on line 284("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":357)
+Undeclared symbol 'out_de', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":287)
+Undeclared symbol 'vout_den', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":288)
+Undeclared symbol 'vout_data', assumed default net type 'wire'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":289)
+WARN  (EX3638) : 'out_de' is already implicitly declared on line 287("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":359)
+WARN  (EX3638) : 'vout_den' is already implicitly declared on line 288("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":361)
+WARN  (EX3638) : 'vout_data' is already implicitly declared on line 289("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":362)
 Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\vga_timing.sv'
 Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\src\video_frame_buffer\video_frame_buffer.v'
-Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v'
-Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'
-Analyzing included file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
-Analyzing included file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_top_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
-Analyzing included file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_init.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
-Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v'
-Analyzing included file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_top_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
-Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'
-Analyzing included file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Analyzing included file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_top_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Analyzing included file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_expression.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Analyzing included file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_parameter.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Analyzing included file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_init.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v'
-Analyzing included file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\ao_control\gw_con_top_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
-Analyzing included file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\ao_control\gw_con_parameter.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
-Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
-Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\gw_jtag.v'
-Analyzing Verilog file 'C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\gw_gao_top.v'
 Compiling module 'top'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":22)
 Compiling module 'Gowin_PLL_DVI'("C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_pll_dvi\gowin_pll_dvi.v":10)
 Compiling module 'Gowin_CLKDIV'("C:\Git\TangMega138KPro\sdcard2dvi\src\gowin_clkdiv\gowin_clkdiv.v":10)
@@ -64,24 +33,18 @@ Compiling module 'Video_Frame_Buffer_Top'("C:\Git\TangMega138KPro\sdcard2dvi\src
 Compiling module '**'("C:\Git\TangMega138KPro\sdcard2dvi\src\video_frame_buffer\video_frame_buffer.v":5743)
 Compiling module 'DDR3_Memory_Interface_Top'("C:\Git\TangMega138KPro\sdcard2dvi\src\ddr3_memory_interface\ddr3_memory_interface.v":28349)
 Compiling module '**'("C:\Git\TangMega138KPro\sdcard2dvi\src\ddr3_memory_interface\ddr3_memory_interface.v":28348)
-WARN  (EX3670) : Actual bit length 16 differs from formal bit length 15 for port 'O_ddr_addr'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":331)
+WARN  (EX3670) : Actual bit length 16 differs from formal bit length 15 for port 'O_ddr_addr'("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":336)
 Compiling module 'vga_timing'("C:\Git\TangMega138KPro\sdcard2dvi\src\vga_timing.sv":2)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 12("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":436)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 24("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":437)
+WARN  (EX3791) : Expression size 26 truncated to fit in target size 24("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":438)
 Compiling module 'DVI_TX_Top'("C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_tx\dvi_tx.v":1091)
 Compiling module '**'("C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_tx\dvi_tx.v":1090)
-Compiling module 'gw_gao'("C:\Git\TangMega138KPro\sdcard2dvi\impl\gwsynthesis\RTL_GAO\gw_gao_top.v":1)
-Compiling module 'GW_JTAG'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\gw_jtag.v":1)
-Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top_138.v":396)
-Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
-Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
-Extracting RAM for identifier '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
-Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v":74)
-Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
-Trying to combine GAO to RTL design
 NOTE  (EX0101) : Current top module is "top"
 [5%] Running netlist conversion ...
 WARN  (CV0016) : Input sw0 is unused("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":67)
 WARN  (CV0016) : Input sw1 is unused("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":68)
-WARN  (CV0016) : Input DET_A is unused("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":70)
+WARN  (CV0016) : Input DET_A is unused("C:\Git\TangMega138KPro\sdcard2dvi\src\top.sv":71)
 Running device independent optimization ...
 [10%] Optimizing Phase 0 completed
 [15%] Optimizing Phase 1 completed

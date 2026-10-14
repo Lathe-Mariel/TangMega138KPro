@@ -66,12 +66,14 @@ module top (
     output logic[5:0] state_led,
     input wire sw0,
     input wire sw1,
+    input wire explode_btn,   // 爆発エフェクト起動ボタン (G16, アクティブLow)
     output wire fan,
     input wire DET_A,
     output wire WS2812
 );
 
-assign fan = block_cnt[10];
+//assign fan = block_cnt[10];
+assign fan = 0;
 assign WS2812 = 1;
 
 // SDカード SPIモードでは DAT1/DAT2 は未使用のため High に固定する
@@ -278,7 +280,10 @@ assign sd_dat2 = 1'b1;
 
         // 読出ポート (vga_timing → DVI)
         .I_vout0_clk          (clk_pixel),
-        .I_vout0_vs_n         (out_vsync),
+        // VFB の読み出し側 vs_n は非アクティブ(High)に固定してフリーラン読み出しにする。
+        // リファレンス HDMI2HDMI でも未接続(フローティング)にしており、vs_n を接続すると
+        // フレーム境界を誤検出して「1フレームの途中で先頭に戻る」現象が起きる。
+        .I_vout0_vs_n         (1'b1),
         .I_vout0_de           (out_de),
         .O_vout0_den          (vout_den),
         .O_vout0_data         (vout_data),
@@ -301,7 +306,7 @@ assign sd_dat2 = 1'b1;
     );
 
     DDR3_Memory_Interface_Top u_ddr3 (
-        .clk                 (clk),
+        .clk                 (clk_100),
         .pll_stop            (),
         .memory_clk          (memory_clk),
         .pll_lock            (memory_pll_lock),
@@ -355,6 +360,7 @@ assign sd_dat2 = 1'b1;
 
     wire        vout_den;
     wire [23:0] vout_data;
+    wire [11:0] out_hcount, out_vcount;
 
     vga_timing u_vga_timing (
         .clk    (clk_pixel),
@@ -362,8 +368,8 @@ assign sd_dat2 = 1'b1;
         .hsync  (out_hsync),
         .vsync  (out_vsync),
         .de     (out_de),
-        .hcount (),
-        .vcount ()
+        .hcount (out_hcount),
+        .vcount (out_vcount)
     );
 
 // ============================================================================
@@ -371,10 +377,85 @@ assign sd_dat2 = 1'b1;
 // ============================================================================
 
     wire [7:0] out_r, out_g, out_b;
-    // vout_data は VFB から {R,G,B} 順 ([23:16]=R,[15:8]=G,[7:0]=B) で返るが、
-    // Gowin DVI TX IP は R と B のチャネルが入れ替わる慣習のため、ここで入れ替えて補正する。
-    // リファレンス HDMI2HDMI は RX→TX パススルーで同じ慣習が自己完結するため顕在化しなかった。
-    assign {out_r, out_g, out_b} = vout_den ? {vout_data[7:0], vout_data[15:8], vout_data[23:16]} : 24'h000000;
+
+    // ---- 色順補正済みの元画像 (base) ----
+    // vout_data は VFB から {R,G,B} 順 ([23:16]=R,[15:8]=G,[7:0]=B) で返る。
+    // ここで R/B を入れ替え、更に下の DVI TX 接続で R/G を入れ替えて色順を合わせている。
+    wire [7:0] base_r, base_g, base_b;
+    assign {base_r, base_g, base_b} = vout_den ? {vout_data[7:0], vout_data[15:8], vout_data[23:16]} : 24'h000000;
+
+    // ---- 爆発エフェクト (ボタン G16 で起動) ----
+    // SD画像を背景に、衝撃波リング(白)が中心(640,360)から外へ拡大する。
+    // 画像は常に背景として表示され、エフェクトはその上に半透明で重なる。
+    // ボタン CDC (clk -> clk_pixel) + 立ち下がり(押下)エッジ検出
+    reg [1:0] btn_sync;
+    reg       btn_prev;
+    always_ff @(posedge clk_pixel or negedge rst_n) begin
+        if (!rst_n) begin
+            btn_sync <= 2'b11;
+            btn_prev <= 1'b1;
+        end else begin
+            btn_sync <= {btn_sync[0], explode_btn};
+            btn_prev <= btn_sync[1];
+        end
+    end
+    wire btn_pressed = btn_prev && !btn_sync[1];   // 立ち下がり (押下)
+
+    reg        expl_active;
+    reg [7:0]  frm_cnt;
+    reg        vsync_prev;
+    localparam int EXPL_FRAMES = 60;   // エフェクト持続フレーム数
+
+    always_ff @(posedge clk_pixel or negedge rst_n) begin
+        if (!rst_n) begin
+            expl_active <= 1'b0;
+            frm_cnt     <= 8'd0;
+            vsync_prev  <= 1'b1;
+        end else begin
+            vsync_prev <= out_vsync;
+            if (btn_pressed) begin
+                expl_active <= 1'b1;
+                frm_cnt     <= 8'd0;
+            end else if (expl_active && !vsync_prev && out_vsync) begin
+                // vsync 立ち上がり = フレーム境界
+                if (frm_cnt >= EXPL_FRAMES-1) begin
+                    expl_active <= 1'b0;
+                    frm_cnt     <= 8'd0;
+                end else
+                    frm_cnt <= frm_cnt + 8'd1;
+            end
+        end
+    end
+
+    // 中心からの動径距離の二乗 (乗算器で円形リングを実現)
+    wire signed [11:0] dx = $signed(out_hcount) - 12'sd640;
+    wire signed [11:0] dy = $signed(out_vcount) - 12'sd360;
+    wire [23:0] r2 = (dx*dx) + (dy*dy);
+
+    // リング半径 R = 25 ピクセル/フレーム
+    wire [11:0] R        = frm_cnt * 25;
+    wire [23:0] R2_inner = (R > 20) ? (R-20)*(R-20) : 24'd0;
+    wire [23:0] R2_outer = (R+20)*(R+20);
+
+    wire flash      = expl_active && (frm_cnt < 4);
+    wire in_ring    = expl_active && !flash && (r2 >= R2_inner) && (r2 <= R2_outer);
+    // リング内側: 爆発の残光として僅かに暗くする (画像は依然として背景に表示)
+    wire in_afterglow = expl_active && !flash && (r2 < R2_inner);
+
+    // 白フラッシュ: 画像と 50% ブレンド (画像を消さない)
+    wire [7:0] flash_r = base_r[7:1] + 8'h80;
+    wire [7:0] flash_g = base_g[7:1] + 8'h80;
+    wire [7:0] flash_b = base_b[7:1] + 8'h80;
+
+    assign out_r = flash         ? flash_r :
+                   in_ring       ? 8'hFF :
+                   in_afterglow  ? {1'b0, base_r[7:1]} : base_r;
+    assign out_g = flash         ? flash_g :
+                   in_ring       ? 8'hFF :
+                   in_afterglow  ? {1'b0, base_g[7:1]} : base_g;
+    assign out_b = flash         ? flash_b :
+                   in_ring       ? 8'hFF :
+                   in_afterglow  ? {1'b0, base_b[7:1]} : base_b;
 
     DVI_TX_Top u_dvi_tx (
         .I_rst_n       (rst_pixel_n),
@@ -383,8 +464,8 @@ assign sd_dat2 = 1'b1;
         .I_rgb_vs      (out_vsync),
         .I_rgb_hs      (out_hsync),
         .I_rgb_de      (out_de),
-        .I_rgb_r       (out_g),
-        .I_rgb_g       (out_r),
+        .I_rgb_r       (out_r),
+        .I_rgb_g       (out_g),
         .I_rgb_b       (out_b),
         .O_tmds_clk_p  (tmds_tx_clk_p),
         .O_tmds_clk_n  (tmds_tx_clk_n),

@@ -41,9 +41,10 @@ module vga_timing #(
         end
     end
 
-    // アクティブLowの同期信号
-    assign hsync = ~(h_cnt >= H_ACTIVE + H_FP && h_cnt < H_ACTIVE + H_FP + H_SYNC);
-    assign vsync = ~(v_cnt >= V_ACTIVE + V_FP && v_cnt < V_ACTIVE + V_FP + V_SYNC);
+    // アクティブHighの同期信号 (Gowin DVI TX IP はアクティブHighを期待する。
+    // リファレンス HDMI2HDMI の image_composer もアクティブHighで出力している)
+    assign hsync = (h_cnt >= H_ACTIVE + H_FP && h_cnt < H_ACTIVE + H_FP + H_SYNC);
+    assign vsync = (v_cnt >= V_ACTIVE + V_FP && v_cnt < V_ACTIVE + V_FP + V_SYNC);
 
     // データ有効期間
     assign de = (h_cnt < H_ACTIVE) && (v_cnt < V_ACTIVE);

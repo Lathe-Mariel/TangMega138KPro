@@ -4,7 +4,6 @@
 -cst C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.cst
 -cfg C:\Git\TangMega138KPro\sdcard2dvi\impl\pnr\device.cfg
 -sdc C:\Git\TangMega138KPro\sdcard2dvi\src\dvi_frame_buffer.sdc
--gao_crc 1000010011101001
 -bit
 -tr
 -ph
@@ -14,11 +13,10 @@
 -ioreg_not_in_iob
 -cst_error
 -convert_sdp32_36_to_sdp16_18
--place_option 3
--route_option 2
+-place_option 2
+-route_option 1
 -clock_route_order 0
 -correct_hold 1
 -route_maxfan 23
 -global_freq 100.000
 -enable_dsrm 0
--rtl_gao
