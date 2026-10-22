@@ -53,11 +53,84 @@
                 <Signal>u_sd_reader/cmd_bit_cnt[0]</Signal>
             </Bus>
             <Signal capture_enable="true">u_sd_reader/send_active</Signal>
+            <!-- ==== VFB 書き込みパス (frame_writer → VFB 書込ポート) の監視 ==== -->
+            <Signal capture_enable="true">u_frame_writer/px_valid</Signal>
+            <Signal capture_enable="true">u_frame_writer/rd_active</Signal>
+            <Signal capture_enable="true">u_frame_writer/in_vsync</Signal>
+            <Bus capture_enable="true" name="u_frame_writer/in_px[15:0]">
+                <Signal>u_frame_writer/in_px[15]</Signal>
+                <Signal>u_frame_writer/in_px[14]</Signal>
+                <Signal>u_frame_writer/in_px[13]</Signal>
+                <Signal>u_frame_writer/in_px[12]</Signal>
+                <Signal>u_frame_writer/in_px[11]</Signal>
+                <Signal>u_frame_writer/in_px[10]</Signal>
+                <Signal>u_frame_writer/in_px[9]</Signal>
+                <Signal>u_frame_writer/in_px[8]</Signal>
+                <Signal>u_frame_writer/in_px[7]</Signal>
+                <Signal>u_frame_writer/in_px[6]</Signal>
+                <Signal>u_frame_writer/in_px[5]</Signal>
+                <Signal>u_frame_writer/in_px[4]</Signal>
+                <Signal>u_frame_writer/in_px[3]</Signal>
+                <Signal>u_frame_writer/in_px[2]</Signal>
+                <Signal>u_frame_writer/in_px[1]</Signal>
+                <Signal>u_frame_writer/in_px[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="u_frame_writer/out_px[15:0]">
+                <Signal>u_frame_writer/out_px[15]</Signal>
+                <Signal>u_frame_writer/out_px[14]</Signal>
+                <Signal>u_frame_writer/out_px[13]</Signal>
+                <Signal>u_frame_writer/out_px[12]</Signal>
+                <Signal>u_frame_writer/out_px[11]</Signal>
+                <Signal>u_frame_writer/out_px[10]</Signal>
+                <Signal>u_frame_writer/out_px[9]</Signal>
+                <Signal>u_frame_writer/out_px[8]</Signal>
+                <Signal>u_frame_writer/out_px[7]</Signal>
+                <Signal>u_frame_writer/out_px[6]</Signal>
+                <Signal>u_frame_writer/out_px[5]</Signal>
+                <Signal>u_frame_writer/out_px[4]</Signal>
+                <Signal>u_frame_writer/out_px[3]</Signal>
+                <Signal>u_frame_writer/out_px[2]</Signal>
+                <Signal>u_frame_writer/out_px[1]</Signal>
+                <Signal>u_frame_writer/out_px[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">u_frame_writer/vin_vs_n</Signal>
+            <Signal capture_enable="true">u_frame_writer/vin_de</Signal>
+            <Bus capture_enable="true" name="u_frame_writer/vin_data[23:0]">
+                <Signal>u_frame_writer/vin_data[23]</Signal>
+                <Signal>u_frame_writer/vin_data[22]</Signal>
+                <Signal>u_frame_writer/vin_data[21]</Signal>
+                <Signal>u_frame_writer/vin_data[20]</Signal>
+                <Signal>u_frame_writer/vin_data[19]</Signal>
+                <Signal>u_frame_writer/vin_data[18]</Signal>
+                <Signal>u_frame_writer/vin_data[17]</Signal>
+                <Signal>u_frame_writer/vin_data[16]</Signal>
+                <Signal>u_frame_writer/vin_data[15]</Signal>
+                <Signal>u_frame_writer/vin_data[14]</Signal>
+                <Signal>u_frame_writer/vin_data[13]</Signal>
+                <Signal>u_frame_writer/vin_data[12]</Signal>
+                <Signal>u_frame_writer/vin_data[11]</Signal>
+                <Signal>u_frame_writer/vin_data[10]</Signal>
+                <Signal>u_frame_writer/vin_data[9]</Signal>
+                <Signal>u_frame_writer/vin_data[8]</Signal>
+                <Signal>u_frame_writer/vin_data[7]</Signal>
+                <Signal>u_frame_writer/vin_data[6]</Signal>
+                <Signal>u_frame_writer/vin_data[5]</Signal>
+                <Signal>u_frame_writer/vin_data[4]</Signal>
+                <Signal>u_frame_writer/vin_data[3]</Signal>
+                <Signal>u_frame_writer/vin_data[2]</Signal>
+                <Signal>u_frame_writer/vin_data[1]</Signal>
+                <Signal>u_frame_writer/vin_data[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">u_frame_writer/wr_halt</Signal>
+            <Signal capture_enable="true">u_frame_writer/frame_done</Signal>
+            <Signal capture_enable="true">u_frame_writer/frame_started</Signal>
+            <Signal capture_enable="true">sd_byte_valid</Signal>
+            <Signal capture_enable="true">sd_done</Signal>
         </SignalList>
         <Triggers>
             <Trigger index="0">
                 <SignalList>
-                    <Signal>u_ddr3/init_calib_complete</Signal>
+                    <Signal>u_frame_writer/frame_done</Signal>
                 </SignalList>
             </Trigger>
             <Trigger index="1"/>

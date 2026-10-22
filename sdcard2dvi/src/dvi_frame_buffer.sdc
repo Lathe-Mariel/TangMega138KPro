@@ -18,7 +18,6 @@ set_input_delay -clock clk 0.5 -min [get_ports {explode_btn}]
 # クロックドメイン間の非同期関係を宣言する。
 #   SD 読出 (clk) / 表示 (clk_pixel, clk_5x) / メモリ (clk_100)
 #   は VFB の非同期 FIFO を介して結合されるため、相互に非同期 (false path)。
-#   memory_clk / dma_clk は Gowin DDR3 IP が内部でタイミングを処理するため
-#   手動制約しない (リファレンス HDMI2HDMI と同一方針)。
+#   memory_clk / dma_clk は Gowin DDR3 IP 内部クロックとして扱う。
 # ============================================================================
 set_clock_groups -asynchronous -group [get_clocks {clk}] -group [get_clocks {clk_pixel clk_5x}] -group [get_clocks {clk_100}]
