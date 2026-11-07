@@ -1,0 +1,27 @@
+// Tang Mega 138K Pro Dock ピン制約
+// Device: GW5AST-LV138FPG676A
+
+// 50MHz システムクロック
+IO_LOC "clk_50m" P16;
+IO_PORT "clk_50m" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
+
+// リセットボタン (アクティブLow)
+IO_LOC "rst_n" K16;
+IO_PORT "rst_n" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
+
+// HDMI TX 差動ペア (DVI_TX IP: P側ポートに2ピン指定)
+// クロックチャネル
+IO_LOC "hdmi_tx_clk_p" Y22,Y23;
+IO_PORT "hdmi_tx_clk_p" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+
+// データチャネル0 (Blue)
+IO_LOC "hdmi_tx_p[0]" AB24,AC24;
+IO_PORT "hdmi_tx_p[0]" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+
+// データチャネル1 (Green)
+IO_LOC "hdmi_tx_p[1]" V24,W24;
+IO_PORT "hdmi_tx_p[1]" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;
+
+// データチャネル2 (Red)
+IO_LOC "hdmi_tx_p[2]" AA22,AA23;
+IO_PORT "hdmi_tx_p[2]" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=2.5;

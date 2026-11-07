@@ -12,7 +12,7 @@
 
 module driver
 (
-  input        link_i      , //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+  input        link_i      , //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
   input        repeat_en   , //0:bmp increase  , 1:bmp repeat
   input        video_gen_en,
   input        pixel_clock ,
@@ -50,7 +50,7 @@ video_gen #
 )
 u_video_gen
 (
-    .link_i          (link_i      ), //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+    .link_i          (link_i      ), //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
     .repeat_en       (repeat_en   ), //0:bmp increase  , 1:bmp repeat
     .video_gen_en_i  (video_gen_en),
     .pixel_clock_i   (pixel_clock ),

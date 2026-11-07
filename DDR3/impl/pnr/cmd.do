@@ -1,0 +1,23 @@
+-d H:\git\TangMega138KPro\DDR3\impl\gwsynthesis\DDR3.vg
+-p GW5AST-138B-FCPBGA676A-1
+-pn GW5AST-LV138FPG676AC1/I0
+-cst H:\git\TangMega138KPro\DDR3\src\DDR3.cst
+-cfg H:\git\TangMega138KPro\DDR3\impl\pnr\device.cfg
+-sdc H:\git\TangMega138KPro\DDR3\src\DDR3.sdc
+-bit
+-tr
+-ph
+-timing
+-ireg_not_in_iob
+-oreg_not_in_iob
+-ioreg_not_in_iob
+-cst_error
+-convert_sdp32_36_to_sdp16_18
+-place_option 3
+-route_option 2
+-retiming_resource none
+-clock_route_order 0
+-correct_hold 1
+-route_maxfan 23
+-global_freq 100.000
+-enable_dsrm 0

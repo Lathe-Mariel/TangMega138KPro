@@ -1,0 +1,56 @@
+[
+    {
+        "InstFile": "H:/git/TangMega138KPro/DDR3/src/top.sv",
+        "InstLine": 2,
+        "InstName": "top",
+        "ModuleFile": "H:/git/TangMega138KPro/DDR3/src/top.sv",
+        "ModuleLine": 2,
+        "ModuleName": "top",
+        "SubInsts": [
+            {
+                "InstFile": "H:/git/TangMega138KPro/DDR3/src/top.sv",
+                "InstLine": 23,
+                "InstName": "u_pll",
+                "ModuleFile": "H:/git/TangMega138KPro/DDR3/src/gowin_pll/gowin_pll.v",
+                "ModuleLine": 10,
+                "ModuleName": "Gowin_PLL"
+            },
+            {
+                "InstFile": "H:/git/TangMega138KPro/DDR3/src/top.sv",
+                "InstLine": 48,
+                "InstName": "u_ddr3",
+                "ModuleFile": "H:/git/TangMega138KPro/DDR3/src/ddr3_memory_interface/ddr3_memory_interface.v",
+                "ModuleLine": 28349,
+                "ModuleName": "DDR3_Memory_Interface_Top",
+                "SubInsts": [
+                    {
+                        "InstFile": "H:/git/TangMega138KPro/DDR3/src/ddr3_memory_interface/ddr3_memory_interface.v",
+                        "InstLine": 28434,
+                        "InstName": "gw3_top",
+                        "ModuleFile": "H:/git/TangMega138KPro/DDR3/src/ddr3_memory_interface/ddr3_memory_interface.v",
+                        "ModuleLine": 10,
+                        "ModuleName": "~GW_DDR3_PHY_MC.DDR3_Memory_Interface_Top"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "InstFile": "H:/git/TangMega138KPro/DDR3/src/video_frame_buffer/video_frame_buffer.v",
+        "InstLine": 6029,
+        "InstName": "Video_Frame_Buffer_Top",
+        "ModuleFile": "H:/git/TangMega138KPro/DDR3/src/video_frame_buffer/video_frame_buffer.v",
+        "ModuleLine": 6029,
+        "ModuleName": "Video_Frame_Buffer_Top",
+        "SubInsts": [
+            {
+                "InstFile": "H:/git/TangMega138KPro/DDR3/src/video_frame_buffer/video_frame_buffer.v",
+                "InstLine": 6090,
+                "InstName": "vfb_ddr3_wrapper_inst",
+                "ModuleFile": "H:/git/TangMega138KPro/DDR3/src/video_frame_buffer/video_frame_buffer.v",
+                "ModuleLine": 15,
+                "ModuleName": "~vfb_ddr3_wrapper.Video_Frame_Buffer_Top"
+            }
+        ]
+    }
+]

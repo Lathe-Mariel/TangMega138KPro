@@ -1,0 +1,82 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\top.v'
+ERROR (EX3863) : Syntax error near 'done'("H:\git\TangMega138KPro\VFB_DVI\src\top.v":236)
+Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\top.v' ignored due to errors
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv'
+ERROR (EX3863) : Syntax error near 'logic'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":50)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":67)
+ERROR (EX3863) : Syntax error near '@'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":77)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":81)
+ERROR (EX3863) : Syntax error near 'begin'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":95)
+ERROR (EX2656) : Verilog 2001 keyword 'begin' used in incorrect context("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":95)
+ERROR (EX3884) : 'ST_SEND_CMD8' is already declared("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":104)
+Previous declaration of 'ST_SEND_CMD8' is from here("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":54)
+ERROR (EX3863) : Syntax error near 'cur_cmd'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":104)
+ERROR (EX3884) : 'ST_SEND_CMD55' is already declared("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":105)
+Previous declaration of 'ST_SEND_CMD55' is from here("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":56)
+ERROR (EX3863) : Syntax error near 'cur_cmd'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":105)
+ERROR (EX3884) : 'ST_SEND_ACMD41' is already declared("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":106)
+Previous declaration of 'ST_SEND_ACMD41' is from here("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":58)
+ERROR (EX3863) : Syntax error near 'cur_cmd'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":106)
+ERROR (EX3884) : 'ST_RD_SEND' is already declared("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":107)
+Previous declaration of 'ST_RD_SEND' is from here("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":62)
+ERROR (EX3863) : Syntax error near 'cur_cmd'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":107)
+WARN  (EX3628) : Redeclaration of ANSI port 'block_addr' is not allowed("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":107)
+ERROR (EX3863) : Syntax error near '8'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":107)
+WARN  (EX3294) : Unexpected 'default'("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":108)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":120)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":122)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":125)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv":127)
+Sorry, too many errors..
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv'
+ERROR (EX3863) : Syntax error near '@'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":51)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":55)
+ERROR (EX3863) : Syntax error near '@'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":87)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":95)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":96)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":96)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":97)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":97)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":99)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":99)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":100)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":103)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":104)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":104)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":105)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":105)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":107)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":107)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv":108)
+Sorry, too many errors..
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv'
+ERROR (EX3863) : Syntax error near '@'("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":70)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":93)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":93)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":95)
+ERROR (EX3863) : Syntax error near '}'("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":95)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":101)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":107)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":113)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":115)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":117)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":120)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":123)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":126)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":129)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":136)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":141)
+ERROR (EX3863) : Syntax error near '<='("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":143)
+ERROR (EX3863) : Syntax error near 'end'("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":148)
+ERROR (EX2656) : Verilog 2001 keyword 'end' used in incorrect context("H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv":148)
+Sorry, too many errors..
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\video_frame_buffer.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\ddr3_memory_interface\ddr3_memory_interface.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\gowin_pll\gowin_pll.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\gowin_pll_dvi\gowin_pll_dvi.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\gowin_pll_dvi\gowin_pll_dvi_mod.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\gowin_clkdiv.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\VFB_DVI\src\dvi_tx.v'
+GowinSynthesis finish

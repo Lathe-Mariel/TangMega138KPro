@@ -19,7 +19,7 @@
 
 module video_gen_data
 (
-  input            link_i    ,  //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+  input            link_i    ,  //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
   input            repeat_en ,  //0:bmp increase  , 1:bmp repeat
   input            en_i      ,  //module enable, 0:disable 1:enbale
   input            pclk_i    ,  //pixel clock                      
@@ -114,9 +114,9 @@ begin
   else if (de_i==1'b1)
     begin
       if(link_i) 
-        address_cnt<=address_cnt+2'd2;   //Ë«ÏñËØÄ£Ê½£¬Ã¿´Î¼Ó2 
+        address_cnt<=address_cnt+2'd2;   //åŒåƒç´ æ¨¡å¼ï¼Œæ¯æ¬¡åŠ 2 
       else
-        address_cnt<=address_cnt+1'b1;   //µ¥ÏñËØÄ£Ê½£¬Ã¿´Î¼Ó1 
+        address_cnt<=address_cnt+1'b1;   //å•åƒç´ æ¨¡å¼ï¼Œæ¯æ¬¡åŠ 1 
     end
 end
   
@@ -217,7 +217,7 @@ task bmp2mem_24b;
         begin
         for (i=0;i<54;i=i+1)
             begin
-            fscanf_ptr=$fscanf (infile_ptr,"%c",inbmp_htr[i]);//»ñÈ¡bmpÎ»Í¼ÎÄ¼şÍ·
+            fscanf_ptr=$fscanf (infile_ptr,"%c",inbmp_htr[i]);//è·å–bmpä½å›¾æ–‡ä»¶å¤´
             end
         
         file_identity={inbmp_htr[1],inbmp_htr[0]};
@@ -236,11 +236,11 @@ task bmp2mem_24b;
         colors={inbmp_htr[49],inbmp_htr[48],inbmp_htr[47],inbmp_htr[46]}; 
         important={inbmp_htr[53],inbmp_htr[52],inbmp_htr[51],inbmp_htr[50]}; 
       
-        fseek_ptr=$fseek(infile_ptr,bitmap_data_offset,0);//ÉèÖÃÎÄ¼şÖ¸ÕëÆ«ÒÆ 
-        fread_ptr=$fread(bmp_data_reg,infile_ptr);//´ÓÆ«ÒÆµØÖ·¿ªÊ¼¶ÁÈ¡Î»Í¼Êı¾İ    
+        fseek_ptr=$fseek(infile_ptr,bitmap_data_offset,0);//è®¾ç½®æ–‡ä»¶æŒ‡é’ˆåç§» 
+        fread_ptr=$fread(bmp_data_reg,infile_ptr);//ä»åç§»åœ°å€å¼€å§‹è¯»å–ä½å›¾æ•°æ®    
 
-        //bmpÊÇµ¹Ğò´æ´¢£¬ÏÈ´æ´¢×îºóÒ»ĞĞ£¬µ«Ã¿ĞĞÄÚ²¿ÊÇ°´Ë³ĞòµÄ
-        //ÒÔÏÂ½«Í¼ÏñË³Ğòµ¹×ª
+        //bmpæ˜¯å€’åºå­˜å‚¨ï¼Œå…ˆå­˜å‚¨æœ€åä¸€è¡Œï¼Œä½†æ¯è¡Œå†…éƒ¨æ˜¯æŒ‰é¡ºåºçš„
+        //ä»¥ä¸‹å°†å›¾åƒé¡ºåºå€’è½¬
         for (i=0;i<VER_RESOLUTION;i=i+1)
             for (j=0;j<(HOR_RESOLUTION*3+HOR_RESOLUTION*3%4);j=j+1)
             bmp_data[i*(HOR_RESOLUTION*3+HOR_RESOLUTION*3%4)+j]=bmp_data_reg[(VER_RESOLUTION-i-1)*(HOR_RESOLUTION*3+HOR_RESOLUTION*3%4)+j];

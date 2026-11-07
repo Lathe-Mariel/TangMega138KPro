@@ -1,0 +1,108 @@
+m255
+K4
+z2
+Z0 !s12c _opt
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z2 dH:/git/TangMega138KPro/DDR3
+T_opt
+!i145 1
+!i144 0
+!s110 1794062337
+Vl9cD<JG8iLBi]Q<[Z0=D>0
+04 2 4 work tb fast 0
+=1-9418827106c0-6aef3800-362-ec8
+R1
+!s12f OEM100
+!s12b OEM100
+!s124 OEM10U3 
+!s135 nogc
+o-quiet -auto_acc_if_foreign -work work
+tCvgOpt 0 defaultOptions 1107585188
+n@_opt
+OL;O;2025.2;82
+vddr3_controller
+Z3 2src/top.sv|src/custom_ddr3/ddr3_controller.v|tb.v
+Z4 DXx6 sv_std 3 std 0 22 @5XbY]_OacJl=`ToSm<M^0
+Z5 !s110 1794062334
+!i10b 1
+!s100 >FCYQzK6@b`WH;cBX`G1R3
+I?`0=TM8BM7aKLg7`7mm6U0
+S1
+R2
+w1794062190
+8src/custom_ddr3/ddr3_controller.v
+Fsrc/custom_ddr3/ddr3_controller.v
+!i122 3
+L0 1 118
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OL;L;2025.2;82
+r1
+!s85 0
+31
+Z8 !s108 1794062334.000000
+Z9 !s107 tb.v|src/custom_ddr3/ddr3_controller.v|src/top.sv|
+Z10 !s90 -sv|src/top.sv|src/custom_ddr3/ddr3_controller.v|tb.v|-work|work|
+!i113 0
+Z11 o-sv -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z12 tCvgOpt 0 defaultOptions 1085333592
+vtb
+R3
+R4
+R5
+!i10b 1
+!s100 `lE2j0Sn<9ejoXg0]5^Z`0
+Ib?B:9Lk`9[g=9?ch?`4N52
+S1
+R2
+w1794062329
+8tb.v
+Ftb.v
+!i122 3
+L0 2 35
+R6
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R12
+vtop
+R3
+R4
+R5
+!i10b 1
+!s100 o07DN8=9>nSXe9;OSGUUQ0
+I46BbIVED83:RL2`;nN5He2
+S1
+R2
+w1794062142
+8src/top.sv
+Fsrc/top.sv
+!i122 3
+L0 1 51
+R6
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R12

@@ -1,0 +1,29 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'H:\git\TangMega138KPro\DDR3\src\ddr3_memory_interface\ddr3_memory_interface.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\DDR3\src\gowin_pll\gowin_pll.v'
+Analyzing Verilog file 'H:\git\TangMega138KPro\DDR3\src\top.sv'
+Analyzing Verilog file 'H:\git\TangMega138KPro\DDR3\src\video_frame_buffer\video_frame_buffer.v'
+Compiling module 'Video_Frame_Buffer_Top'("H:\git\TangMega138KPro\DDR3\src\video_frame_buffer\video_frame_buffer.v":6029)
+Compiling module '**'("H:\git\TangMega138KPro\DDR3\src\video_frame_buffer\video_frame_buffer.v":6028)
+NOTE  (EX0101) : Current top module is "Video_Frame_Buffer_Top"
+[5%] Running netlist conversion ...
+WARN  (CV0016) : Input I_rd_data_end is unused("H:\git\TangMega138KPro\DDR3\src\video_frame_buffer\video_frame_buffer.v":6085)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "H:\git\TangMega138KPro\DDR3\impl\gwsynthesis\DDR3.vg" completed
+[100%] Generate report file "H:\git\TangMega138KPro\DDR3\impl\gwsynthesis\DDR3_syn.rpt.html" completed
+GowinSynthesis finish

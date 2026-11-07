@@ -26,14 +26,14 @@ module video_gen_syn
 (
   input        En_i                ,  //module enable, 0:disable 1:enbale 
   input        Pixel_Clock_i       ,  //pixel clock 
-  input [15:0] Hor_Total_Time_i    ,  //horizontal total pixels£¨beginning with 1
-  input [15:0] Ver_Total_Time_i    ,  //vertical total lines£¨beginning with 1
-  input [15:0] Hor_Sync_Time_i     ,  //horizontal synchronization time (unit:pixel)£¨beginning with 1
-  input [15:0] Ver_Sync_Time_i     ,  //vertical synchronization time (unit:line) £¨beginning with 1
-  input [15:0] Data_Valid_Out_Xst_i,  //addressable video horizontal start coorodinate£¨beginning with 1 
-  input [15:0] Data_Valid_Out_Xed_i,  //addressable video horizontal end coorodinate£¨beginning with 1   
-  input [15:0] Data_Valid_Out_Yst_i,  //addressable video vertical start coorodinate£¨beginning with 1   
-  input [15:0] Data_Valid_Out_Yed_i,  //addressable video vertical end coorodinate£¨beginning with 1                       
+  input [15:0] Hor_Total_Time_i    ,  //horizontal total pixelsÔºåbeginning with 1
+  input [15:0] Ver_Total_Time_i    ,  //vertical total linesÔºåbeginning with 1
+  input [15:0] Hor_Sync_Time_i     ,  //horizontal synchronization time (unit:pixel)Ôºåbeginning with 1
+  input [15:0] Ver_Sync_Time_i     ,  //vertical synchronization time (unit:line) Ôºåbeginning with 1
+  input [15:0] Data_Valid_Out_Xst_i,  //addressable video horizontal start coorodinateÔºåbeginning with 1 
+  input [15:0] Data_Valid_Out_Xed_i,  //addressable video horizontal end coorodinateÔºåbeginning with 1   
+  input [15:0] Data_Valid_Out_Yst_i,  //addressable video vertical start coorodinateÔºåbeginning with 1   
+  input [15:0] Data_Valid_Out_Yed_i,  //addressable video vertical end coorodinateÔºåbeginning with 1                       
   output       VSync_o             ,  //vertical synchronization                
   output       HSync_o             ,  //horizontal synchronization
   output       Data_Valid_o           //addressable video data valid 
@@ -50,10 +50,10 @@ module video_gen_syn
   reg [15:0] Hs_cnt;
 
 //================================================================================= 
-//-----------------------------“ª÷°ø™ º–≈∫≈ ------------------------------------
+//-----------------------------‰∏ÄÂ∏ßÂºÄÂßã‰ø°Âè∑ ------------------------------------
   assign Vs_cnt_Clean = (Vs_cnt == Ver_Total_Time_i-1'b1) & (Hs_cnt == Hor_Total_Time_i -1'b1 );
 
-//--------------------------------––º∆ ˝∆˜--------------------------------------
+//--------------------------------Ë°åËÆ°Êï∞Âô®--------------------------------------
   always @(posedge Pixel_Clock_i or negedge En_i)
   begin
     if(En_i==1'b0)
@@ -64,7 +64,7 @@ module video_gen_syn
       Hs_cnt <=  Hs_cnt + 1'b1 ;           
   end
 
-//--------------------------------≥°º∆ ˝∆˜--------------------------------------  
+//--------------------------------Âú∫ËÆ°Êï∞Âô®--------------------------------------  
   always @(posedge Pixel_Clock_i or negedge En_i)
   begin
     if(En_i==1'b0)

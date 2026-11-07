@@ -32,7 +32,7 @@
 
 module video_syntime_config
 (
-  input             link_i          , //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+  input             link_i          , //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
   output reg [15:0] hor_total_time_o, //horizontal total pixels
   output reg [15:0] ver_total_time_o, //vertical total lines
   output reg [15:0] hor_sync_time_o , //horizontal synchronization time (unit:pixel) 

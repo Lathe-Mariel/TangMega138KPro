@@ -27,7 +27,7 @@ parameter BMP_WIDTH				   = 160;
 parameter BMP_HEIGHT			   = 120;
 parameter BMP_OPENED_NAME		   = "../../tb/pic/img160.bmp";
 parameter BMP_REPEAT			   = 1'b1;  //0:bmp increase  , 1:bmp repeat 
-parameter BMP_LINK				   = 1'b0;  //0:µ¥ÏñËØ£»1:Ë«ÏñËØ
+parameter BMP_LINK				   = 1'b0;  //0:å•åƒç´ ï¼›1:åŒåƒç´ 
 								   
 parameter BMP_OUTPUTED_WIDTH	   = BMP_WIDTH;
 parameter BMP_OUTPUTED_HEIGHT	   = BMP_HEIGHT;
@@ -124,12 +124,12 @@ driver #
 )
 driver_inst
 (
-	.link_i	       (BMP_LINK   ), //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+	.link_i	       (BMP_LINK   ), //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
 	.repeat_en     (BMP_REPEAT ),
 	.video_gen_en  (rst_n 	   ),
 	.pixel_clock   (pixel_clock),
-	.vsync	       (vsync	   ),//¸º¼«ĞÔ 
-	.hsync	       (hsync	   ),//¸º¼«ĞÔ 
+	.vsync	       (vsync	   ),//è´Ÿææ€§ 
+	.hsync	       (hsync	   ),//è´Ÿææ€§ 
 	.data_valid    (data_valid ),
 	.data0_r       (data0_r	   ), 
 	.data0_g       (data0_g	   ),
@@ -207,11 +207,11 @@ monitor#
 )
 monitor_inst
 (
-  .link_i	    (BMP_LINK	), //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+  .link_i	    (BMP_LINK	), //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
   .video2bmp_en (rst_n		),
   .pixel_clock  (m_clk		), 
-  .vsync		(m_vs_rgb	), //¸º¼«ĞÔ	   
-  .hsync		(m_hs_rgb	), //¸º¼«ĞÔ	   
+  .vsync		(m_vs_rgb	), //è´Ÿææ€§	   
+  .hsync		(m_hs_rgb	), //è´Ÿææ€§	   
   .data_valid   (m_de_rgb	), 
   .data0_r	    (m_data0_r	),	
   .data0_g	    (m_data0_g	),

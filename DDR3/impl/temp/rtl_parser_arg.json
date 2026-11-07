@@ -1,0 +1,28 @@
+{
+    "Device": "GW5AST-138B",
+    "Files": [
+        {
+            "Path": "H:/git/TangMega138KPro/DDR3/src/ddr3_memory_interface/ddr3_memory_interface.v",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/DDR3/src/gowin_pll/gowin_pll.v",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/DDR3/src/top.sv",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/DDR3/src/video_frame_buffer/video_frame_buffer.v",
+            "Type": "verilog"
+        }
+    ],
+    "IncludePath": [
+    ],
+    "LoopLimit": 2000,
+    "ResultFile": "H:/git/TangMega138KPro/DDR3/impl/temp/rtl_parser.result",
+    "Top": "",
+    "VerilogStd": "sysv",
+    "VhdlStd": "vhdl_93"
+}

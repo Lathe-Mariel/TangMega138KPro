@@ -12,7 +12,7 @@
 
 module monitor
 (
-  input       link_i      , //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+  input       link_i      , //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
   input       video2bmp_en,
   input       pixel_clock , 
   input       vsync       ,       
@@ -42,7 +42,7 @@ video2bmp #
 )
 u_video2bmp
 (
-    .link_i        (link_i      ), //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+    .link_i        (link_i      ), //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
     .en_i          (video2bmp_en),
     .pclk_i        (pixel_clock ),
     .vs_i          (vsync       ),

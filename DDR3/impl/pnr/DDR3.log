@@ -1,0 +1,4 @@
+Reading netlist file: "H:\git\TangMega138KPro\DDR3\impl\gwsynthesis\DDR3.vg"
+Parsing netlist file "H:\git\TangMega138KPro\DDR3\impl\gwsynthesis\DDR3.vg" completed
+ERROR  (PA2024) : The number(644) of ports exceeds the resource limit 311 regular I/Os and 1 RECONFIG_N I/Os of current device.
+NOTE  (PA0005) : Processing netlist completed with errors

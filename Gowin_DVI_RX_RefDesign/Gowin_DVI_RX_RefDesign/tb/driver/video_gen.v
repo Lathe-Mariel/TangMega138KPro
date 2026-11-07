@@ -32,7 +32,7 @@
 
 module video_gen
 (
-  input        link_i        , //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+  input        link_i        , //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
   input        repeat_en     , //0:bmp increase  , 1:bmp repeat
   input        video_gen_en_i, //module enable, 0:disable 1:enbale
   input        pixel_clock_i , //pixel clock 
@@ -79,7 +79,7 @@ video_syntime_config #
 )
 u_video_syntime_config
 (
-    .link_i           (link_i          ), //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+    .link_i           (link_i          ), //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
     .hor_total_time_o (hor_total_time_w), //horizontal total pixels
     .ver_total_time_o (ver_total_time_w), //vertical total lines
     .hor_sync_time_o  (hor_sync_time_w ), //horizontal synchronization time (unit:pixel) 
@@ -123,7 +123,7 @@ video_gen_data #
 )
 u_video_gen_data
 (
-    .link_i       (link_i        ), //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+    .link_i       (link_i        ), //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
     .repeat_en    (repeat_en     ), //0:bmp increase  , 1:bmp repeat
     .en_i         (video_gen_en_i), //module enable, 0:disable 1:enbale  
     .pclk_i       (pixel_clock_i ), //pixel clock 

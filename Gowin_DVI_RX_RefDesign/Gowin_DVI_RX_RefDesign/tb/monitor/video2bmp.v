@@ -21,7 +21,7 @@
 
 module video2bmp
 (
-  input       link_i   , //0,µ¥ÏñËØ£»1£¬Ë«ÏñËØ
+  input       link_i   , //0,å•åƒç´ ï¼›1ï¼ŒåŒåƒç´ 
   input       en_i     ,
   input       pclk_i   ,
   input       vs_i     ,
@@ -167,14 +167,14 @@ begin
           data_r_i_mem[data_mem_addr+1'b1] = data1_r_i;
           data_g_i_mem[data_mem_addr+1'b1] = data1_g_i;
           data_b_i_mem[data_mem_addr+1'b1] = data1_b_i;
-          data_mem_addr = data_mem_addr +2'd2;   //Ë«ÏñËØÄ£Ê½£¬Ã¿´Î¼Ó2
+          data_mem_addr = data_mem_addr +2'd2;   //åŒåƒç´ æ¨¡å¼ï¼Œæ¯æ¬¡åŠ 2
         end
       else
         begin
           data_r_i_mem[data_mem_addr]      =data0_r_i;
           data_g_i_mem[data_mem_addr]      =data0_g_i;
           data_b_i_mem[data_mem_addr]      =data0_b_i;
-          data_mem_addr = data_mem_addr +1'b1;   //µ¥ÏñËØÄ£Ê½£¬Ã¿´Î¼Ó1
+          data_mem_addr = data_mem_addr +1'b1;   //å•åƒç´ æ¨¡å¼ï¼Œæ¯æ¬¡åŠ 1
         end
     end
 end
@@ -214,8 +214,8 @@ always @ (posedge pclk_i)
                 data_i_mem[3*i+2+i/BMP_OUTPUTED_WIDTH*1]=data_r_i_mem[i];
                 end
         
-        //bmpÊÇµ¹Ğò´æ´¢£¬ÏÈ´æ´¢×îºóÒ»ĞĞ£¬µ«Ã¿ĞĞÄÚ²¿ÊÇ°´Ë³ĞòµÄ
-        //ÒÔÏÂ½«Í¼ÏñË³Ğòµ¹×ª
+        //bmpæ˜¯å€’åºå­˜å‚¨ï¼Œå…ˆå­˜å‚¨æœ€åä¸€è¡Œï¼Œä½†æ¯è¡Œå†…éƒ¨æ˜¯æŒ‰é¡ºåºçš„
+        //ä»¥ä¸‹å°†å›¾åƒé¡ºåºå€’è½¬
         for(i=0;i<BMP_OUTPUTED_HEIGHT;i=i+1)
             for(j=0;j<BMP_OUTPUTED_WIDTH*3+BMP_OUTPUTED_WIDTH*3%4;j=j+1)
                 data_bmp_mem[i*(BMP_OUTPUTED_WIDTH*3+BMP_OUTPUTED_WIDTH*3%4)+j]=data_i_mem[(BMP_OUTPUTED_HEIGHT-i-1)*(BMP_OUTPUTED_WIDTH*3+BMP_OUTPUTED_WIDTH*3%4)+j];

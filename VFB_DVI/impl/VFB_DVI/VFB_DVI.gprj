@@ -1,0 +1,21 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AST-138C" pn="GW5AST-LV138FPG676AC1/I0">gw5ast138c-003</Device>
+    <FileList>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/bmp_parser.sv" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/ddr3_memory_interface/ddr3_memory_interface.v" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/dvi_tx.v" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/frame_writer.sv" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/gowin_clkdiv.v" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll/gowin_pll.v" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll_dvi/gowin_pll_dvi.v" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll_dvi/gowin_pll_dvi_mod.v" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/sd_reader.sv" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/top.v" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/video_frame_buffer.v" type="file.verilog" enable="1"/>
+        <File path="H:/git/TangMega138KPro/VFB_DVI/src/VFB_DVI.cst" type="file.cst" enable="1"/>
+    </FileList>
+</Project>

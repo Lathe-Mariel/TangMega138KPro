@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-synthesis-project>
+<Project>
+    <Version>beta</Version>
+    <Device id="GW5AST-138C" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
+    <FileList>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\top.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\video_frame_buffer.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\ddr3_memory_interface\ddr3_memory_interface.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\gowin_pll\gowin_pll.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\gowin_pll_dvi\gowin_pll_dvi.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\gowin_pll_dvi\gowin_pll_dvi_mod.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\gowin_clkdiv.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\dvi_tx.v" type="verilog"/>
+    </FileList>
+    <OptionList>
+        <Option type="disable_insert_pad" value="0"/>
+        <Option type="dsp_style" value="auto"/>
+        <Option type="global_freq" value="100.000"/>
+        <Option type="looplimit" value="2000"/>
+        <Option type="map_option" value="1"/>
+        <Option type="max_fanout" value="1000"/>
+        <Option type="netlist_hierarchy" value="1"/>
+        <Option type="opt_goal" value="auto"/>
+        <Option type="output_file" value="H:\git\TangMega138KPro\VFB_DVI\impl\VFB_DVI\impl\gwsynthesis\VFB_DVI.vg"/>
+        <Option type="print_all_synthesis_warning" value="0"/>
+        <Option type="ram_rw_check" value="0"/>
+        <Option type="ram_style" value="auto"/>
+        <Option type="rom_style" value="auto"/>
+        <Option type="shift_reg" value="auto"/>
+        <Option type="vcc" value="0.9"/>
+        <Option type="verilog_language" value="verilog-2001"/>
+        <Option type="vhdl_language" value="vhdl-1993"/>
+    </OptionList>
+</Project>

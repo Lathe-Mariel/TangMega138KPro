@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="top" Register="72" Alu="31" Lut="69" T_Register="6383(72)" T_Alu="456(31)" T_Lut="4990(69)" T_Bsram="38(0)">
+ <SubModule name="u_pll_dvi"/>
+ <SubModule name="u_clkdiv"/>
+ <SubModule name="u_pll_mem"/>
+ <SubModule name="u_sd" Register="97" Alu="7" Lut="196" T_Register="97(97)" T_Alu="7(7)" T_Lut="196(196)"/>
+ <SubModule name="u_bmp" Register="115" Alu="63" Lut="38" T_Register="115(115)" T_Alu="63(63)" T_Lut="38(38)"/>
+ <SubModule name="u_fw" Register="123" Alu="62" Lut="133" Bsram="6" T_Register="123(123)" T_Alu="62(62)" T_Lut="133(133)" T_Bsram="6(6)"/>
+ <SubModule name="vfb" Register="459" Alu="34" Lut="1176" Bsram="16" T_Register="459(459)" T_Alu="34(34)" T_Lut="1176(1176)" T_Bsram="16(16)"/>
+ <SubModule name="u_ddr3" Register="5444" Alu="190" Lut="3150" Bsram="16" T_Register="5444(5444)" T_Alu="190(190)" T_Lut="3150(3150)" T_Bsram="16(16)"/>
+ <SubModule name="u_dvi" Register="73" Alu="69" Lut="228" T_Register="73(73)" T_Alu="69(69)" T_Lut="228(228)"/>
+</Module>
