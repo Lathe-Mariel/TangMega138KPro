@@ -4,11 +4,12 @@ Analyzing Verilog file 'H:\git\TangMega138KPro\DDR3\src\ddr3_memory_interface\dd
 Analyzing Verilog file 'H:\git\TangMega138KPro\DDR3\src\gowin_pll\gowin_pll.v'
 Analyzing Verilog file 'H:\git\TangMega138KPro\DDR3\src\top.sv'
 Analyzing Verilog file 'H:\git\TangMega138KPro\DDR3\src\video_frame_buffer\video_frame_buffer.v'
-Compiling module 'Video_Frame_Buffer_Top'("H:\git\TangMega138KPro\DDR3\src\video_frame_buffer\video_frame_buffer.v":6029)
-Compiling module '**'("H:\git\TangMega138KPro\DDR3\src\video_frame_buffer\video_frame_buffer.v":6028)
-NOTE  (EX0101) : Current top module is "Video_Frame_Buffer_Top"
+Compiling module 'top'("H:\git\TangMega138KPro\DDR3\src\top.sv":2)
+Compiling module 'Gowin_PLL'("H:\git\TangMega138KPro\DDR3\src\gowin_pll\gowin_pll.v":10)
+Compiling module 'DDR3_Memory_Interface_Top'("H:\git\TangMega138KPro\DDR3\src\ddr3_memory_interface\ddr3_memory_interface.v":28349)
+Compiling module '**'("H:\git\TangMega138KPro\DDR3\src\ddr3_memory_interface\ddr3_memory_interface.v":28348)
+NOTE  (EX0101) : Current top module is "top"
 [5%] Running netlist conversion ...
-WARN  (CV0016) : Input I_rd_data_end is unused("H:\git\TangMega138KPro\DDR3\src\video_frame_buffer\video_frame_buffer.v":6085)
 Running device independent optimization ...
 [10%] Optimizing Phase 0 completed
 [15%] Optimizing Phase 1 completed

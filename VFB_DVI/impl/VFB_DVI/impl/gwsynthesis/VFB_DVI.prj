@@ -4,17 +4,17 @@
     <Version>beta</Version>
     <Device id="GW5AST-138C" package="FCPBGA676A" speed="1" partNumber="GW5AST-LV138FPG676AC1/I0"/>
     <FileList>
-        <File path="H:\git\TangMega138KPro\VFB_DVI\src\top.v" type="verilog"/>
-        <File path="H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv" type="verilog"/>
         <File path="H:\git\TangMega138KPro\VFB_DVI\src\bmp_parser.sv" type="verilog"/>
-        <File path="H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv" type="verilog"/>
-        <File path="H:\git\TangMega138KPro\VFB_DVI\src\video_frame_buffer.v" type="verilog"/>
         <File path="H:\git\TangMega138KPro\VFB_DVI\src\ddr3_memory_interface\ddr3_memory_interface.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\dvi_tx.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\frame_writer.sv" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\gowin_clkdiv.v" type="verilog"/>
         <File path="H:\git\TangMega138KPro\VFB_DVI\src\gowin_pll\gowin_pll.v" type="verilog"/>
         <File path="H:\git\TangMega138KPro\VFB_DVI\src\gowin_pll_dvi\gowin_pll_dvi.v" type="verilog"/>
         <File path="H:\git\TangMega138KPro\VFB_DVI\src\gowin_pll_dvi\gowin_pll_dvi_mod.v" type="verilog"/>
-        <File path="H:\git\TangMega138KPro\VFB_DVI\src\gowin_clkdiv.v" type="verilog"/>
-        <File path="H:\git\TangMega138KPro\VFB_DVI\src\dvi_tx.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\sd_reader.sv" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\top.v" type="verilog"/>
+        <File path="H:\git\TangMega138KPro\VFB_DVI\src\video_frame_buffer.v" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>
@@ -31,8 +31,9 @@
         <Option type="ram_style" value="auto"/>
         <Option type="rom_style" value="auto"/>
         <Option type="shift_reg" value="auto"/>
+        <Option type="top_module" value="top"/>
         <Option type="vcc" value="0.9"/>
-        <Option type="verilog_language" value="verilog-2001"/>
+        <Option type="verilog_language" value="sysv-2017"/>
         <Option type="vhdl_language" value="vhdl-1993"/>
     </OptionList>
 </Project>

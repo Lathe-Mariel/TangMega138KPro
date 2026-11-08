@@ -1,0 +1,122 @@
+[
+    {
+        "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
+        "InstLine": 10,
+        "InstName": "Gowin_PLL_DVI_MOD",
+        "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
+        "ModuleLine": 10,
+        "ModuleName": "Gowin_PLL_DVI_MOD"
+    },
+    {
+        "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+        "InstLine": 1,
+        "InstName": "top",
+        "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+        "ModuleLine": 1,
+        "ModuleName": "top",
+        "SubInsts": [
+            {
+                "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+                "InstLine": 40,
+                "InstName": "u_pll_dvi",
+                "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll_dvi/gowin_pll_dvi.v",
+                "ModuleLine": 10,
+                "ModuleName": "Gowin_PLL_DVI"
+            },
+            {
+                "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+                "InstLine": 41,
+                "InstName": "u_clkdiv",
+                "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/gowin_clkdiv.v",
+                "ModuleLine": 10,
+                "ModuleName": "Gowin_CLKDIV"
+            },
+            {
+                "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+                "InstLine": 44,
+                "InstName": "u_pll_mem",
+                "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll/gowin_pll.v",
+                "ModuleLine": 10,
+                "ModuleName": "Gowin_PLL"
+            },
+            {
+                "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+                "InstLine": 91,
+                "InstName": "u_sd",
+                "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/sd_reader.sv",
+                "ModuleLine": 15,
+                "ModuleName": "sd_reader"
+            },
+            {
+                "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+                "InstLine": 102,
+                "InstName": "u_bmp",
+                "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/bmp_parser.sv",
+                "ModuleLine": 24,
+                "ModuleName": "bmp_parser"
+            },
+            {
+                "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+                "InstLine": 114,
+                "InstName": "u_fw",
+                "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/frame_writer.sv",
+                "ModuleLine": 18,
+                "ModuleName": "frame_writer"
+            },
+            {
+                "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+                "InstLine": 137,
+                "InstName": "vfb",
+                "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/video_frame_buffer.v",
+                "ModuleLine": 6029,
+                "ModuleName": "Video_Frame_Buffer_Top",
+                "SubInsts": [
+                    {
+                        "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/video_frame_buffer.v",
+                        "InstLine": 6090,
+                        "InstName": "vfb_ddr3_wrapper_inst",
+                        "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/video_frame_buffer.v",
+                        "ModuleLine": 15,
+                        "ModuleName": "~vfb_ddr3_wrapper.Video_Frame_Buffer_Top"
+                    }
+                ]
+            },
+            {
+                "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+                "InstLine": 169,
+                "InstName": "u_ddr3",
+                "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/ddr3_memory_interface/ddr3_memory_interface.v",
+                "ModuleLine": 28349,
+                "ModuleName": "DDR3_Memory_Interface_Top",
+                "SubInsts": [
+                    {
+                        "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/ddr3_memory_interface/ddr3_memory_interface.v",
+                        "InstLine": 28434,
+                        "InstName": "gw3_top",
+                        "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/ddr3_memory_interface/ddr3_memory_interface.v",
+                        "ModuleLine": 10,
+                        "ModuleName": "~GW_DDR3_PHY_MC.DDR3_Memory_Interface_Top"
+                    }
+                ]
+            },
+            {
+                "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+                "InstLine": 216,
+                "InstName": "u_dvi",
+                "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/dvi_tx.v",
+                "ModuleLine": 1091,
+                "ModuleName": "DVI_TX_Top",
+                "SubInsts": [
+                    {
+                        "InstFile": "H:/git/TangMega138KPro/VFB_DVI/src/dvi_tx.v",
+                        "InstLine": 1122,
+                        "InstName": "rgb2dvi_inst",
+                        "ModuleFile": "H:/git/TangMega138KPro/VFB_DVI/src/dvi_tx.v",
+                        "ModuleLine": 10,
+                        "ModuleName": "~rgb2dvi.DVI_TX_Top"
+                    }
+                ]
+            }
+        ]
+    }
+]

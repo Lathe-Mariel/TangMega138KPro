@@ -1,0 +1,56 @@
+{
+    "Device": "GW5AST-138C",
+    "Files": [
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/bmp_parser.sv",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/ddr3_memory_interface/ddr3_memory_interface.v",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/dvi_tx.v",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/frame_writer.sv",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/gowin_clkdiv.v",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll/gowin_pll.v",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll_dvi/gowin_pll_dvi.v",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/gowin_pll_dvi/gowin_pll_dvi_mod.v",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/sd_reader.sv",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/top.v",
+            "Type": "verilog"
+        },
+        {
+            "Path": "H:/git/TangMega138KPro/VFB_DVI/src/video_frame_buffer.v",
+            "Type": "verilog"
+        }
+    ],
+    "IncludePath": [
+    ],
+    "LoopLimit": 2000,
+    "ResultFile": "H:/git/TangMega138KPro/VFB_DVI/impl/VFB_DVI/impl/temp/rtl_parser.result",
+    "Top": "top",
+    "VerilogStd": "sysv",
+    "VhdlStd": "vhdl_93"
+}

@@ -60,7 +60,8 @@ module top (
     wire vs_n = ~vs;
 
     // SD read
-    reg [31:0] block_cnt = 0, block_addr = 0;
+    reg [31:0] block_cnt;
+    reg [31:0] block_addr;
     reg read_req, sd_done, rd_pending;
     wire sd_busy, sd_init_done;
     wire [2:0] sd_debug_stage;

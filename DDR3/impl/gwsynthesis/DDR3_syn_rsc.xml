@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="Video_Frame_Buffer_Top" Register="461" Alu="34" Lut="1181" Bsram="16" T_Register="461(461)" T_Alu="34(34)" T_Lut="1181(1181)" T_Bsram="16(16)"/>
+<Module name="top" Lut="1" T_Register="5186(0)" T_Alu="190(0)" T_Lut="3150(1)" T_Bsram="16(0)">
+ <SubModule name="u_pll"/>
+ <SubModule name="u_ddr3" Register="5186" Alu="190" Lut="3149" Bsram="16" T_Register="5186(5186)" T_Alu="190(190)" T_Lut="3149(3149)" T_Bsram="16(16)"/>
+</Module>
